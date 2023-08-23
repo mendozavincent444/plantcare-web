@@ -1,0 +1,145 @@
+<div class="row mb-3">
+    <div class="col-lg-4">
+        <div class="card mb-3">
+            <div class="card-body text-center shadow"><img id="profile-picture" class="rounded-circle mb-3 mt-4"
+                    src="assets/img/avatars/avatar1.jpg" width="160" height="160" role="button" title="Change Photo"> 
+                <h4>Valerie Luna</h4>
+                <h6>Admin</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="row">
+            <div class="col">
+                <div class="card shadow mb-3">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 fw-bold">Plant Details</p>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="plantName">
+                                            <strong>Plant Name</strong>
+                                        </label>
+
+        
+
+                                        <div *ngIf="!editMode">
+                                            Asparagus
+                                        </div>
+
+                                        <div *ngIf="editMode"> 
+                                            <input class="form-control" type="text" placeholder="Enter Plant Name..." name="plantName">
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="daysToMaturity">
+                                            <strong>Days to Maturity</strong>
+                                        </label>
+
+                                        <div *ngIf="!editMode"> 
+                                            2 to 3 years
+                                        </div>
+
+                                        <div *ngIf="editMode"> 
+                                            <input class="form-control" type="text" placeholder="Enter Days to Maturity..." name="daysToMaturity">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="maximumEC">
+                                            <strong>Maximum EC</strong>
+                                        </label>
+
+                                        <div *ngIf="!editMode"> 
+                                            1.8
+                                        </div>
+
+                                        <div *ngIf="editMode"> 
+                                            <input class="form-control" type="text" placeholder="Enter Maximum EC..." name="maximumEC">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="minimumEC">
+                                            <strong>Minimum EC</strong>
+                                        </label>
+
+                                        <div *ngIf="!editMode"> 
+                                            1.4
+                                        </div>
+
+                                        <div *ngIf="editMode"> 
+                                            <input class="form-control" type="text" placeholder="Enter Minimum EC..." name="minimumEC">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="maximumPH">
+                                            <strong>Maximum pH</strong>
+                                        </label>
+
+                                        <div *ngIf="!editMode"> 
+                                            6.8
+                                        </div>
+
+                                        <div *ngIf="editMode"> 
+                                            <input class="form-control" type="text" placeholder="Enter Maximum pH..." name="maximumPH">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="minimumPH">
+                                            <strong>Minimum pH</strong>
+                                        </label>
+
+                                        <div *ngIf="!editMode"> 
+                                            6.0
+                                        </div>
+
+                                        <div *ngIf="editMode"> 
+                                            <input class="form-control" type="text" placeholder="Enter Minimum pH..." name="minimumPH">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div *ngIf="!editMode" class="mb-3">
+                                <button (click)="toggleEditMode()" class="btn btn-primary btn-sm" type="button">Edit Plant</button>
+                            </div>
+
+                            <div *ngIf="editMode" class="mb-3">
+                                <button class="btn btn-success btn-sm override-button-text-color" type="submit">Save</button>
+                                <button (click)="toggleEditMode()" class="btn btn-primary btn-sm action-button" type="button">Cancel</button>
+
+                            </div>
+
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

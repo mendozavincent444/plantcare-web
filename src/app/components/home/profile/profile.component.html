@@ -1,0 +1,145 @@
+<h3 class="text-dark mb-4">Profile</h3>
+<div class="row mb-3">
+    <div class="col-lg-4">
+        <div class="card mb-3">
+            <div class="card-body text-center shadow"><img id="profile-picture" class="rounded-circle mb-3 mt-4"
+                    src="assets/img/avatars/avatar1.jpg" width="160" height="160" role="button" title="Change Photo">
+                <h4> {{ user.firstName }} {{ user.lastName }}</h4>
+                <h6> {{ user.role.role_name }}</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="row">
+            <div class="col">
+                <div class="card shadow mb-3">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 fw-bold">User Info</p>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="username">
+                                            <strong>Username</strong>
+                                        </label>
+
+
+
+                                        <div *ngIf="!editMode">
+                                            {{ user.username }}
+                                        </div>
+
+                                        <div *ngIf="editMode">
+                                            <input class="form-control" type="text" placeholder="Enter Username..."
+                                                name="username">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="emailAddress">
+                                            <strong>Email Address</strong>
+                                        </label>
+
+                                        <div *ngIf="!editMode">
+                                            {{ user.email }}
+                                        </div>
+
+                                        <div *ngIf="editMode">
+                                            <input class="form-control" type="email"
+                                                placeholder="Enter Email Address..." name="emailAddress">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="firstName">
+                                            <strong>First Name</strong>
+                                        </label>
+
+                                        <div *ngIf="!editMode">
+                                            {{ user.firstName }}
+                                        </div>
+
+                                        <div *ngIf="editMode">
+                                            <input class="form-control" type="text" placeholder="Enter First Name..."
+                                                name="firstName">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="lastName">
+                                            <strong>Last Name</strong>
+                                        </label>
+
+                                        <div *ngIf="!editMode">
+                                            {{ user.lastName }}
+                                        </div>
+
+                                        <div *ngIf="editMode">
+                                            <input class="form-control" type="text" placeholder="Enter Last Name..."
+                                                name="lastName">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="currentPassword">
+                                            <strong>Password</strong>
+                                        </label>
+
+                                        <div *ngIf="!editMode">
+                                            **********
+                                        </div>
+
+                                        <div *ngIf="editMode">
+                                            <input class="form-control" type="password" placeholder="Enter Current Password..."
+                                                name="currentPassword">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="col">
+                                    <div class="mb-3">
+                                        
+                                        <div *ngIf="editMode" class="no-label-padding">
+                                            <input class="form-control" type="text" placeholder="Enter New Password..."
+                                                name="newPassword">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div *ngIf="!editMode" class="mb-3">
+                                <button (click)="toggleEditMode()" class="btn btn-primary btn-sm" type="button">Edit Info</button>
+                            </div>
+
+
+                            <div *ngIf="editMode" class="mb-3">
+                                <button class="btn btn-primary btn-sm" type="submit">Save Info</button>
+                                <button (click)="toggleEditMode()" class="btn btn-danger btn-sm action-button" type="button">Cancel</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
