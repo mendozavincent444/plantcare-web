@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Roles } from 'src/app/shared/roles';
-import { User } from 'src/app/shared/user';
 import { ManageAdminsService } from '../manage-admins.service';
+import { User } from 'src/app/shared/models/user';
 
 @Component({
   selector: 'app-admin-list',

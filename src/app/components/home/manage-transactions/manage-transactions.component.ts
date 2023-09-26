@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Transaction } from 'src/app/shared/transaction';
 
 @Component({
   selector: 'app-manage-transactions',

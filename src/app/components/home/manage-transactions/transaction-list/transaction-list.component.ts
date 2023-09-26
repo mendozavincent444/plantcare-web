@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Transaction } from 'src/app/shared/transaction';
-import { User } from 'src/app/shared/user';
-import { TransactionStatus } from '../TransactionStatus';
-import { Roles } from 'src/app/shared/roles';
 import { ManageTransactionsService } from '../manage-transactions.service';
+import { Transaction } from 'src/app/shared/models/transaction';
 
 @Component({
   selector: 'app-transaction-list',
