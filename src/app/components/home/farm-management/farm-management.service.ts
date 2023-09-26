@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Farm } from 'src/app/shared/farm';
-import { Role } from 'src/app/shared/role';
-import { Roles } from 'src/app/shared/roles';
-import { User } from 'src/app/shared/user';
+import { Farm } from 'src/app/shared/models/farm';
+import { Role } from 'src/app/shared/models/role';
+import { Roles } from 'src/app/shared/models/roles';
+import { User } from 'src/app/shared/models/user';
+
 
 @Injectable({
   providedIn: 'root'

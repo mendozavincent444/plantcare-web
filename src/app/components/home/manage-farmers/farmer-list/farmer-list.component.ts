@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from 'src/app/shared/user';
 import { ManageFarmersService } from '../manage-farmers.service';
+import { User } from 'src/app/shared/models/user';
 
 @Component({
   selector: 'app-farmer-list',

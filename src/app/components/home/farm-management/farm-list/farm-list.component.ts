@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Farm } from 'src/app/shared/farm';
 import { FarmManagementService } from '../farm-management.service';
+import { Farm } from 'src/app/shared/models/farm';
 
 @Component({
   selector: 'app-farm-list',

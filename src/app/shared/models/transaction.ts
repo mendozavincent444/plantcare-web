@@ -1,4 +1,4 @@
-import { TransactionStatus } from "../components/home/manage-transactions/TransactionStatus";
+import { TransactionStatus } from "src/app/components/home/manage-transactions/TransactionStatus";
 import { User } from "./user";
 
 export class Transaction {

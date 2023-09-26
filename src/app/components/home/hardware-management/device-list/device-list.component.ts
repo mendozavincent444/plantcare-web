@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Device } from 'src/app/shared/device';
+import { Device } from 'src/app/shared/models/device';
 import { HardwareManagementService } from '../hardware-management.service';
 
 

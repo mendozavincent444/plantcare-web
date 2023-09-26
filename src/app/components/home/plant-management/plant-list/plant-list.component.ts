@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Plant } from 'src/app/shared/plant';
 import { PlantManagementService } from '../plant-management.service';
+import { Plant } from 'src/app/shared/models/plant';
 
 @Component({
   selector: 'app-plant-list',

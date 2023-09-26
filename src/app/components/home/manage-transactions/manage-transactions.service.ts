@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Roles } from 'src/app/shared/roles';
-import { Transaction } from 'src/app/shared/transaction';
-import { User } from 'src/app/shared/user';
 import { TransactionStatus } from './TransactionStatus';
-import { Role } from 'src/app/shared/role';
+import { Transaction } from 'src/app/shared/models/transaction';
+import { User } from 'src/app/shared/models/user';
+import { Role } from 'src/app/shared/models/role';
+import { Roles } from 'src/app/shared/models/roles';
+
 
 @Injectable({
   providedIn: 'root'
