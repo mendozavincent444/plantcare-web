@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
 
 
   onSubmit() {
-    const USER_ROLE = "ROLE_FARMER";
+    const USER_ROLE = "ROLE_ADMIN";
 
     let firstName, lastName, email, username, password;
 
