@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
@@ -13,7 +14,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router,
+    private route: ActivatedRoute
     ) {
     document.body.style.background = 'rgba(23, 122, 23, 0.6)';
   }
@@ -38,9 +41,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(username, password).subscribe({
       next: data => {
         this.userService.saveUser(data);
-        
         this.loginForm.reset();
-
+        this.router.navigate(["/home/profile"]);
       },
       error: err => {
         // fix - error message
