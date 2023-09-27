@@ -1,8 +1,6 @@
-import { Role } from "./role"; 
-
 export class User {
     id: number;
-    role: Role;
+    role: string;
     username: string;
     email: string;
     firstName: string;
@@ -11,7 +9,7 @@ export class User {
 
     constructor(
         id: number,
-        userRole: Role,
+        userRole: string,
         username: string,
         email: string,
         firstName: string,

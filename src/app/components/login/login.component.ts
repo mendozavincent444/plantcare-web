@@ -38,9 +38,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(username, password).subscribe({
       next: data => {
         this.userService.saveUser(data);
-
-        console.log(data);
-
+        
         this.loginForm.reset();
 
       },
