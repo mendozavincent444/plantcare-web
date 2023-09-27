@@ -1,60 +1,43 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user';
-import { Roles } from '../models/roles';
-import { Role } from '../models/role';
+import { HttpClient } from '@angular/common/http';
 
+const USER_API = "http://localhost:8080/api/v1/users";
 const USER_KEY = "auth-user";
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  user$: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
-  constructor() { 
-    this.loadData();
-  }
+  constructor(private httpClient: HttpClient) {   }
 
-  loadData() {
-    this.user$.next(new User(
-      1, 
-      new Role(1, Roles.ADMIN), 
-      "vincent12345",
-      "mendozavincent444@gmail.com",
-      "Vincent Gabriel",
-      "Mendoza"));
+  public fetchUser(): Observable<User> {
+    return this.httpClient.get<User>(USER_API + "/current-user");
   }
 
   public clean(): void {
     window.sessionStorage.clear();
   }
 
-  public saveUser(user: any) {
+  public saveUser(currentUser: User) {
     window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+    window.sessionStorage.setItem(USER_KEY, JSON.stringify(currentUser));
   }
 
   public getUser() {
-    const user = window.sessionStorage.getItem(USER_KEY);
+    const currentUser = window.sessionStorage.getItem(USER_KEY);
 
-    if (user) {
-      return JSON.parse(user);
+    if (currentUser) {
+      return JSON.parse(currentUser);
     }
-
     return null;
   }
 
-
   public isLoggedIn(): boolean {
-    const user = window.sessionStorage.getItem(USER_KEY);
-
-    if (user) {
-      return true;
-    }
-
-    return false;
+    const currentUser = window.sessionStorage.getItem(USER_KEY);
+    return currentUser ? true : false;
   }
 }

@@ -19,7 +19,7 @@ export class FarmManagementService {
 
   private loadData(): void {
     let users!: User[];
-    const user: User = new User(1, new Role(1, Roles.ADMIN), "roger.feder54", "federroger444@gmail.com", "Roger", "Federer");
+    const user: User = new User(1, "Admin", "roger.feder54", "federroger444@gmail.com", "Roger", "Federer");
 
     this.farms$.next([
       new Farm(1, "California, USA", "AquaGrove Growers", users, user),

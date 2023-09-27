@@ -20,16 +20,14 @@ export class ManageFarmersService {
   private loadData(): void {
 
     this.farmers$.next([
-      new User(1, new Role(1, Roles.ADMIN), "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
-      new User(1, new Role(1, Roles.ADMIN), "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
-      new User(1, new Role(1, Roles.ADMIN), "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
-      new User(1, new Role(1, Roles.ADMIN), "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
-      new User(1, new Role(1, Roles.ADMIN), "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
-      new User(1, new Role(1, Roles.ADMIN), "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
-      new User(1, new Role(1, Roles.ADMIN), "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
-      new User(1, new Role(1, Roles.ADMIN), "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
-      new User(1, new Role(1, Roles.ADMIN), "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
-      new User(1, new Role(1, Roles.ADMIN), "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
+      new User(1, "Admin", "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
+      new User(1, "Admin", "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
+      new User(1, "Admin", "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
+      new User(1, "Admin", "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
+      new User(1, "Admin", "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
+      new User(1, "Admin", "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
+      new User(1, "Admin", "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
+      new User(1, "Admin", "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
     ]);
 
   }

@@ -19,8 +19,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.editMode = false;
-
-    this.userService.user$.subscribe((user) => this.user = user);
+    
+    this.user = this.userService.getUser();
   }
 
   toggleEditMode(): void {
