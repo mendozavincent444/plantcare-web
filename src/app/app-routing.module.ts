@@ -29,12 +29,13 @@ import { TransactionListComponent } from './components/home/manage-transactions/
 import { ViewTransactionComponent } from './components/home/manage-transactions/view-transaction/view-transaction.component';
 import { AdminListComponent } from './components/home/manage-admins/admin-list/admin-list.component';
 import { ViewAdminComponent } from './components/home/manage-admins/view-admin/view-admin.component';
+import { AuthGuard } from './shared/services/auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'home', component: HomeComponent, 
+  { path: 'home', component: HomeComponent, canActivateChild: [AuthGuard], 
       children: [
         { path: 'profile', component: ProfileComponent },
         { path: 'farm-management', component: FarmManagementComponent, 
