@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.user = this.userService.getUser();
+    this.userService.getUser().subscribe(user => this.user = user);
   }
 
   onLogout() {

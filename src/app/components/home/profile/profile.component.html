@@ -19,42 +19,6 @@
                     <div class="card-body">
                         <form [formGroup]="editUserForm" *ngIf="!changePasswordMode" (ngSubmit)="onSaveInfo()">
                             <div class="row">
-                                <div class="col">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="username">
-                                            <strong>Username</strong>
-                                        </label>
-
-                                        <div *ngIf="!editUserMode">
-                                            {{ user.username }}
-                                        </div>
-
-                                        <div *ngIf="editUserMode">
-                                            <input class="form-control" type="text" placeholder="Enter Username..."
-                                                name="username" formControlName="username">
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="emailAddress">
-                                            <strong>Email Address</strong>
-                                        </label>
-
-                                        <div *ngIf="!editUserMode">
-                                            {{ user.email }}
-                                        </div>
-
-                                        <div *ngIf="editUserMode">
-                                            <input class="form-control" type="email" formControlName="email"
-                                                placeholder="Enter Email Address..." name="emailAddress">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
 
                                 <div class="col">
                                     <div class="mb-3">
@@ -67,7 +31,7 @@
                                         </div>
 
                                         <div *ngIf="editUserMode">
-                                            <input class="form-control" type="text" placeholder="Enter First Name..."
+                                            <input class="form-control" type="text"
                                                 formControlName="firstName" name="firstName">
                                         </div>
                                     </div>
@@ -84,7 +48,7 @@
                                         </div>
 
                                         <div *ngIf="editUserMode">
-                                            <input class="form-control" type="text" placeholder="Enter Last Name..."
+                                            <input class="form-control" type="text"
                                                 formControlName="lastName" name="lastName">
                                         </div>
                                     </div>
@@ -92,8 +56,27 @@
 
                             </div>
 
+                            <div class="row" *ngIf="editUserMode">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="firstName">
+                                            <strong>Password</strong>
+                                        </label>
+                                        <div>
+                                            <input class="form-control" type="password" placeholder="Enter Password..."
+                                                formControlName="password" name="password">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="mb-3">
+                                    </div>
+                                </div>
+                            </div>
+
                             <div *ngIf="!editUserMode && !changePasswordMode" class="mb-3">
-                                <button (click)="toggleEditMode()" class="btn btn-primary btn-sm action-button"
+                                <button (click)="toggleEditUserMode()" class="btn btn-primary btn-sm action-button"
                                     type="button">Edit Info</button>
                                 <button (click)="toggleChangePasswordMode()" class="btn btn-primary btn-sm"
                                     type="button">Change Password</button>
@@ -102,7 +85,7 @@
 
                             <div *ngIf="editUserMode" class="mb-3">
                                 <button class="btn btn-primary btn-sm" type="submit">Save Info</button>
-                                <button (click)="toggleEditMode()" class="btn btn-danger btn-sm action-button"
+                                <button (click)="toggleEditUserMode()" class="btn btn-danger btn-sm action-button"
                                     type="button">Cancel</button>
                             </div>
                         </form>
