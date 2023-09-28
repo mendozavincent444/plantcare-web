@@ -11,6 +11,7 @@ const USER_KEY = "auth-user";
 })
 export class UserService {
 
+  $currentUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
   constructor(private httpClient: HttpClient) {   }
 
@@ -19,25 +20,18 @@ export class UserService {
   }
 
   public clean(): void {
-    window.sessionStorage.clear();
+    this.$currentUser.next(null);
   }
 
   public saveUser(currentUser: User) {
-    window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(currentUser));
+    this.$currentUser.next(currentUser);
   }
 
-  public getUser(): User {
-    const currentUser = window.sessionStorage.getItem(USER_KEY);
-
-    if (currentUser) {
-      return JSON.parse(currentUser);
-    }
-    return null;
+  public getUser(): BehaviorSubject<User> {
+    return this.$currentUser;
   }
 
   public isLoggedIn(): boolean {
-    const currentUser = window.sessionStorage.getItem(USER_KEY);
-    return currentUser ? true : false;
+    return this.$currentUser.value ? true : false;
   }
 }
