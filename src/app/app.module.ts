@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NavbarComponent } from './components/home/navbar/navbar.component';
@@ -35,6 +35,7 @@ import { TransactionListComponent } from './components/home/manage-transactions/
 import { ViewTransactionComponent } from './components/home/manage-transactions/view-transaction/view-transaction.component';
 import { AdminListComponent } from './components/home/manage-admins/admin-list/admin-list.component';
 import { ViewAdminComponent } from './components/home/manage-admins/view-admin/view-admin.component'; 
+import { HttpRequestInterceptor } from './helpers/http-request.interceptor';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,7 @@ import { ViewAdminComponent } from './components/home/manage-admins/view-admin/v
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

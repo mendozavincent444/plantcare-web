@@ -29,6 +29,6 @@ export class AuthService {
   }
 
   public updatePassword(currentPassword: string, newPassword: string): Observable<any> {
-    return this.httpClient.post(AUTH_API + "/update-password", { currentPassword, newPassword }, httpOptions);
+    return this.httpClient.post(AUTH_API + "/update-password", { currentPassword, newPassword });
   }
 }

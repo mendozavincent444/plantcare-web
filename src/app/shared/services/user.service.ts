@@ -27,7 +27,7 @@ export class UserService {
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(currentUser));
   }
 
-  public getUser() {
+  public getUser(): User {
     const currentUser = window.sessionStorage.getItem(USER_KEY);
 
     if (currentUser) {
