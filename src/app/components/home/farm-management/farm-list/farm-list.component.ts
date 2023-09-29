@@ -26,6 +26,16 @@ export class FarmListComponent implements OnInit {
     });
   }
 
+  onDelete(farm: Farm) {
+    
+    this.farmManagementService.deleteFarmById(farm.id).subscribe(data => {
+      // fix - receive data
+      console.log(data);
+      
+    })
+
+  }
+
   onDetails(farmName: string) {
     this.router.navigate([`../farm/${farmName}`], { relativeTo: this.route });
   }
