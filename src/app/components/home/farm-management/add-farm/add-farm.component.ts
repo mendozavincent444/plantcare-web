@@ -1,10 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FarmManagementService } from '../farm-management.service';
 
 @Component({
   selector: 'app-add-farm',
   templateUrl: './add-farm.component.html',
   styleUrls: ['./add-farm.component.css']
 })
-export class AddFarmComponent {
+export class AddFarmComponent implements OnInit {
+
+  addFarmForm: FormGroup;
+
+  constructor(private farmService: FarmManagementService) { }
+
+  ngOnInit(): void {
+    this.addFarmForm = new FormGroup({
+      "farmName": new FormControl(null, Validators.required),
+      "location": new FormControl(null, Validators.required)
+    });
+  }
+
+  onAddFarm() {
+    const name = this.addFarmForm.value["farmName"];
+    const location = this.addFarmForm.value["location"];
+
+    this.farmService.addFarm(name, location).subscribe();
+
+    this.addFarmForm.reset();
+  }
 
 }
