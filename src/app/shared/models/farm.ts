@@ -3,23 +3,23 @@ import { User } from "./user";
 export class Farm {
 
     id: number;
-    farmLocation: string;
-    farmName: string;
+    location: string;
+    name: string;
     users: User[];
     //sensors: Sensor[];
-    farmOwner: User;
+    owner: User;
 
     constructor(
         id: number, 
-        farmLocation: string, 
-        farmName: string, 
+        location: string, 
+        name: string, 
         users: User[], 
-        farmOwner: User
+        owner: User
     ) {
         this.id = id;
-        this.farmLocation = farmLocation;
-        this.farmName = farmName;
+        this.location = location;
+        this.name = name;
         this.users = users;
-        this.farmOwner = farmOwner;
+        this.owner = owner;
     }
 }
