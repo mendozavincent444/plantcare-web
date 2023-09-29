@@ -6,22 +6,17 @@
                     <div class="text-center">
                         <h4 class="text-dark mb-4">Add Farm</h4>
                     </div>
-                    <form class="user">
+                    <form class="user" [formGroup]="addFarmForm" (ngSubmit)="onAddFarm()">
                         
                         <div class="mb-3">
                             <input class="form-control form-control-user" type="text"
-                                placeholder="Farm Name"
+                                formControlName="farmName" placeholder="Farm Name"
                                 name="Farm Name">
                         </div>
                         <div class="mb-3">
                             <input class="form-control form-control-user" type="text"
-                                placeholder="Location"
+                                formControlName="location" placeholder="Location"
                                 name="Location">
-                        </div>
-                        <div class="mb-3">
-                            <input class="form-control form-control-user" type="text"
-                                placeholder="Owner"
-                                name="Owner">
                         </div>
                         <button class="btn btn-primary d-block btn-user w-100" type="submit">Add</button>
                     </form>
