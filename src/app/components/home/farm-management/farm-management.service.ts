@@ -29,7 +29,11 @@ export class FarmManagementService {
   }
 
   public getAllFarms(): Observable<any> {
-    return this.httpClient.get(FARM_API);
+    return this.httpClient.get(FARM_API, httpOptions);
+  }
+
+  public deleteFarmById(farmId: number): Observable<any> {
+    return this.httpClient.delete(`${FARM_API}/${farmId}`, httpOptions);
   }
 
 
