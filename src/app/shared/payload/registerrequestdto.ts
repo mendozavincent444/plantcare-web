@@ -5,6 +5,7 @@ export class RegisterRequestDto {
     lastName: string;
     password: string;
     role: string;
+    farmId: number
 
 
     constructor(
@@ -13,7 +14,8 @@ export class RegisterRequestDto {
         firstName: string,
         lastName: string,
         password: string, 
-        role: string
+        role: string,
+        farmId?: number
     ) {
         this.email = email;
         this.username = username;
@@ -21,5 +23,6 @@ export class RegisterRequestDto {
         this.lastName = lastName;
         this.password = password;
         this.role = role;
+        this.farmId = farmId;
     }
 }
