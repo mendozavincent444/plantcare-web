@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ManageFarmersService } from '../manage-farmers.service';
 import { User } from 'src/app/shared/models/user';
+import { UserService } from 'src/app/shared/services/user.service';
+import { Farm } from 'src/app/shared/models/farm';
+import { FarmListComponent } from '../../farm-management/farm-list/farm-list.component';
+import { FarmManagementService } from '../../farm-management/farm-management.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-farmer-list',
@@ -9,24 +14,38 @@ import { User } from 'src/app/shared/models/user';
   styleUrls: ['./farmer-list.component.css']
 })
 export class FarmerListComponent {
-
+  farmerListForm: FormGroup;
   farmers!: User[];
-
+  farms: Farm[];
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private manageFarmersService: ManageFarmersService
+    private userService: UserService,
+    private manageFarmersService: ManageFarmersService,
+    private farmService: FarmManagementService
   ) {
 
   }
-
-
   ngOnInit(): void {
-    this.manageFarmersService.farmers$.subscribe((farmers) => {
-      this.farmers = farmers;
+
+    this.farmerListForm = new FormGroup({
+      "farm": new FormControl("")
+    });
+
+    this.farmService.getAllFarms().subscribe(data => {
+      this.farms = data;
+    });
+  }
+
+  onChangeFarm() {
+    const farmId = this.farmerListForm.value["farm"];
+
+    this.manageFarmersService.getAllFarmersByFarmId(farmId).subscribe(data => {
+      this.farmers = data;
     })
   }
+
 
   onDetails(farmerName: string) {
     this.router.navigate([`../farmer/${farmerName}`], { relativeTo: this.route });
