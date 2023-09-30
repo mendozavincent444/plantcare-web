@@ -52,7 +52,7 @@
                                 <button type="button" class="btn btn-info action-button" title="View details"
                                     (click)="onDetails(farmer.firstName)">Details</button>
                                 <button type="button" class="btn btn-danger action-button"
-                                    title="Remove farmer">Delete</button>
+                                    (click)="onDeleteFarmer(farmer.id)" title="Remove farmer">Delete</button>
                             </td>
                         </tr>
                     </tbody>

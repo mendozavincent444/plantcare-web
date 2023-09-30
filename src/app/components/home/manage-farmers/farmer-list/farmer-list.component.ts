@@ -14,6 +14,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./farmer-list.component.css']
 })
 export class FarmerListComponent {
+
   farmerListForm: FormGroup;
   farmers!: User[];
   farms: Farm[];
@@ -49,5 +50,17 @@ export class FarmerListComponent {
 
   onDetails(farmerName: string) {
     this.router.navigate([`../farmer/${farmerName}`], { relativeTo: this.route });
+  }
+
+  onDeleteFarmer(farmerId: number) {
+    const farmId = this.farmerListForm.value["farm"];
+
+
+    this.manageFarmersService.deleteFarmerByFarm(farmId, farmerId).subscribe(data => {
+      // fix - receive data
+      console.log(data);
+    });
+
+
   }
 }

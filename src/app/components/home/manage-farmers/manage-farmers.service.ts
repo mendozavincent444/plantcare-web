@@ -20,6 +20,12 @@ export class ManageFarmersService {
   }
 
   public getAllFarmersByFarmId(farmId: number): Observable<any> {
-    return this.httpClient.get(FARM_API + `/${farmId}/farmers`);
+    return this.httpClient.get(FARM_API + `/${farmId}/farmers`, httpOptions);
   }
+
+  public deleteFarmerByFarm(farmId: number, farmerId: number): Observable<any> {
+    return this.httpClient.delete(FARM_API + `/${farmId}/farmers/${farmerId}`, httpOptions);
+  }
+
 }
+
