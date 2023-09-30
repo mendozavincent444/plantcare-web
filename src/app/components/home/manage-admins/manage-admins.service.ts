@@ -32,5 +32,9 @@ export class ManageAdminsService {
     return this.httpClient.put(USER_API + `/admins/${adminId}/ban`, admin, httpOptions);
   }
 
+  public reactivateAdmin(admin: User, adminId: number): Observable<any> {
+    return this.httpClient.put(USER_API + `/admins/${adminId}/reactivate`, admin, httpOptions);
+  }
+
   
 }
