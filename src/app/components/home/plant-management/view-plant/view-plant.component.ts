@@ -4,15 +4,6 @@ import { PlantManagementService } from '../plant-management.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-export interface plantFormValues {
-  plantName: string;
-  daysToMaturity: string;
-  maximumEc: number;
-  minimumEc: number;
-  maximumPh: number;
-  minimumPh: number;
-}
-
 @Component({
   selector: 'app-view-plant',
   templateUrl: './view-plant.component.html',
