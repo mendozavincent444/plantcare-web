@@ -19,21 +19,17 @@ export class ManageAdminsService {
 
   constructor(private httpClient: HttpClient) { 
   }
-
-  
-
-  public saveAdmins(admins: User[]) {
-    this.admins$.next(admins);
-  }
-
   
   public getAdminByUsername(adminUsername: string): Observable<any> {
     return this.httpClient.get(USER_API + `/admins/${adminUsername}`, httpOptions)
   }
   
-
   public getAllAdmins(): Observable<any> {
     return this.httpClient.get(USER_API + `/roles/${ADMIN_ROLE_ID}`, httpOptions);
+  }
+
+  public banAdmin(admin: User, adminId: number): Observable<any> {
+    return this.httpClient.put(USER_API + `/admins/${adminId}/ban`, admin, httpOptions);
   }
 
   
