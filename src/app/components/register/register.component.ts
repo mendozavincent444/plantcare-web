@@ -10,13 +10,19 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  private originalBackgroundColor: string;
+
 
   constructor(
     private authService: AuthService
   ) {
+    this.originalBackgroundColor = document.body.style.background;
     document.body.style.background = 'rgba(23, 122, 23, 0.6)';
   }
 
+  private resetBackgroundColor(): void {
+    document.body.style.background = this.originalBackgroundColor;
+  }
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -56,10 +62,7 @@ export class RegisterComponent implements OnInit {
         console.log(data);
 
         this.registerForm.reset();
-        
-
-        
-        
+        this.resetBackgroundColor();
       }});
   }
 

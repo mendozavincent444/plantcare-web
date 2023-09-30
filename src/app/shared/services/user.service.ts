@@ -21,14 +21,26 @@ export class UserService {
 
   public clean(): void {
     this.$currentUser.next(null);
+    window.sessionStorage.clear();
   }
 
   public saveUser(currentUser: User) {
     this.$currentUser.next(currentUser);
+    window.sessionStorage.setItem(USER_KEY, JSON.stringify(currentUser));
   }
 
   public getUser(): BehaviorSubject<User> {
     return this.$currentUser;
+  }
+
+  public autoLogin() {
+    const currentUser = JSON.parse(window.sessionStorage.getItem(USER_KEY));
+
+    if (!currentUser) {
+      this.$currentUser.next(null);
+    }
+
+    this.$currentUser.next(currentUser);
   }
 
   public isLoggedIn(): boolean {
