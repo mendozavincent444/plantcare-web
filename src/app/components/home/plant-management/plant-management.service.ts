@@ -27,6 +27,10 @@ export class PlantManagementService {
     return this.httpClient.post(PLANT_API + `${farmId}/plants`, plant, httpOptions);
   }
 
+  public deletePlantById(plantId: number, farmId: number) {
+    return this.httpClient.delete(PLANT_API + `${farmId}/plants/${plantId}`, httpOptions);
+  }
+
 
 
 }

@@ -12,7 +12,6 @@ import { FarmManagementService } from '../../farm-management/farm-management.ser
   styleUrls: ['./plant-list.component.css']
 })
 export class PlantListComponent implements OnInit {
-
   plants!: Plant[];
   plantListForm: FormGroup;
   farms: Farm[];
@@ -34,6 +33,15 @@ export class PlantListComponent implements OnInit {
     this.plantListForm = new FormGroup({
       "farm": new FormControl("")
     });
+  }
+
+  onDelete(plantId: number) {
+    const farmId = this.plantListForm.value["farm"];
+
+    this.plantManagementService.deletePlantById(plantId, farmId).subscribe(data => {
+      // fix - receive data
+      console.log(data);
+    })
   }
 
   onChangeFarm() {
