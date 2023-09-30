@@ -20,11 +20,12 @@ export class AdminListComponent {
 
   }
 
-
   ngOnInit(): void {
-    this.ManageAdminsService.admins$.subscribe((admins) => {
+    this.ManageAdminsService.getAllAdmins().subscribe((admins) => {
       this.admins = admins;
+      this.ManageAdminsService.saveAdmins(admins);
     })
+
   }
 
   onDetails(adminUsername: string) {

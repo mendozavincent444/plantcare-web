@@ -1,9 +1,14 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Role } from 'src/app/shared/models/role';
-import { Roles } from 'src/app/shared/models/roles';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/app/shared/models/user';
 
+const USER_API = "http://localhost:8080/api/v1/users"
+const ADMIN_ROLE_ID = 2;
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +17,24 @@ export class ManageAdminsService {
 
   admins$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>(null);
 
-  constructor() { 
-    this.loadData();
+  constructor(private httpClient: HttpClient) { 
   }
 
-  private loadData(): void {
-    this.admins$.next([
-      new User(1, "Admin", "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
-      new User(1, "Admin", "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
-      new User(1, "Admin", "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
-      new User(1, "Admin", "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
-      new User(1, "Admin", "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
-      new User(1, "Admin", "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
-      new User(1, "Admin", "roger.feder54","federroger444@gmail.com", "Roger", "Federer"),
-    ]);
+  
+
+  public saveAdmins(admins: User[]) {
+    this.admins$.next(admins);
   }
+
+  
+  public getAdminByUsername(adminUsername: string): Observable<any> {
+    return this.httpClient.get(USER_API + `/admins/${adminUsername}`, httpOptions)
+  }
+  
+
+  public getAllAdmins(): Observable<any> {
+    return this.httpClient.get(USER_API + `/roles/${ADMIN_ROLE_ID}`, httpOptions);
+  }
+
+  
 }
