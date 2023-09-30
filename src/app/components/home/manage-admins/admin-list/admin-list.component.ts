@@ -9,7 +9,6 @@ import { User } from 'src/app/shared/models/user';
   styleUrls: ['./admin-list.component.css']
 })
 export class AdminListComponent {
-
   admins!: User[];
 
   constructor(
@@ -32,12 +31,20 @@ export class AdminListComponent {
   }
 
   onBanAdmin(admin: User) {
-   this.adminService.banAdmin(admin, admin.id).subscribe(data => {
-    // fix receive data
-    console.log(data);
+    this.adminService.banAdmin(admin, admin.id).subscribe(data => {
+      // fix receive data
+      console.log(data);
 
-    this.ngOnInit();
-   })
+      this.ngOnInit();
+    })
+  }
+
+  onReactivateAdmin(admin: User) {
+    this.adminService.reactivateAdmin(admin, admin.id).subscribe(data => {
+      // fix receive data
+      console.log(data);
+      this.ngOnInit();
+    });
   }
 
 }
