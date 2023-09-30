@@ -52,7 +52,9 @@ export class PlantListComponent implements OnInit {
     })
   }
 
-  onDetails(plantName: string) {
-    this.router.navigate([`../plant/${plantName}`], { relativeTo: this.route });
+  onDetails(plantId: number) {
+    const farmId = this.plantListForm.value["farm"];
+
+    this.router.navigate([`../farm/${farmId}/plant/${plantId}`], { relativeTo: this.route });
   }
 }

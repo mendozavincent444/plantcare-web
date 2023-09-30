@@ -62,7 +62,7 @@ const routes: Routes = [
             children: [
               { path: 'plant-list', component: PlantListComponent },
               { path: 'add-plant', component: AddPlantComponent },
-              { path: 'plant/:plant-name', component: ViewPlantComponent },
+              { path: 'farm/:farm-id/plant/:plant-id', component: ViewPlantComponent },
               { path: '', redirectTo: 'plant-list', pathMatch: 'full' }
             ] },
         { path: 'buy-products', component: BuyProductsComponent,

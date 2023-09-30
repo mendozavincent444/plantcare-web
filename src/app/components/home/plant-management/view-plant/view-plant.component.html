@@ -3,8 +3,7 @@
         <div class="card mb-3">
             <div class="card-body text-center shadow"><img id="profile-picture" class="rounded-circle mb-3 mt-4"
                     src="assets/img/avatars/avatar1.jpg" width="160" height="160" role="button" title="Change Photo"> 
-                <h4>Valerie Luna</h4>
-                <h6>Admin</h6>
+                <h4> {{ plant.name }}</h4>
             </div>
         </div>
     </div>
@@ -16,7 +15,7 @@
                         <p class="text-primary m-0 fw-bold">Plant Details</p>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form [formGroup]="editPlantForm" (ngSubmit)="onEditPlant()">
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
@@ -24,14 +23,12 @@
                                             <strong>Plant Name</strong>
                                         </label>
 
-        
-
                                         <div *ngIf="!editMode">
-                                            Asparagus
+                                            {{ plant.name }}
                                         </div>
 
                                         <div *ngIf="editMode"> 
-                                            <input class="form-control" type="text" placeholder="Enter Plant Name..." name="plantName">
+                                            <input formControlName="plantName" class="form-control" type="text" placeholder="Enter Plant Name..." name="plantName">
                                         </div>
                                         
                                     </div>
@@ -43,11 +40,11 @@
                                         </label>
 
                                         <div *ngIf="!editMode"> 
-                                            2 to 3 years
+                                            {{ plant.daysToMaturity }}
                                         </div>
 
                                         <div *ngIf="editMode"> 
-                                            <input class="form-control" type="text" placeholder="Enter Days to Maturity..." name="daysToMaturity">
+                                            <input formControlName="daysToMaturity" class="form-control" type="text" name="daysToMaturity">
                                         </div>
                                     </div>
                                 </div>
@@ -62,11 +59,11 @@
                                         </label>
 
                                         <div *ngIf="!editMode"> 
-                                            1.8
+                                            {{ plant.maximumEc }}
                                         </div>
 
                                         <div *ngIf="editMode"> 
-                                            <input class="form-control" type="text" placeholder="Enter Maximum EC..." name="maximumEC">
+                                            <input formControlName="maximumEc" class="form-control" type="text" name="maximumEC">
                                         </div>
                                     </div>
                                 </div>
@@ -78,11 +75,11 @@
                                         </label>
 
                                         <div *ngIf="!editMode"> 
-                                            1.4
+                                            {{ plant.minimumEc }}
                                         </div>
 
                                         <div *ngIf="editMode"> 
-                                            <input class="form-control" type="text" placeholder="Enter Minimum EC..." name="minimumEC">
+                                            <input formControlName="minimumEc" class="form-control" type="text" name="minimumEC">
                                         </div>
                                     </div>
                                 </div>
@@ -98,11 +95,11 @@
                                         </label>
 
                                         <div *ngIf="!editMode"> 
-                                            6.8
+                                            {{ plant.maximumPh }}
                                         </div>
 
                                         <div *ngIf="editMode"> 
-                                            <input class="form-control" type="text" placeholder="Enter Maximum pH..." name="maximumPH">
+                                            <input formControlName="maximumPh" class="form-control" type="text" name="maximumPH">
                                         </div>
                                     </div>
                                 </div>
@@ -114,11 +111,11 @@
                                         </label>
 
                                         <div *ngIf="!editMode"> 
-                                            6.0
+                                            {{ plant.minimumPh }}
                                         </div>
 
                                         <div *ngIf="editMode"> 
-                                            <input class="form-control" type="text" placeholder="Enter Minimum pH..." name="minimumPH">
+                                            <input formControlName="minimumPh" class="form-control" type="text" name="minimumPH">
                                         </div>
                                     </div>
                                 </div>

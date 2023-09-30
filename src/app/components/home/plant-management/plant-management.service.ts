@@ -31,6 +31,14 @@ export class PlantManagementService {
     return this.httpClient.delete(PLANT_API + `${farmId}/plants/${plantId}`, httpOptions);
   }
 
+  public getPlantById(plantId: number, farmId: number): Observable<any> {
+    return this.httpClient.get(PLANT_API + `${farmId}/plants/${plantId}`, httpOptions);
+  }
+
+  public editPlant(plant: Plant, plantId: number, farmId: number) {
+    return this.httpClient.put(PLANT_API + `${farmId}/plants/${plantId}`, plant, httpOptions);
+  }
+
 
 
 }
