@@ -6,7 +6,7 @@ export class User {
     firstName: string;
     lastName: string;
     password?: string;
-    isAccountNonLocked?: boolean;
+    accountNonLocked?: boolean;
 
     constructor(
         id: number,
@@ -16,7 +16,7 @@ export class User {
         firstName: string,
         lastName: string,
         password?: string,
-        isAccountNonLocked?: boolean
+        accountNonLocked?: boolean
     ) {
         this.id = id;
         this.role = userRole;
@@ -25,6 +25,6 @@ export class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.isAccountNonLocked = isAccountNonLocked;
+        this.accountNonLocked = accountNonLocked;
     }
 }

@@ -33,8 +33,8 @@
                         <td> {{ admin.lastName }} </td>
                         <td> {{ admin.email }} </td>
                         <td>
-                            <button *ngIf="admin.isAccountNonLocked" type="button" class="btn btn-success action-button" title="Reactivate admin">Reactivate</button>
-                            <button *ngIf="!admin.isAccountNonLocked" type="button" class="btn btn-danger action-button" title="Ban farmer">Ban</button>
+                            <button *ngIf="!admin.accountNonLocked" type="button" class="btn btn-success action-button" title="Reactivate admin">Reactivate</button>
+                            <button (click)="onBanAdmin(admin)" *ngIf="admin.accountNonLocked" type="button" class="btn btn-danger action-button" title="Ban farmer">Ban</button>
                             <button (click)="onDetails(admin.username)" type="button" class="btn btn-info action-button" title="View detail">Details</button>
                         </td>
                     </tr>

@@ -15,21 +15,29 @@ export class AdminListComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private ManageAdminsService: ManageAdminsService
+    private adminService: ManageAdminsService
   ) {
 
   }
 
   ngOnInit(): void {
-    this.ManageAdminsService.getAllAdmins().subscribe((admins) => {
+    this.adminService.getAllAdmins().subscribe((admins: User[]) => {
       this.admins = admins;
-      this.ManageAdminsService.saveAdmins(admins);
     })
 
   }
 
   onDetails(adminUsername: string) {
     this.router.navigate([`../admin/${adminUsername}`], { relativeTo: this.route });
+  }
+
+  onBanAdmin(admin: User) {
+   this.adminService.banAdmin(admin, admin.id).subscribe(data => {
+    // fix receive data
+    console.log(data);
+
+    this.ngOnInit();
+   })
   }
 
 }
