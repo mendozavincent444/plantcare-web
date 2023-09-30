@@ -1,25 +1,27 @@
 export class Plant {
-
-    plantName: string;
-    plantMaximumEC: number;
-    plantMaximumPH: number;
-    plantMinimumEC: number;
-    plantMinimumPH: number;
+    id: number;
+    name: string;
+    maximumEc: number;
+    maximumPh: number;
+    minimumEc: number;
+    minimumPh: number;
     daysToMaturity: string;
 
     constructor(
-        plantName: string,
-        plantMaximumEC: number,
-        plantMaximumPH: number,
-        plantMinimumEC: number,
-        plantMinimumPH: number,
-        daysToMaturity: string
+        name: string,
+        maximumEc: number,
+        maximumPh: number,
+        minimumEc: number,
+        minimumPh: number,
+        daysToMaturity: string,
+        id?: number
     ) {
-        this.plantName = plantName;
-        this.plantMaximumEC = plantMaximumEC;
-        this.plantMaximumPH = plantMaximumPH;
-        this.plantMinimumEC = plantMinimumEC;
-        this.plantMinimumPH = plantMinimumPH;
+        this.name = name;
+        this.maximumEc = maximumEc;
+        this.maximumPh = maximumPh;
+        this.minimumEc = minimumEc;
+        this.minimumPh = minimumPh;
         this.daysToMaturity = daysToMaturity;
+        this.id = id;
     }
 }
