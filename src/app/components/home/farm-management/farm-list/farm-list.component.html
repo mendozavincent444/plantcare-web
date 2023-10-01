@@ -38,7 +38,7 @@
                         <td> {{ farm.location }} </td>
                         <td> {{ farm.owner.email }} </td>
                         <td>                    
-                            <button type="button" class="btn btn-info action-button" (click)="onDetails(farm.name)" title="View details">Details</button>
+                            <button type="button" class="btn btn-info action-button" (click)="onDetails(farm.id)" title="View details">Details</button>
                             <button type="button" class="btn btn-danger action-button" (click)="onDelete(farm)" title="Remove farm">Delete</button>
                         </td>
                     </tr>

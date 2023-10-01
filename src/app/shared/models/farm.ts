@@ -13,8 +13,8 @@ export class Farm {
         id: number, 
         location: string, 
         name: string, 
-        users: User[], 
-        owner: User
+        users?: User[], 
+        owner?: User
     ) {
         this.id = id;
         this.location = location;

@@ -42,7 +42,7 @@ const routes: Routes = [
             children: [
               { path: 'farm-list', component: FarmListComponent },
               { path: 'add-farm', component: AddFarmComponent },
-              { path: 'farm/:farm-name', component: ViewFarmComponent },
+              { path: 'farm/:farm-id', component: ViewFarmComponent },
               { path: '', redirectTo: 'farm-list', pathMatch: 'full' }
           ] },
         { path: 'manage-farmers', component: ManageFarmersComponent,
