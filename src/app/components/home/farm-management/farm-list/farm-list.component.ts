@@ -36,7 +36,7 @@ export class FarmListComponent implements OnInit {
 
   }
 
-  onDetails(farmName: string) {
-    this.router.navigate([`../farm/${farmName}`], { relativeTo: this.route });
+  onDetails(farmId: number) {
+    this.router.navigate([`../farm/${farmId}`], { relativeTo: this.route });
   }
 }

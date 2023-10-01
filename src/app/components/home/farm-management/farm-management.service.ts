@@ -36,7 +36,17 @@ export class FarmManagementService {
     return this.httpClient.delete(`${FARM_API}/${farmId}`, httpOptions);
   }
 
+  public getFarmById(farmId: number): Observable<any> {
+    return this.httpClient.get(`${FARM_API}/${farmId}`, httpOptions);
+  }
 
+  public getAdminsByFarmId(farmId: number): Observable<any> {
+    return this.httpClient.get(`${FARM_API}/${farmId}/admins`, httpOptions);
+  }
+
+  public updateFarm(farm: Farm ,farmId: number, newOwnerId: number): Observable<any> {
+    return this.httpClient.put(`${FARM_API}/${farmId}/new-owner/${newOwnerId}`, farm, httpOptions);
+  }
 
 
 }
