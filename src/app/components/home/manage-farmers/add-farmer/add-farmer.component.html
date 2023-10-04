@@ -38,8 +38,16 @@
                         <hr>
                         <input type="file" id="fileInput" style="display: none;">
                     </form>
-                    <button (click)="onUploadFarmers()" class="btn btn-primary d-block btn-user w-100"><i
-                            class="fas fa-upload"></i> Upload Multiple Farmers (.csv)</button>
+
+
+                    <div class="mb-3">
+                        <label for="uploadFile" class="form-label"><i class="fas fa-upload"></i> Upload Farmers
+                            (.csv)</label>
+                        <input (change)="onUploadFarmers($event)" class="form-control" type="file" id="uploadFile">
+                    </div>
+
+
+
                 </div>
             </div>
         </div>
