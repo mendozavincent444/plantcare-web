@@ -5,6 +5,7 @@ import { FarmManagementService } from '../../farm-management/farm-management.ser
 import { RegisterRequestDto } from 'src/app/shared/payload/registerrequestdto';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { from } from 'rxjs';
 
 const USER_ROLE = "ROLE_FARMER";
 
@@ -14,7 +15,10 @@ const USER_ROLE = "ROLE_FARMER";
   styleUrls: ['./add-farmer.component.css']
 })
 export class AddFarmerComponent implements OnInit {
+
   addFarmerForm: FormGroup;
+  addFarmerBulkForm: FormGroup;
+  formData: FormData;
 
   farms: Farm[];
 
@@ -23,10 +27,19 @@ export class AddFarmerComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute
-    ) {}
+  ) { }
 
-  onUploadFarmers() {
-    document.getElementById('fileInput')?.click();
+  onUploadFarmers(event) {
+    if (!event.target.files[0]) {
+      return;
+    }
+
+    const file = event.target.files[0];
+
+    console.log(file);
+
+    this.formData = new FormData();
+    this.formData.append("file", file);
   }
 
   ngOnInit(): void {
@@ -43,12 +56,26 @@ export class AddFarmerComponent implements OnInit {
   }
 
   onAddFarmer() {
+    const farmId = this.addFarmerForm.value["farm"];
+
+    if (this.formData) {
+
+      this.authService.registerFarmersBulk(farmId, this.formData).subscribe(data => {
+
+        // fix - receive response 
+        console.log(data);
+        this.addFarmerForm.reset();
+        this.router.navigate(["../farmer-list"], { relativeTo: this.route });
+      })
+      return;
+    }
+
     const emailAddress = this.addFarmerForm.value["emailAddress"];
     const username = this.addFarmerForm.value["username"];
     const firstName = this.addFarmerForm.value["firstName"];
     const lastName = this.addFarmerForm.value["lastName"];
     const password = this.addFarmerForm.value["password"];
-    const farmId = this.addFarmerForm.value["farm"];
+
 
     const registerRequest = new RegisterRequestDto(
       emailAddress,
@@ -67,8 +94,9 @@ export class AddFarmerComponent implements OnInit {
       this.router.navigate(["../farmer-list"], { relativeTo: this.route });
     })
 
-    
-    
   }
 
+  onAddFarmersBulk() {
+
+  }
 }

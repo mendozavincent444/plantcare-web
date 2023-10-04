@@ -11,6 +11,10 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
+const httpUploadOptions = {
+  headers: new HttpHeaders({ "Content-Type": "multipart/form-data" })
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -37,4 +41,10 @@ export class AuthService {
   public updateUserProfile(editedUser: EditUserProfileDto): Observable<any> {
     return this.httpClient.put(AUTH_API + "/update-profile", editedUser, httpOptions);
   }
+
+  public registerFarmersBulk(farmId: number, file: FormData): Observable<any> {
+    return this.httpClient.post(AUTH_API + `/farm/${farmId}/farmers/bulk-register`, file);
+  }
+
+
 }
