@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RegisterRequestDto } from 'src/app/shared/payload/registerrequestdto';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
@@ -14,7 +15,8 @@ export class RegisterComponent implements OnInit {
 
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.originalBackgroundColor = document.body.style.background;
     document.body.style.background = 'rgba(23, 122, 23, 0.6)';
@@ -63,6 +65,7 @@ export class RegisterComponent implements OnInit {
 
         this.registerForm.reset();
         this.resetBackgroundColor();
+        this.router.navigate(["/login"]);
       }});
   }
 
