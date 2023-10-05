@@ -43,6 +43,14 @@ export class AddFarmerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initializeAddFarmerForm();
+    this.initializeAddFarmerBulkForm();
+
+    this.farmService.getAllFarms().subscribe(farms => this.farms = farms);
+  }
+
+
+  private initializeAddFarmerForm() {
     this.addFarmerForm = new FormGroup({
       "firstName": new FormControl(null, Validators.required),
       "lastName": new FormControl(null, Validators.required),
@@ -51,31 +59,22 @@ export class AddFarmerComponent implements OnInit {
       "password": new FormControl(null, Validators.required),
       "farm": new FormControl("")
     });
+  }
 
-    this.farmService.getAllFarms().subscribe(farms => this.farms = farms);
+  private initializeAddFarmerBulkForm() {
+    this.addFarmerBulkForm = new FormGroup({
+      "farmBulk": new FormControl("")
+    });
   }
 
   onAddFarmer() {
     const farmId = this.addFarmerForm.value["farm"];
-
-    if (this.formData) {
-
-      this.authService.registerFarmersBulk(farmId, this.formData).subscribe(data => {
-
-        // fix - receive response 
-        console.log(data);
-        this.addFarmerForm.reset();
-        this.router.navigate(["../farmer-list"], { relativeTo: this.route });
-      })
-      return;
-    }
 
     const emailAddress = this.addFarmerForm.value["emailAddress"];
     const username = this.addFarmerForm.value["username"];
     const firstName = this.addFarmerForm.value["firstName"];
     const lastName = this.addFarmerForm.value["lastName"];
     const password = this.addFarmerForm.value["password"];
-
 
     const registerRequest = new RegisterRequestDto(
       emailAddress,
@@ -97,6 +96,17 @@ export class AddFarmerComponent implements OnInit {
   }
 
   onAddFarmersBulk() {
+    const farmId = this.addFarmerBulkForm.value["farmBulk"];
 
+    if (this.formData) {
+
+      this.authService.registerFarmersBulk(farmId, this.formData).subscribe(data => {
+
+        // fix - receive response 
+        console.log(data);
+        this.addFarmerForm.reset();
+        this.router.navigate(["../farmer-list"], { relativeTo: this.route });
+      });
+    }
   }
 }
