@@ -34,20 +34,33 @@
                                 <option [ngValue]="farm.id" *ngFor="let farm of farms"> {{ farm.name }} </option>
                             </select>
                         </div>
-                        <button class="btn btn-primary d-block btn-user w-100" type="submit">Add</button>
-                        <hr>
-                        <input type="file" id="fileInput" style="display: none;">
+                        <button class="btn btn-primary d-block btn-user w-100" type="submit">Add Farmer</button>
                     </form>
 
+                    <hr>
 
-                    <div class="mb-3">
-                        <label for="uploadFile" class="form-label"><i class="fas fa-upload"></i> Upload Farmers
-                            (.csv)</label>
-                        <input (change)="onUploadFarmers($event)" class="form-control" type="file" id="uploadFile">
-                    </div>
+                    <form class="user" [formGroup]="addFarmerBulkForm" (ngSubmit)="onAddFarmersBulk()">
 
+                        <div class="mb-3">
+                            <select class="form-control form-control-user" formControlName="farmBulk" placeholder="Farm"
+                                name="Farm">
+                                <option value="" disabled selected>Select Farm</option>
+                                <option [ngValue]="farm.id" *ngFor="let farm of farms"> {{ farm.name }} </option>
+                            </select>
+                        </div>
 
+                        <div class="mb-3">
+                            <input type="file" id="fileInput" style="display: none;">
+                            <label for="uploadFile" class="form-label"><i class="fas fa-upload"></i> Upload Farmers
+                                (.csv)</label>
+                            <input (change)="onUploadFarmers($event)" class="form-control" type="file" id="uploadFile">
 
+                        </div>
+
+                        <div class="mb-3">
+                            <button class="btn btn-primary d-block btn-user w-100" type="submit">Upload CSV</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
