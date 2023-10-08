@@ -80,7 +80,7 @@ const routes: Routes = [
         { path: 'hardware-management', component: HardwareManagementComponent,
             children: [
               { path: 'device-list', component: DeviceListComponent },
-              { path: 'device/:device-name', component: ViewDeviceComponent },
+              { path: 'farms/:farm-id/devices/:device/:device-id', component: ViewDeviceComponent },
               { path: '', redirectTo: 'device-list', pathMatch: 'full' },
             ] },
         { path: '', redirectTo: 'profile', pathMatch: 'full' }
