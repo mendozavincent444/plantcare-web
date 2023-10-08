@@ -17,28 +17,38 @@ export class ViewDeviceComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private hardwareManagementService: HardwareManagementService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.editMode = false;
 
     const farmId = this.route.snapshot.params["farm-id"];
     const deviceId = this.route.snapshot.params["device-id"];
-
-    this.deviceType = this.getDevice(farmId, deviceId);
-  }
-
-  private getDevice(farmId: number, deviceId: number): string {
     const deviceTypeFromRoute = this.route.snapshot.params["device"];
 
-    if (deviceTypeFromRoute === "sensors") {
+    this.deviceType = this.getDeviceType(deviceTypeFromRoute);
+    this.getDevice(farmId, deviceId, this.deviceType);
+  }
+
+  private getDevice(farmId: number, deviceId: number, deviceTypeFromRoute: string) {
+    if (deviceTypeFromRoute === "Sensor") {
       this.hardwareManagementService.getSensorById(farmId, deviceId).subscribe(data => this.device = data);
-      return "Sensor";
-    } else if (deviceTypeFromRoute === "pumps") {
+
+    } else if (deviceTypeFromRoute === "Pump") {
       this.hardwareManagementService.getPumpById(farmId, deviceId).subscribe(data => this.device = data);
-      return "Pump";
+
     } else {
       this.hardwareManagementService.getArduinoBoardById(farmId, deviceId).subscribe(data => this.device = data);
+
+    }
+  }
+
+  private getDeviceType(deviceType: string): string {
+    if (deviceType === "sensors") {
+      return "Sensor";
+    } else if (deviceType === "pumps") {
+      return "Pump";
+    } else {
       return "Arduino Board";
     }
   }
