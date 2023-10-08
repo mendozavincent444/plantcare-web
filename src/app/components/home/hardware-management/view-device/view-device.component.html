@@ -3,8 +3,7 @@
         <div class="card mb-3">
             <div class="card-body text-center shadow"><img id="profile-picture" class="rounded-circle mb-3 mt-4"
                     src="assets/img/avatars/avatar1.jpg" width="160" height="160" role="button" title="Change Photo"> 
-                <h4>Valerie Luna</h4>
-                <h6>Admin</h6>
+                <h4> {{ device.name }} </h4>
             </div>
         </div>
     </div>
@@ -24,10 +23,8 @@
                                             <strong>Device Type</strong>
                                         </label>
 
-        
-
                                         <div>
-                                            Sensor
+                                            {{ deviceType }}
                                         </div>
                                         
                                     </div>
@@ -39,7 +36,7 @@
                                         </label>
 
                                         <div *ngIf="!editMode"> 
-                                            In Use
+                                            {{ device.status }}
                                         </div>
 
                                         <div *ngIf="editMode">

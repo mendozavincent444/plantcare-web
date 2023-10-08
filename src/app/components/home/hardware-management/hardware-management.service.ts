@@ -1,6 +1,13 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Device } from 'src/app/shared/models/device';
+
+const FARM_API = "http://localhost:8080/api/v1/farms";
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -9,23 +16,33 @@ export class HardwareManagementService {
 
   devices$: BehaviorSubject<Device[]> = new BehaviorSubject<Device[]>(null);
 
-  constructor() {
-    this.loadData();
+  constructor(
+    private httpClient: HttpClient
+  ) {
   }
 
-
-  private loadData(): void {
-    this.devices$.next([
-      new Device("Water Level Sensor", "Sensor", "AquaGrove Growers", "Available"),
-      new Device("Temperature Sensor", "Sensor", "AquaHarvest Gardens Farm", "Available"),
-      new Device("EC Nutrient Sensor", "Sensor", "SkyHigh Hydro Farm", "Available"),
-      new Device("Light Intensity Sensor", "Sensor", "HydroGreens Farm", "Available"),
-      new Device("Humidity Sensor", "Sensor", "H2Oasis Farms", "Not Available"),
-      new Device("CO2 Sensor", "Sensor", "AquaVine Growers", "Available"),
-      new Device("Nutrient Dosing Pump", "Pump", "GreenWave Hydroponics", "Not Available"),
-      new Device("Water Circulation Pump", "Pump", "HydroHaven Farmstead", "Not Available"),
-      new Device("Water Chiller/Heater", "Pump", "faAquaRoots Cultivationsrm", "Not Available"),
-      new Device("pH Level Sensor", "Sensor", "CloudCrop Hydro Farms", "Available"),
-    ]);
+  public getAllSensorsByFarmId(farmId: number): Observable<Device[]> {
+    return this.httpClient.get<Device[]>(FARM_API + `/${farmId}/sensors`, httpOptions);
   }
+
+  public getAllPumpsByFarmId(farmId: number): Observable<Device[]> {
+    return this.httpClient.get<Device[]>(FARM_API + `/${farmId}/pumps`, httpOptions);
+  }
+
+  public getAllArduinoBoardsByFarmId(farmId: number): Observable<Device[]> {
+    return this.httpClient.get<Device[]>(FARM_API + `/${farmId}/arduinoboards`, httpOptions);
+  }
+
+  public getSensorById(farmId: number, sensorId: number): Observable<Device> {
+    return this.httpClient.get<Device>(FARM_API + `/${farmId}/sensors/${sensorId}`, httpOptions);
+  }
+
+  public getPumpById(farmId: number, pumpId: number): Observable<Device> {
+    return this.httpClient.get<Device>(FARM_API + `/${farmId}/pumps/${pumpId}`, httpOptions);
+  }
+
+  public getArduinoBoardById(farmId: number, arduinoBoardId: number): Observable<Device> {
+    return this.httpClient.get<Device>(FARM_API + `/${farmId}/arduinoboards/${arduinoBoardId}`, httpOptions);
+  }
+
 }

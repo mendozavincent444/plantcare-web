@@ -1,14 +1,14 @@
 export class Device {
-    deviceName: string;
-    deviceType: string;
-    farmName: string;
-    deviceStatus: string;
+    id: number;
+    name: string;
+    status: string;
+    sensorTypeName: string
 
-    constructor(deviceName: string, deviceType: string, farmName: string, deviceStatus: string) {
-        this.deviceName = deviceName;
-        this.deviceType = deviceType;
-        this.farmName = farmName;
-        this.deviceStatus = deviceStatus;
+    constructor(id: number, name: string, status: string, sensorTypeName?: string) {
+        this.id = id;
+        this.name = name;
+        this.status = status;
+        this.sensorTypeName = sensorTypeName;
     }
 
 }

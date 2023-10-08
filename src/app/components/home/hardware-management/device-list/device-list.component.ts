@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Device } from 'src/app/shared/models/device';
 import { HardwareManagementService } from '../hardware-management.service';
-
+import { Farm } from 'src/app/shared/models/farm';
+import { FarmManagementService } from '../../farm-management/farm-management.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-device-list',
@@ -11,27 +13,77 @@ import { HardwareManagementService } from '../hardware-management.service';
 })
 export class DeviceListComponent implements OnInit {
 
-  devices!: Device[];
-
+  farms: Farm[];
+  devices: Device[];
+  farmListForm: FormGroup;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private hardwareManagementService: HardwareManagementService
+    private hardwareManagementService: HardwareManagementService,
+    private farmService: FarmManagementService
   ) {
 
   }
 
-  
+  // let map = new Map(); 
+  // fix - use map in this class
 
   ngOnInit(): void {
-    this.hardwareManagementService.devices$.subscribe((devices) => {
-      this.devices = devices;
+    this.farmService.getAllFarms().subscribe(farms => {
+      this.farms = farms;
     })
-    
+
+    this.farmListForm = new FormGroup({
+      "farm": new FormControl(""),
+      "deviceType": new FormControl("sensors")
+    });
+
   }
 
-  onDetails(deviceName: string) {
-    this.router.navigate([`../device/${deviceName}`], { relativeTo: this.route });
+  onDetails(deviceId: number) {
+    const deviceType = this.farmListForm.value["deviceType"];
+    const farmId = this.farmListForm.value["farm"];
+
+    this.router.navigate([`../farms/${farmId}/devices/${deviceType}/${deviceId}`], { relativeTo: this.route });
+  }
+
+  onChangeFarm() {
+    this.onChangeType();
+  }
+
+  onChangeType() {
+    if (!this.farmListForm.value["farm"]) {
+      return;
+    }
+
+    const deviceType = this.farmListForm.value["deviceType"];
+    const farmId = this.farmListForm.value["farm"];
+
+    if (deviceType === "sensors") {
+      this.hardwareManagementService.getAllSensorsByFarmId(farmId).subscribe(data => {
+        this.devices = data;
+      });
+    } else if (deviceType === "pumps") {
+      this.hardwareManagementService.getAllPumpsByFarmId(farmId).subscribe(data => {
+        this.devices = data;
+      });
+    } else {
+      this.hardwareManagementService.getAllArduinoBoardsByFarmId(farmId).subscribe(data => {
+        this.devices = data;
+      });
+    }
+  }
+
+  currentType() {
+    const currentDeviceType = this.farmListForm.value["deviceType"];
+
+    if (currentDeviceType === "sensors") {
+      return "Sensor";
+    } else if (currentDeviceType === "pumps") {
+      return "Pump";
+    } else {
+      return "Arduino Board";
+    }
   }
 }

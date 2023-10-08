@@ -1,78 +1,100 @@
 <div class="card shadow">
     <div class="card-body">
-        <div class="row">
-            <div class="col-md-3 text-nowrap">
-                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
+        <form [formGroup]="farmListForm">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <label class="form-label">Show&nbsp;
+                        <select class="d-inline-block form-select form-select-sm">
                             <option value="10" selected="">10</option>
                             <option value="25">25</option>
                             <option value="50">50</option>
                             <option value="100">100</option>
-                        </select>&nbsp;</label></div>
+                        </select>
+                    </label>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Farm&nbsp;
+                        <select formControlName="farm" class="d-inline-block form-select form-select-sm" (change)="onChangeFarm()">
+                            <option selected disabled value="">Select Farm</option>
+                            <option [ngValue]="farm.id" *ngFor="let farm of farms">{{ farm.name }}</option>
+                        </select>
+                    </label>
+                </div>
+      
+
+                <div class="col-md-3">
+                    <label class="form-label">Type&nbsp;
+                        <select formControlName="deviceType" (change)="onChangeType()" class="d-inline-block form-select form-select-sm">
+                            <option selected value="sensors">Sensor</option>
+                            <option value="pumps">Pump</option>
+                            <option value="arduinoboards">Arduino Board</option>
+                        </select>
+                    </label>
+                </div>
+
+
+                <div class="col-md-3">
+                    <label class="form-label">Search&nbsp;
+
+                        <input type="search" class="form-control form-control-sm" placeholder="Search">
+                    </label>
+                </div>
             </div>
-            <div class="col-md-3 text-nowrap">
-                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Select Farm&nbsp;<select class="d-inline-block form-select form-select-sm">
-                            <option selected="">AquaGrove Growers</option>
-                            <option>AquaHarvest Gardens Farm</option>
-                            <option>SkyHigh Hydro Farm</option>
-                            <option>HydroGreens Farm</option>
-                        </select>&nbsp;</label></div>
+
+            <div class="table-responsive table mt-2" role="grid">
+                <table class="table table-bordered my-0">
+                    <thead>
+                        <tr>
+                            <th>Device Name</th>
+                            <th>Device Type</th>
+                            <th>Device Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let device of devices">
+                            <td><img class="rounded-circle me-2" width="30" height="30"
+                                    src="assets/img/avatars/avatar1.jpg"> {{ device.name }} </td>
+                            <td> {{ currentType() }} </td>
+                            <td> {{ device.status }}</td>
+                            <td>
+                                <button type="button" class="btn btn-info action-button"
+                                    (click)="onDetails(device.id)" title="View details">Details</button>
+                                <button type="button" class="btn btn-danger action-button"
+                                    title="Remove device">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td><strong>Device Name</strong></td>
+                            <td><strong>Device Type</strong></td>
+                            <td><strong>Device Status</strong></td>
+                            <td><strong>Actions</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
-            <div class="col-md-6">
-                <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input
-                            type="search" class="form-control form-control-sm" aria-controls="dataTable"
-                            placeholder="Search"></label></div>
+            <div class="row">
+                <div class="col-md-6 align-self-center">
+                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of
+                        27
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                            <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span
+                                        aria-hidden="true">«</span></a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span
+                                        aria-hidden="true">»</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-        </div>
-        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-            <table class="table table-bordered my-0" id="dataTable">
-                <thead>
-                    <tr>
-                        <th>Device Name</th>
-                        <th>Device Type</th>
-                        <th>Device Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let device of devices">
-                        <td><img class="rounded-circle me-2" width="30" height="30"
-                                src="assets/img/avatars/avatar1.jpg"> {{ device.deviceName }} </td>
-                        <td> {{ device.deviceType }} </td>
-                        <td> {{ device.deviceStatus }} </td>
-                        <td>
-                            <button type="button" (click)="onDetails(device.deviceName)" class="btn btn-info action-button" title="View details">Details</button>
-                            <button type="button" class="btn btn-danger action-button" title="Remove device">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td><strong>Device Name</strong></td>
-                        <td><strong>Device Type</strong></td>
-                        <td><strong>Device Status</strong></td>
-                        <td><strong>Actions</strong></td>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-        <div class="row">
-            <div class="col-md-6 align-self-center">
-                <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27
-                </p>
-            </div>
-            <div class="col-md-6">
-                <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                    <ul class="pagination">
-                        <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span
-                                    aria-hidden="true">«</span></a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span
-                                    aria-hidden="true">»</span></a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
