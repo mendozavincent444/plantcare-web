@@ -16,6 +16,7 @@ export class DeviceListComponent implements OnInit {
   farms: Farm[];
   devices: Device[];
   farmListForm: FormGroup;
+  deviceType: string;
 
   constructor(
     private router: Router,
@@ -60,27 +61,29 @@ export class DeviceListComponent implements OnInit {
     const deviceType = this.farmListForm.value["deviceType"];
     const farmId = this.farmListForm.value["farm"];
 
+
+    this.getDeviceListByTypeAndFarm(deviceType, farmId);
+    this.deviceType = this.currentType(deviceType);
+  }
+
+  private getDeviceListByTypeAndFarm(deviceType: string, farmId: number) {
     if (deviceType === "sensors") {
-      this.hardwareManagementService.getAllSensorsByFarmId(farmId).subscribe(data => {
-        this.devices = data;
-      });
+      this.hardwareManagementService.getAllSensorsByFarmId(farmId).subscribe(data => this.devices = data);
+
     } else if (deviceType === "pumps") {
-      this.hardwareManagementService.getAllPumpsByFarmId(farmId).subscribe(data => {
-        this.devices = data;
-      });
+      this.hardwareManagementService.getAllPumpsByFarmId(farmId).subscribe(data => this.devices = data);
+
     } else {
-      this.hardwareManagementService.getAllArduinoBoardsByFarmId(farmId).subscribe(data => {
-        this.devices = data;
-      });
+      this.hardwareManagementService.getAllArduinoBoardsByFarmId(farmId).subscribe(data => this.devices = data);
+
     }
   }
 
-  currentType() {
-    const currentDeviceType = this.farmListForm.value["deviceType"];
+  currentType(deviceType: string): string {
 
-    if (currentDeviceType === "sensors") {
+    if (deviceType === "sensors") {
       return "Sensor";
-    } else if (currentDeviceType === "pumps") {
+    } else if (deviceType === "pumps") {
       return "Pump";
     } else {
       return "Arduino Board";
