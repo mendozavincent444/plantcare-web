@@ -60,17 +60,16 @@ export class DeviceListComponent implements OnInit {
 
     const deviceType = this.farmListForm.value["deviceType"];
     const farmId = this.farmListForm.value["farm"];
-
-
-    this.getDeviceListByTypeAndFarm(deviceType, farmId);
+    
     this.deviceType = this.currentType(deviceType);
+    this.getDeviceListByTypeAndFarm(this.deviceType, farmId);
   }
 
   private getDeviceListByTypeAndFarm(deviceType: string, farmId: number) {
-    if (deviceType === "sensors") {
+    if (deviceType === "Sensor") {
       this.hardwareManagementService.getAllSensorsByFarmId(farmId).subscribe(data => this.devices = data);
 
-    } else if (deviceType === "pumps") {
+    } else if (deviceType === "Pump") {
       this.hardwareManagementService.getAllPumpsByFarmId(farmId).subscribe(data => this.devices = data);
 
     } else {
