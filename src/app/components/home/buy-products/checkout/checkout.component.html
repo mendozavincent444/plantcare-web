@@ -6,42 +6,50 @@
                     <div class="text-center">
                         <h4 class="text-dark mb-4">Checkout</h4>
                     </div>
-                    <form class="user">
+                    <form [formGroup]="checkoutForm" (ngSubmit)="onPurchase()" class="user">
 
                         <h5>Shipping Address</h5>
                         <div class="mb-3">
-                            <input class="form-control form-control-user" type="text" placeholder="Street"
+                            <input formControlName="streetShippingAddress" class="form-control form-control-user" type="text" placeholder="Street"
                                 name="Street">
                         </div>
                         <div class="mb-3">
-                            <input class="form-control form-control-user" type="text" placeholder="City"
+                            <input formControlName="cityShippingAddress" class="form-control form-control-user" type="text" placeholder="City"
                                 name="City">
                         </div>
                         <div class="mb-3">
-                            <input class="form-control form-control-user" type="text" placeholder="Province"
+                            <input formControlName="provinceShippingAddress" class="form-control form-control-user" type="text" placeholder="Province"
                                 name="Province">
                         </div>
                         <div class="mb-3">
-                            <input class="form-control form-control-user" type="text" placeholder="Zip Code"
+                            <input formControlName="zipCodeShippingAddress" class="form-control form-control-user" type="text" placeholder="Zip Code"
                                 name="Zip Code">
                         </div>
 
                         <h5>Billing Address</h5>
                         <div class="mb-3">
-                            <input class="form-control form-control-user" type="text" placeholder="Street"
+                            <input formControlName="streetBillingAddress" class="form-control form-control-user" type="text" placeholder="Street"
                                 name="Street">
                         </div>
                         <div class="mb-3">
-                            <input class="form-control form-control-user" type="text" placeholder="City"
+                            <input formControlName="cityBillingAddress" class="form-control form-control-user" type="text" placeholder="City"
                                 name="City">
                         </div>
                         <div class="mb-3">
-                            <input class="form-control form-control-user" type="text" placeholder="Province"
+                            <input formControlName="provinceBillingAddress" class="form-control form-control-user" type="text" placeholder="Province"
                                 name="Province">
                         </div>
                         <div class="mb-3">
-                            <input class="form-control form-control-user" type="text" placeholder="Zip Code"
+                            <input formControlName="zipCodeBillingAddress" class="form-control form-control-user" type="text" placeholder="Zip Code"
                                 name="Zip Code">
+                        </div>
+
+                        <div class="mb-3">
+                            <select formControlName="paymentMethod" class="form-control form-control-user">
+                                <option value="" selected disabled> Select Payment Method </option>
+                                <option value=""> PayPal </option>
+                                <option value=""> Bank </option>
+                            </select>
                         </div>
                         
                         <button class="btn btn-primary d-block btn-user w-100" type="submit">Purchase</button>

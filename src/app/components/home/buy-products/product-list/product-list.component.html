@@ -1,8 +1,8 @@
 <div class="card shadow">
     <div class="card-header py-3">
         <div class="card-container">
-            <a  class="btn btn-primary btn-sm farmers-card-button" routerLink="../checkout" role="button"><i
-                class="fas fa-shopping-cart fa-sm text-white-50"></i>&nbsp;Checkout</a>
+            <a  class="btn btn-primary btn-sm farmers-card-button" routerLink="../checkout" role="button" (click)="onSaveOrder()">
+                <i class="fas fa-shopping-cart fa-sm text-white-50"></i>&nbsp;Checkout</a>
         </div>
     </div>
     <div class="card-body">
@@ -34,13 +34,13 @@
                 <tbody>
                     <tr *ngFor="let product of products">
                         <td><img class="rounded-circle me-2" width="30" height="30"
-                                src="assets/img/avatars/avatar1.jpg"> {{ product.productName }} </td>
-                        <td> {{ product.productQuantity }} </td>
+                                src="assets/img/avatars/avatar1.jpg"> {{ product.name }} </td>
+                        <td> {{ product.quantity }} </td>
                         <td>
                             <button type="button" class="btn btn-info action-button"
-                                title="Add"> + </button>
+                                (click)="onIncrementQuantity(product)" title="Add"> + </button>
                             <button type="button" class="btn btn-danger action-button"
-                                title="Remove"> - </button>
+                                (click)="onDecrementQuantity(product)" title="Remove"> - </button>
                         </td>
                     </tr>
                 </tbody>
