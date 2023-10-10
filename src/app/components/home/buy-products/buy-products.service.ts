@@ -1,24 +1,39 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Product } from 'src/app/shared/models/product';
+
+const PRODUCT_API = "http://localhost:8080/api/v1/products";
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class BuyProductsService {
 
-  products$: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(null);
+  productsOrdered$: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(null);
 
-  constructor() {
-    this.loadData();
+  constructor(private httpClient: HttpClient) {
   }
 
-  private loadData(): void {
-    this.products$.next([
-      new Product("pH Sensor", 0),
-      new Product("Water Pump", 0),
-      new Product("Water level Sensor", 0),
-      new Product("Nutrient level Sensor", 0)
-    ]);
+  public emptyCart() {
+    this.productsOrdered$.next(null);
   }
+
+  public saveOrder(products: Product[]) {
+    this.productsOrdered$.next(products);
+  }
+
+  public getAllCartProducts(): Product[] {
+    return this.productsOrdered$.getValue();
+  }
+
+  public getAllProducts(): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(PRODUCT_API, httpOptions);
+  }
+
+  
 }
