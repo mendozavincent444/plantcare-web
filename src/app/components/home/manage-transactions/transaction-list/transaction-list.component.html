@@ -29,11 +29,11 @@
                 <tbody>
                     <tr *ngFor="let transaction of transactions">
                         <td><img class="rounded-circle me-2" width="30" height="30"
-                                src="assets/img/avatars/avatar1.jpg"> {{ transaction.transactionName }}</td>
-                        <td> {{ transaction.transactionAmount }} </td>
-                        <td> {{ transaction.transactionUser.email }}</td>
+                                src="assets/img/avatars/avatar1.jpg"> {{ transaction.name }}</td>
+                        <td> {{ transaction.amount }} </td>
+                        <td> {{ transaction.orderedBy }}</td>
                         <td>
-                            <button (click)="onDetails(transaction.transactionName)" type="button" class="btn btn-info action-button" title="View details">Details</button>
+                            <button (click)="onDetails(transaction.id)" type="button" class="btn btn-info action-button" title="View details">Details</button>
                             <button type="button" class="btn btn-success action-button" title="Remove transaction">Approve</button>
                         </td>
                     </tr>

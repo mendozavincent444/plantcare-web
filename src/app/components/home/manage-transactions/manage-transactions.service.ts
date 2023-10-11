@@ -20,32 +20,17 @@ export class ManageTransactionsService {
   transactions$: BehaviorSubject<Transaction[]> = new BehaviorSubject<Transaction[]>(null);
 
   constructor(private httpClient: HttpClient) {
-    this.loadData();
     
   }
 
 
-  loadData(): void {
-    
-    const user: User = new User(1, "Admin", "roger.feder54","federroger444@gmail.com", "Roger", "Federer");
 
-
-    this.transactions$.next([
-      new Transaction(1, new Date(2023),"Water Level Sensor Purchase", "description", 49.99, TransactionStatus.FAILED, "Credit Card", user),
-      new Transaction(1, new Date(2023),"Water Level Sensor Purchase", "description", 49.99, TransactionStatus.FAILED, "Credit Card", user),
-      new Transaction(1, new Date(2023),"Water Level Sensor Purchase", "description", 49.99, TransactionStatus.FAILED, "Credit Card", user),
-      new Transaction(1, new Date(2023),"Water Level Sensor Purchase", "description", 49.99, TransactionStatus.FAILED, "Credit Card", user),
-      new Transaction(1, new Date(2023),"Water Level Sensor Purchase", "description", 49.99, TransactionStatus.FAILED, "Credit Card", user),
-      new Transaction(1, new Date(2023),"Water Level Sensor Purchase", "description", 49.99, TransactionStatus.FAILED, "Credit Card", user),
-      new Transaction(1, new Date(2023),"Water Level Sensor Purchase", "description", 49.99, TransactionStatus.FAILED, "Credit Card", user),
-      new Transaction(1, new Date(2023),"Water Level Sensor Purchase", "description", 49.99, TransactionStatus.FAILED, "Credit Card", user),
-      new Transaction(1, new Date(2023),"Water Level Sensor Purchase", "description", 49.99, TransactionStatus.FAILED, "Credit Card", user),
-      new Transaction(1, new Date(2023),"Water Level Sensor Purchase", "description", 49.99, TransactionStatus.FAILED, "Credit Card", user),
-    ]);
-    
-  }
 
   public createTransaction(purchaseDto: PurchaseDto): Observable<String> {
     return this.httpClient.post<String>(TRANSACTION_API, purchaseDto, httpOptions);
+  }
+
+  public getAllTransactions(): Observable<Transaction[]> {
+    return this.httpClient.get<Transaction[]>(TRANSACTION_API, httpOptions);
   }
 }
