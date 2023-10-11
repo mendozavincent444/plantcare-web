@@ -10,6 +10,7 @@ import { Transaction } from 'src/app/shared/models/transaction';
 })
 export class TransactionListComponent implements OnInit {
 
+
   transactions!: Transaction[];
 
   constructor(
@@ -20,15 +21,26 @@ export class TransactionListComponent implements OnInit {
 
   }
 
-
   ngOnInit(): void {
     this.manageTransactionsService.getAllTransactions().subscribe(data => {
       this.transactions = data;
     })
-    
+
   }
 
   onDetails(transactionId: number) {
     this.router.navigate([`../transaction/${transactionId}`], { relativeTo: this.route });
+  }
+
+  onApproveTransaction(transactionId: number) {
+    this.manageTransactionsService.approveTransactionById(transactionId).subscribe(data => {
+      // fix - receive - data
+      console.log(data);
+      this.ngOnInit();
+    });
+  }
+
+  isApproved(transaction: Transaction) {
+    return transaction.status == "Approved" ? true : false; 
   }
 }
