@@ -74,7 +74,7 @@ const routes: Routes = [
         { path: 'manage-transactions', component: ManageTransactionsComponent,
             children: [
               { path: 'transaction-list', component: TransactionListComponent },
-              { path: 'transaction/:transaction-name', component: ViewTransactionComponent },
+              { path: 'transaction/:transaction-id', component: ViewTransactionComponent },
               { path: '', redirectTo: 'transaction-list', pathMatch: 'full' }
             ] },
         { path: 'hardware-management', component: HardwareManagementComponent,

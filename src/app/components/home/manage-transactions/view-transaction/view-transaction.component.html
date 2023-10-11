@@ -3,8 +3,7 @@
         <div class="card mb-3">
             <div class="card-body text-center shadow"><img id="profile-picture" class="rounded-circle mb-3 mt-4"
                     src="assets/img/avatars/avatar1.jpg" width="160" height="160" role="button" title="Change Photo"> 
-                <h4>Valerie Luna</h4>
-                <h6>Admin</h6>
+                <h4> {{ transaction.name }}</h4>
             </div>
         </div>
     </div>
@@ -27,7 +26,7 @@
         
 
                                         <div>
-                                            49.99
+                                            {{ transaction.amount }}
                                         </div>
                                         
                                     </div>
@@ -39,7 +38,7 @@
                                         </label>
 
                                         <div> 
-                                            federroger444@gmail.com	
+                                            {{ transaction.orderedBy }}
                                         </div>
                                     </div>
                                 </div>
@@ -54,7 +53,7 @@
                                         </label>
 
                                         <div> 
-                                            June 22, 2023
+                                            {{ transaction.date | date:'medium'}}
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +65,7 @@
                                         </label>
 
                                         <div> 
-                                            Pending
+                                            {{ transaction.status }}
                                         </div>
                                     </div>
                                 </div>
@@ -82,7 +81,7 @@
                                         </label>
 
                                         <div> 
-                                            Paypal
+                                            {{ transaction.paymentMethod }}
                                         </div>
                                     </div>
                                 </div>
