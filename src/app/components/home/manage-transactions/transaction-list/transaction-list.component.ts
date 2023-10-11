@@ -20,16 +20,15 @@ export class TransactionListComponent implements OnInit {
 
   }
 
-  
 
   ngOnInit(): void {
-    this.manageTransactionsService.transactions$.subscribe((transactions) => {
-      this.transactions = transactions;
-    });
+    this.manageTransactionsService.getAllTransactions().subscribe(data => {
+      this.transactions = data;
+    })
     
   }
 
-  onDetails(transactionName: string) {
-    this.router.navigate([`../transaction/${transactionName}`], { relativeTo: this.route });
+  onDetails(transactionId: number) {
+    this.router.navigate([`../transaction/${transactionId}`], { relativeTo: this.route });
   }
 }
