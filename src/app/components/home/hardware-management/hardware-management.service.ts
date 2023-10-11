@@ -45,4 +45,17 @@ export class HardwareManagementService {
     return this.httpClient.get<Device>(FARM_API + `/${farmId}/arduinoboards/${arduinoBoardId}`, httpOptions);
   }
 
+  public deleteArduinoBoardById(farmId: number, arduinoBoardId: number): Observable<String> {
+    return this.httpClient.delete<String>(FARM_API + `/${farmId}/arduinoboards/${arduinoBoardId}`, httpOptions);
+  }
+
+  public deletePumpById(farmId: number, pumpId: number): Observable<String> {
+    return this.httpClient.delete<String>(FARM_API + `/${farmId}/pumps/${pumpId}`, httpOptions);
+  }
+
+  public deleteSensorById(farmId: number, sensorId: number): Observable<String> {
+    return this.httpClient.delete<String>(FARM_API + `/${farmId}/sensors/${sensorId}`, httpOptions);
+  }
+
+
 }

@@ -61,7 +61,7 @@
                                 <button type="button" class="btn btn-info action-button"
                                     (click)="onDetails(device.id)" title="View details">Details</button>
                                 <button type="button" class="btn btn-danger action-button"
-                                    title="Remove device">Delete</button>
+                                    (click)="onDeleteDevice(device.id)" title="Remove device">Delete</button>
                             </td>
                         </tr>
                     </tbody>

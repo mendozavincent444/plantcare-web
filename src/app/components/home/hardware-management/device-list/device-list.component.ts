@@ -12,7 +12,6 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./device-list.component.css']
 })
 export class DeviceListComponent implements OnInit {
-
   farms: Farm[];
   devices: Device[];
   farmListForm: FormGroup;
@@ -60,7 +59,7 @@ export class DeviceListComponent implements OnInit {
 
     const deviceType = this.farmListForm.value["deviceType"];
     const farmId = this.farmListForm.value["farm"];
-    
+
     this.deviceType = this.currentType(deviceType);
     this.getDeviceListByTypeAndFarm(this.deviceType, farmId);
   }
@@ -86,6 +85,34 @@ export class DeviceListComponent implements OnInit {
       return "Pump";
     } else {
       return "Arduino Board";
+    }
+  }
+
+  onDeleteDevice(deviceId: number) {
+    const deviceType = this.deviceType;
+    const farmId = this.farmListForm.value["farm"];
+
+    this.deleteDevice(deviceId, farmId, deviceType);
+  }
+
+  private deleteDevice(deviceId: number, farmId: number, deviceType: string) {
+    if (deviceType === "Sensor") {
+      this.hardwareManagementService.deleteSensorById(farmId, deviceId).subscribe(data => {
+        // fix - receive data
+        console.log(data);
+      });
+
+    } else if (deviceType === "Pump") {
+      this.hardwareManagementService.deletePumpById(farmId, deviceId).subscribe(data => {
+        // fix - receive data
+        console.log(data);
+      });
+
+    } else {
+      this.hardwareManagementService.deleteArduinoBoardById(farmId, deviceId).subscribe(data => {
+        // fix - receive data
+        console.log(data);
+      });
     }
   }
 }
