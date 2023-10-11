@@ -21,9 +21,6 @@ export class ManageTransactionsService {
     
   }
 
-
-
-
   public createTransaction(purchaseDto: PurchaseDto): Observable<String> {
     return this.httpClient.post<String>(TRANSACTION_API, purchaseDto, httpOptions);
   }
@@ -35,4 +32,10 @@ export class ManageTransactionsService {
   public getTransactionById(transactionId: number): Observable<Transaction> {
     return this.httpClient.get<Transaction>(TRANSACTION_API + `/${transactionId}`, httpOptions);
   }
+
+  public approveTransactionById(transactionId: number): Observable<Transaction> {
+    return this.httpClient.post<Transaction>(TRANSACTION_API + `/${transactionId}/approve`, httpOptions);
+  }
+
+
 }

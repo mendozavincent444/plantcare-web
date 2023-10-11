@@ -34,7 +34,7 @@
                         <td> {{ transaction.orderedBy }}</td>
                         <td>
                             <button (click)="onDetails(transaction.id)" type="button" class="btn btn-info action-button" title="View details">Details</button>
-                            <button type="button" class="btn btn-success action-button" title="Remove transaction">Approve</button>
+                            <button *ngIf="!isApproved(transaction)" (click)="onApproveTransaction(transaction.id)" type="button" class="btn btn-success action-button" title="Remove transaction">Approve</button>
                         </td>
                     </tr>
                 </tbody>
