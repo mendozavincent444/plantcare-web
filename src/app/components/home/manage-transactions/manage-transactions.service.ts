@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { TransactionStatus } from './TransactionStatus';
 import { Transaction } from 'src/app/shared/models/transaction';
-import { User } from 'src/app/shared/models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PurchaseDto } from 'src/app/shared/payload/purchase-dto';
 
@@ -32,5 +30,9 @@ export class ManageTransactionsService {
 
   public getAllTransactions(): Observable<Transaction[]> {
     return this.httpClient.get<Transaction[]>(TRANSACTION_API, httpOptions);
+  }
+
+  public getTransactionById(transactionId: number): Observable<Transaction> {
+    return this.httpClient.get<Transaction>(TRANSACTION_API + `/${transactionId}`, httpOptions);
   }
 }
