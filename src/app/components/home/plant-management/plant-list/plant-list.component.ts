@@ -41,6 +41,7 @@ export class PlantListComponent implements OnInit {
     this.plantManagementService.deletePlantById(plantId, farmId).subscribe(data => {
       // fix - receive data
       console.log(data);
+      this.ngOnInit();
     })
   }
 
