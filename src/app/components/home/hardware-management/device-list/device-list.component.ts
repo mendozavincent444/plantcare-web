@@ -100,18 +100,21 @@ export class DeviceListComponent implements OnInit {
       this.hardwareManagementService.deleteSensorById(farmId, deviceId).subscribe(data => {
         // fix - receive data
         console.log(data);
+        this.ngOnInit();
       });
 
     } else if (deviceType === "Pump") {
       this.hardwareManagementService.deletePumpById(farmId, deviceId).subscribe(data => {
         // fix - receive data
         console.log(data);
+        this.ngOnInit();
       });
 
     } else {
       this.hardwareManagementService.deleteArduinoBoardById(farmId, deviceId).subscribe(data => {
         // fix - receive data
         console.log(data);
+        this.ngOnInit();
       });
     }
   }

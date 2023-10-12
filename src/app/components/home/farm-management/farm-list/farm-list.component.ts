@@ -31,8 +31,10 @@ export class FarmListComponent implements OnInit {
     this.farmManagementService.deleteFarmById(farm.id).subscribe(data => {
       // fix - receive data
       console.log(data);
-      
+      this.ngOnInit();
     })
+
+    
 
   }
 

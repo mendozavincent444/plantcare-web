@@ -59,6 +59,7 @@ export class FarmerListComponent {
     this.manageFarmersService.deleteFarmerByFarm(farmId, farmerId).subscribe(data => {
       // fix - receive data
       console.log(data);
+      this.ngOnInit();
     });
 
 
