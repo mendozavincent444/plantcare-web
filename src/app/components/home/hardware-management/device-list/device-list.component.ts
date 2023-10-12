@@ -114,5 +114,7 @@ export class DeviceListComponent implements OnInit {
         console.log(data);
       });
     }
+
+    this.ngOnInit();
   }
 }
