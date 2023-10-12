@@ -10,7 +10,6 @@ import { Farm } from 'src/app/shared/models/farm';
   styleUrls: ['./view-device.component.css']
 })
 export class ViewDeviceComponent implements OnInit {
-  editMode!: boolean;
   device: Device;
   deviceType: string;
 
@@ -20,7 +19,6 @@ export class ViewDeviceComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.editMode = false;
 
     const farmId = this.route.snapshot.params["farm-id"];
     const deviceId = this.route.snapshot.params["device-id"];
@@ -51,9 +49,5 @@ export class ViewDeviceComponent implements OnInit {
     } else {
       return "Arduino Board";
     }
-  }
-
-  toggleEditMode(): void {
-    this.editMode = !this.editMode;
   }
 }

@@ -35,25 +35,11 @@
                                             <strong>Device Status</strong>
                                         </label>
 
-                                        <div *ngIf="!editMode"> 
+                                        <div> 
                                             {{ device.status }}
-                                        </div>
-
-                                        <div *ngIf="editMode">
-                                            <select class="form-select"></select>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            
-                            <div *ngIf="!editMode" class="mb-3">
-                                <button (click)="toggleEditMode()" class="btn btn-primary btn-sm" type="button">Edit Device Status</button>
-                            </div>
-
-                            <div *ngIf="editMode" class="mb-3">
-                                <button class="btn btn-success btn-sm override-button-text-color" type="submit">Save</button>
-                                <button (click)="toggleEditMode()" class="btn btn-primary btn-sm action-button" type="button">Cancel</button>
                             </div>
                         </form>
                     </div>
