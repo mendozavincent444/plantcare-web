@@ -40,8 +40,7 @@ export class ProfileComponent implements OnInit {
   private initializeEditUserForm(): void {
     this.editUserForm = new FormGroup({
       "firstName": new FormControl(this.user.firstName, [Validators.required]),
-      "lastName": new FormControl(this.user.lastName, [Validators.required]),
-      "password": new FormControl(null, [Validators.required])
+      "lastName": new FormControl(this.user.lastName, [Validators.required])
     });
   }
 
@@ -68,15 +67,13 @@ export class ProfileComponent implements OnInit {
   }
 
   onSaveInfo() {
-    const password = this.editUserForm.value["password"];
     const firstName = this.editUserForm.value["firstName"];
     const lastName = this.editUserForm.value["lastName"];
     
 
     const editedUserProfile: EditUserProfileDto = new EditUserProfileDto(
       firstName,
-      lastName,
-      password,
+      lastName
     );
 
     this.authService.updateUserProfile(editedUserProfile).subscribe({
