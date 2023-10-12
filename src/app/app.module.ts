@@ -36,6 +36,7 @@ import { ViewTransactionComponent } from './components/home/manage-transactions/
 import { AdminListComponent } from './components/home/manage-admins/admin-list/admin-list.component';
 import { ViewAdminComponent } from './components/home/manage-admins/view-admin/view-admin.component'; 
 import { HttpRequestInterceptor } from './helpers/http-request.interceptor';
+import { AddDeviceComponent } from './components/home/hardware-management/add-device/add-device.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { HttpRequestInterceptor } from './helpers/http-request.interceptor';
     TransactionListComponent,
     ViewTransactionComponent,
     AdminListComponent,
-    ViewAdminComponent
+    ViewAdminComponent,
+    AddDeviceComponent
   ],
   imports: [
     BrowserModule,

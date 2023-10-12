@@ -1,0 +1,52 @@
+<div class="card shadow-lg o-hidden border-0 my-5">
+    <div class="card-body p-0">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h4 class="text-dark mb-4">Add Device</h4>
+                    </div>
+                    <form [formGroup]="addDeviceForm" (ngSubmit)="onAddDevice()" class="user">
+                        
+
+                        <div class="mb-3">
+                            <input class="form-control form-control-user" type="text"
+                                 formControlName="name" placeholder="Device Name"
+                                name="name">
+                        </div>
+
+                        <div class="mb-3">
+                            
+                            <select formControlName="deviceType" class="form-control form-control-user" name="deviceType"> 
+                                <option value="" selected disabled> Select Device Type </option>
+                                <option value="sensor"> Sensor </option>
+                                <option value="pump"> Pump </option>
+                                <option value="arduinoBoard"> Arduino Board </option>
+                            </select>
+                        
+                        </div>
+
+                        <div class="mb-3" *ngIf="isSensorType()">
+                            
+                            <select formControlName="sensorType" class="form-control form-control-user" name="sensorType"> 
+                                <option value="" selected disabled> Select Sensor Type </option>
+                                <option [ngValue]="sensorType.name" *ngFor="let sensorType of sensorTypes"> {{ sensorType.name }} </option>
+                            </select>
+                        
+                        </div>
+
+                        <div class="mb-3">
+                      
+                            <select formControlName="farmId" class="form-control form-control-user" name="farm"> 
+                                <option value="" selected disabled> Select Farm </option>
+                                <option [ngValue]="farm.id" *ngFor="let farm of farms"> {{ farm.name }} </option>
+                            </select>
+                       
+                        </div>
+                        <button class="btn btn-primary d-block btn-user w-100" type="submit">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

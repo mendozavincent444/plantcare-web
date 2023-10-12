@@ -30,6 +30,7 @@ import { ViewTransactionComponent } from './components/home/manage-transactions/
 import { AdminListComponent } from './components/home/manage-admins/admin-list/admin-list.component';
 import { ViewAdminComponent } from './components/home/manage-admins/view-admin/view-admin.component';
 import { AuthGuard } from './shared/services/auth.guard';
+import { AddDeviceComponent } from './components/home/hardware-management/add-device/add-device.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -80,6 +81,7 @@ const routes: Routes = [
         { path: 'hardware-management', component: HardwareManagementComponent,
             children: [
               { path: 'device-list', component: DeviceListComponent },
+              { path: 'add-device', component: AddDeviceComponent },
               { path: 'farms/:farm-id/devices/:device/:device-id', component: ViewDeviceComponent },
               { path: '', redirectTo: 'device-list', pathMatch: 'full' },
             ] },
