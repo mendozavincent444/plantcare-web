@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AddressDto } from 'src/app/shared/payload/address-dto';
 import { OrderItemDto } from 'src/app/shared/payload/order-item-dto';
@@ -13,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
   checkoutForm: FormGroup;
 
   constructor(
@@ -100,6 +100,10 @@ export class CheckoutComponent implements OnInit {
       this.router.navigate(["../product-list"], { relativeTo: this.route });
     })
 
+  }
+
+  ngOnDestroy(): void {
+    this.productService.emptyCart();
   }
 
 }
