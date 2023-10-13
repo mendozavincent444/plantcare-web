@@ -31,6 +31,8 @@ import { AdminListComponent } from './components/home/manage-admins/admin-list/a
 import { ViewAdminComponent } from './components/home/manage-admins/view-admin/view-admin.component';
 import { AuthGuard } from './shared/services/auth.guard';
 import { AddDeviceComponent } from './components/home/hardware-management/add-device/add-device.component';
+import { AdminGuard } from './shared/services/admin.guard';
+import { SuperadminGuard } from './shared/services/superadmin.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -39,34 +41,34 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivateChild: [AuthGuard], 
       children: [
         { path: 'profile', component: ProfileComponent },
-        { path: 'farm-management', component: FarmManagementComponent, 
+        { path: 'farm-management', component: FarmManagementComponent, canActivateChild: [AdminGuard],
             children: [
               { path: 'farm-list', component: FarmListComponent },
               { path: 'add-farm', component: AddFarmComponent },
               { path: 'farm/:farm-id', component: ViewFarmComponent },
               { path: '', redirectTo: 'farm-list', pathMatch: 'full' }
           ] },
-        { path: 'manage-farmers', component: ManageFarmersComponent,
+        { path: 'manage-farmers', component: ManageFarmersComponent, canActivateChild: [AdminGuard],
             children: [
               { path: 'farmer-list', component: FarmerListComponent },
               { path: 'add-farmer', component: AddFarmerComponent },
               { path: 'farmer/:farmer-username', component: ViewFarmerComponent },
               { path: '', redirectTo: 'farmer-list', pathMatch: 'full' }
             ] },
-        { path: 'manage-admins', component: ManageAdminsComponent,
+        { path: 'manage-admins', component: ManageAdminsComponent, canActivateChild: [SuperadminGuard],
             children: [
               { path: 'admin-list', component: AdminListComponent },
               { path: 'admin/:admin-username', component: ViewAdminComponent },
               { path: '', redirectTo: 'admin-list', pathMatch: 'full' }
             ] },
-        { path: 'plant-management', component: PlantManagementComponent,
+        { path: 'plant-management', component: PlantManagementComponent, canActivateChild: [AdminGuard],
             children: [
               { path: 'plant-list', component: PlantListComponent },
               { path: 'add-plant', component: AddPlantComponent },
               { path: 'farm/:farm-id/plant/:plant-id', component: ViewPlantComponent },
               { path: '', redirectTo: 'plant-list', pathMatch: 'full' }
             ] },
-        { path: 'buy-products', component: BuyProductsComponent,
+        { path: 'buy-products', component: BuyProductsComponent, canActivateChild: [AdminGuard],
             children: [
               { path: 'product-list', component: ProductListComponent },
               { path: 'checkout', component: CheckoutComponent },
@@ -78,7 +80,7 @@ const routes: Routes = [
               { path: 'transaction/:transaction-id', component: ViewTransactionComponent },
               { path: '', redirectTo: 'transaction-list', pathMatch: 'full' }
             ] },
-        { path: 'hardware-management', component: HardwareManagementComponent,
+        { path: 'hardware-management', component: HardwareManagementComponent, canActivateChild: [AdminGuard],
             children: [
               { path: 'device-list', component: DeviceListComponent },
               { path: 'add-device', component: AddDeviceComponent },
