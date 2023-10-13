@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FarmManagementService } from '../farm-management.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-farm',
@@ -25,6 +26,8 @@ export class AddFarmComponent implements OnInit {
     const location = this.addFarmForm.value["location"];
 
     this.farmService.addFarm(name, location).subscribe();
+
+    Swal.fire("baho tae", "Done", "success");
 
     this.addFarmForm.reset();
   }
