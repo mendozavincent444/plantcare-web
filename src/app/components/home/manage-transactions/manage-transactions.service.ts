@@ -26,6 +26,10 @@ export class ManageTransactionsService {
   }
 
   public getAllTransactions(): Observable<Transaction[]> {
+    return this.httpClient.get<Transaction[]>(TRANSACTION_API + "/all", httpOptions);
+  }
+
+  public getAllTransactionsByAdmin(): Observable<Transaction[]> {
     return this.httpClient.get<Transaction[]>(TRANSACTION_API, httpOptions);
   }
 
