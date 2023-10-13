@@ -12,37 +12,37 @@
                 <a class="nav-link" routerLink="profile" routerLinkActive="active">
                     <i class="fas fa-user"></i><span>Profile</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isRoleAdmin()">
                 <a class="nav-link" routerLink="farm-management" routerLinkActive="active">
                     <i class="fas fa-table"></i><span>Farm Management</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isRoleAdmin()">
                 <a class="nav-link" routerLink="manage-farmers" routerLinkActive="active">
                     <i class="fas fa-child"></i><span>Manage Farmers</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isRoleSuperAdmin()">
                 <a class="nav-link" routerLink="manage-admins" routerLinkActive="active">
                     <i class="fas fa-chalkboard-teacher"></i><span>Manage Admins</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isRoleAdmin()">
                 <a class="nav-link" routerLink="plant-management" routerLinkActive="active">
                     <i class="fas fa-seedling"></i><span>Plant Management</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isRoleAdmin()">
                 <a class="nav-link" routerLink="buy-products" routerLinkActive="active">
                     <i class="fas fa-store"></i><span>Buy Products</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isRoleAdmin()">
                 <a class="nav-link" routerLink="manage-transactions" routerLinkActive="active">
                     <i class="far fa-money-bill-alt"></i><span>Manage Transactions</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isRoleAdmin()">
                 <a class="nav-link" routerLink="hardware-management" routerLinkActive="active">
                     <i class="fas fa-network-wired"></i><span>Hardware Management</span>
                 </a>
