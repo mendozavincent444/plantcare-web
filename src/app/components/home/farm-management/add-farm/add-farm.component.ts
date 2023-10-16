@@ -27,7 +27,7 @@ export class AddFarmComponent implements OnInit {
 
     this.farmService.addFarm(name, location).subscribe();
 
-    Swal.fire("baho tae", "Done", "success");
+    Swal.fire("Farm Added Successfully.", "Done", "success");
 
     this.addFarmForm.reset();
   }
