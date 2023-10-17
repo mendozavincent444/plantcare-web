@@ -29,7 +29,6 @@ import { ProductListComponent } from './components/home/buy-products/product-lis
 import { ViewFarmComponent } from './components/home/farm-management/view-farm/view-farm.component';
 import { ViewDeviceComponent } from './components/home/hardware-management/view-device/view-device.component';
 import { ViewPlantComponent } from './components/home/plant-management/view-plant/view-plant.component';
-import { ViewFarmerComponent } from './components/home/manage-farmers/view-farmer/view-farmer.component';
 import { DeviceListComponent } from './components/home/hardware-management/device-list/device-list.component';
 import { TransactionListComponent } from './components/home/manage-transactions/transaction-list/transaction-list.component';
 import { ViewTransactionComponent } from './components/home/manage-transactions/view-transaction/view-transaction.component';
@@ -65,7 +64,6 @@ import { AddDeviceComponent } from './components/home/hardware-management/add-de
     ViewFarmComponent,
     ViewDeviceComponent,
     ViewPlantComponent,
-    ViewFarmerComponent,
     DeviceListComponent,
     TransactionListComponent,
     ViewTransactionComponent,
