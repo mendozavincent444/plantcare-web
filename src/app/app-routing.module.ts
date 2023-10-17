@@ -22,7 +22,6 @@ import { ProductListComponent } from './components/home/buy-products/product-lis
 import { CheckoutComponent } from './components/home/buy-products/checkout/checkout.component';
 import { ViewFarmComponent } from './components/home/farm-management/view-farm/view-farm.component';
 import { ViewPlantComponent } from './components/home/plant-management/view-plant/view-plant.component';
-import { ViewFarmerComponent } from './components/home/manage-farmers/view-farmer/view-farmer.component';
 import { DeviceListComponent } from './components/home/hardware-management/device-list/device-list.component';
 import { ViewDeviceComponent } from './components/home/hardware-management/view-device/view-device.component';
 import { TransactionListComponent } from './components/home/manage-transactions/transaction-list/transaction-list.component';
@@ -52,7 +51,6 @@ const routes: Routes = [
             children: [
               { path: 'farmer-list', component: FarmerListComponent },
               { path: 'add-farmer', component: AddFarmerComponent },
-              { path: 'farmer/:farmer-username', component: ViewFarmerComponent },
               { path: '', redirectTo: 'farmer-list', pathMatch: 'full' }
             ] },
         { path: 'manage-admins', component: ManageAdminsComponent, canActivateChild: [SuperadminGuard],

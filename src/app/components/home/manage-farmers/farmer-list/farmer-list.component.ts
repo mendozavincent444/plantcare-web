@@ -47,11 +47,6 @@ export class FarmerListComponent {
     })
   }
 
-
-  onDetails(farmerName: string) {
-    this.router.navigate([`../farmer/${farmerName}`], { relativeTo: this.route });
-  }
-
   onDeleteFarmer(farmerId: number) {
     const farmId = this.farmerListForm.value["farm"];
 

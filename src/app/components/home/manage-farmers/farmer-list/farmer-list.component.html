@@ -39,6 +39,7 @@
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
+                            <th>Username</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -48,9 +49,8 @@
                                     src="assets/img/avatars/avatar1.jpg"> {{ farmer.firstName }} </td>
                             <td> {{ farmer.lastName }} </td>
                             <td> {{ farmer.email }} </td>
+                            <td> {{ farmer.username }} </td>
                             <td>
-                                <button type="button" class="btn btn-info action-button" title="View details"
-                                    (click)="onDetails(farmer.firstName)">Details</button>
                                 <button type="button" class="btn btn-danger action-button"
                                     (click)="onDeleteFarmer(farmer.id)" title="Remove farmer">Delete</button>
                             </td>
@@ -61,6 +61,7 @@
                             <td><strong>First Name</strong></td>
                             <td><strong>Last Name</strong></td>
                             <td><strong>Email</strong></td>
+                            <td><strong>Username</strong></td>
                             <td><strong>Actions</strong></td>
                         </tr>
                     </tfoot>
