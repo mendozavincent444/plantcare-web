@@ -4,6 +4,7 @@ import { User } from 'src/app/shared/models/user';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { FarmManagementService } from './farm-management/farm-management.service';
+import { Farm } from 'src/app/shared/models/farm';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ import { FarmManagementService } from './farm-management/farm-management.service
 })
 export class HomeComponent implements OnInit {
   user: User;
+  farm: Farm;
 
   constructor(
     private userService: UserService,
@@ -23,6 +25,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUser().subscribe(user => this.user = user);
+
+    this.farmService.getCurrentFarm().subscribe(farm => this.farm = farm);
   }
 
   onLogout() {
