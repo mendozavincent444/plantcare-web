@@ -14,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AddPlantComponent implements OnInit {
   addPlantForm: FormGroup;
   farms: Farm[];
+  currentFarmId: number;
 
   constructor(
     private plantService: PlantManagementService,
@@ -35,9 +36,10 @@ export class AddPlantComponent implements OnInit {
       "minimumEc": new FormControl(null, Validators.required),
       "maximumPh": new FormControl(null, Validators.required),
       "minimumPh": new FormControl(null, Validators.required),
-      "daysToMaturity": new FormControl(null, Validators.required),
-      "farmId": new FormControl("", Validators.required),
+      "daysToMaturity": new FormControl(null, Validators.required)
     });
+
+    this.farmService.getCurrentFarm().subscribe(farm => this.currentFarmId = farm.id);
   }
 
   onAddPlant() {
@@ -47,8 +49,7 @@ export class AddPlantComponent implements OnInit {
     const maximumPh = this.addPlantForm.value["maximumPh"];
     const minimumPh = this.addPlantForm.value["minimumPh"];
     const daysToMaturity = this.addPlantForm.value["daysToMaturity"];
-    const farmId = this.addPlantForm.value["farmId"];
-
+    const farmId = this.currentFarmId;
     
     const plant = new Plant(
       plantName,

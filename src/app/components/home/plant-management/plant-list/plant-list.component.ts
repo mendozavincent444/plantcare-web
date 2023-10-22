@@ -14,7 +14,7 @@ import { FarmManagementService } from '../../farm-management/farm-management.ser
 export class PlantListComponent implements OnInit {
   plants!: Plant[];
   plantListForm: FormGroup;
-  farms: Farm[];
+  currentFarmId: number;
 
   constructor(
     private router: Router,
@@ -26,17 +26,24 @@ export class PlantListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.farmService.getAllFarms().subscribe(data => {
-      this.farms = data;
-    });
-
     this.plantListForm = new FormGroup({
       "farm": new FormControl("")
     });
+
+    this.farmService.getCurrentFarm().subscribe(farm => this.currentFarmId = farm.id);
+
+    this.getAllPlantsFromCurrentFarm(this.currentFarmId);
   }
 
+  private getAllPlantsFromCurrentFarm(farmId: number) {
+    this.plantManagementService.getAllPlantsByFarm(farmId).subscribe(data => {
+      this.plants = data;
+    });
+  }
+
+
   onDelete(plantId: number) {
-    const farmId = this.plantListForm.value["farm"];
+    const farmId = this.currentFarmId;
 
     this.plantManagementService.deletePlantById(plantId, farmId).subscribe(data => {
       // fix - receive data
@@ -45,16 +52,9 @@ export class PlantListComponent implements OnInit {
     })
   }
 
-  onChangeFarm() {
-    const farmId = this.plantListForm.value["farm"];
-
-    this.plantManagementService.getAllPlantsByFarm(farmId).subscribe(data => {
-      this.plants = data;
-    })
-  }
 
   onDetails(plantId: number) {
-    const farmId = this.plantListForm.value["farm"];
+    const farmId = this.currentFarmId;
 
     this.router.navigate([`../farm/${farmId}/plant/${plantId}`], { relativeTo: this.route });
   }
