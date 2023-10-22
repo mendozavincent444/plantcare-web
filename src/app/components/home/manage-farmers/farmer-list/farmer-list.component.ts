@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ManageFarmersService } from '../manage-farmers.service';
 import { User } from 'src/app/shared/models/user';
-import { UserService } from 'src/app/shared/services/user.service';
 import { Farm } from 'src/app/shared/models/farm';
-import { FarmListComponent } from '../../farm-management/farm-list/farm-list.component';
 import { FarmManagementService } from '../../farm-management/farm-management.service';
 import { FormControl, FormGroup } from '@angular/forms';
 
