@@ -21,12 +21,12 @@ export class UserService {
 
   public clean(): void {
     this.$currentUser.next(null);
-    window.sessionStorage.clear();
+    sessionStorage.clear();
   }
 
   public saveUser(currentUser: User) {
     this.$currentUser.next(currentUser);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(currentUser));
+    sessionStorage.setItem(USER_KEY, JSON.stringify(currentUser));
   }
 
   public getUser(): BehaviorSubject<User> {
@@ -34,7 +34,7 @@ export class UserService {
   }
 
   public autoLogin() {
-    const currentUser = JSON.parse(window.sessionStorage.getItem(USER_KEY));
+    const currentUser = JSON.parse(sessionStorage.getItem(USER_KEY));
 
     if (!currentUser) {
       this.$currentUser.next(null);

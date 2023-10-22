@@ -20,9 +20,6 @@ export class FarmerListComponent {
   farms: Farm[];
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private userService: UserService,
     private manageFarmersService: ManageFarmersService,
     private farmService: FarmManagementService
   ) {

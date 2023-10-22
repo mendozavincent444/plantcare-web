@@ -21,7 +21,6 @@ export class FarmListComponent implements OnInit {
   ngOnInit(): void {
     // fix - use view resolver to load all farms before page is opened
     this.farmManagementService.getAllFarms().subscribe(data => {
-      this.farmManagementService.saveFarms(data);
       this.farms = data;
     });
   }
