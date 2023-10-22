@@ -116,7 +116,7 @@
                                             </label>
                                             <select formControlName="farm" class="d-inline-block form-select form-select-sm">
                                                 <option value="" selected disabled> Select Farm </option>
-                                                <option *ngFor="let farm of farms"> {{ farm.name }}</option>
+                                                <option [ngValue]="farm" *ngFor="let farm of farms"> {{ farm.name }} / {{ farm.location }}</option>
                                             </select>
                                     </div>
                                 </div>
