@@ -31,8 +31,8 @@
                                         </div>
 
                                         <div *ngIf="editUserMode">
-                                            <input class="form-control" type="text"
-                                                formControlName="firstName" name="firstName">
+                                            <input class="form-control" type="text" formControlName="firstName"
+                                                name="firstName">
                                         </div>
                                     </div>
                                 </div>
@@ -48,8 +48,8 @@
                                         </div>
 
                                         <div *ngIf="editUserMode">
-                                            <input class="form-control" type="text"
-                                                formControlName="lastName" name="lastName">
+                                            <input class="form-control" type="text" formControlName="lastName"
+                                                name="lastName">
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +76,8 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <div *ngIf="changePasswordMode">
-                                            <input class="form-control" type="password" placeholder="Enter Current Password..."
+                                            <input class="form-control" type="password"
+                                                placeholder="Enter Current Password..."
                                                 formControlName="currentPassword" name="currentPassword">
                                         </div>
                                     </div>
@@ -85,8 +86,9 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <div *ngIf="changePasswordMode">
-                                            <input class="form-control" type="password" placeholder="Enter New Password..."
-                                                formControlName="newPassword" name="newPassword">
+                                            <input class="form-control" type="password"
+                                                placeholder="Enter New Password..." formControlName="newPassword"
+                                                name="newPassword">
                                         </div>
                                     </div>
                                 </div>
@@ -96,6 +98,33 @@
                                 <button class="btn btn-primary btn-sm" type="submit">Change Password</button>
                                 <button (click)="toggleChangePasswordMode()" class="btn btn-danger btn-sm action-button"
                                     type="button">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card shadow">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 fw-bold">Change Farm</p>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="changeFarmForm" (ngSubmit)="onChangeFarm()">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                            <label class="form-label" for="city">
+                                                <strong>Farm</strong>
+                                            </label>
+                                            <select formControlName="farm" class="d-inline-block form-select form-select-sm">
+                                                <option value="" selected disabled> Select Farm </option>
+                                                <option *ngFor="let farm of farms"> {{ farm.name }}</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-primary btn-sm" type="submit">Save&nbsp;</button>
                             </div>
                         </form>
                     </div>

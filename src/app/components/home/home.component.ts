@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/shared/models/user';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
+import { FarmManagementService } from './farm-management/farm-management.service';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthService,
+    private farmService: FarmManagementService,
     private router: Router,
     private route: ActivatedRoute
     ) { }
