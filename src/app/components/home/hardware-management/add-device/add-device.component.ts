@@ -12,14 +12,13 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./add-device.component.css']
 })
 export class AddDeviceComponent implements OnInit {
-
-
   farms: Farm[];
   addDeviceForm: FormGroup;
   sensorTypes: SensorType[];
+  currentFarmId: number;
 
   constructor(
-    private farmManagementService: FarmManagementService,
+    private farmService: FarmManagementService,
     private hardwareManagementService: HardwareManagementService,
     private route: ActivatedRoute,
     private router: Router
@@ -30,12 +29,14 @@ export class AddDeviceComponent implements OnInit {
     this.populateFarms();
     this.populateSensorTypes();
     this.initializeAddDeviceForm();
+
+    this.farmService.getCurrentFarm().subscribe(farm => this.currentFarmId = farm.id);
   }
 
   private populateFarms() {
-    this.farmManagementService.getAllFarms().subscribe(data => {
+    this.farmService.getAllFarms().subscribe(data => {
       this.farms = data;
-    })
+    });
   }
 
   private populateSensorTypes() {
@@ -48,8 +49,7 @@ export class AddDeviceComponent implements OnInit {
     this.addDeviceForm = new FormGroup({
       "name": new FormControl("", Validators.required),
       "sensorType": new FormControl("", Validators.required),
-      "deviceType": new FormControl("", Validators.required),
-      "farmId": new FormControl("", Validators.required)
+      "deviceType": new FormControl("", Validators.required)
     });
   }
 
@@ -62,7 +62,7 @@ export class AddDeviceComponent implements OnInit {
   onAddDevice() {
     const deviceType = this.addDeviceForm.value["deviceType"];
     const name = this.addDeviceForm.value["name"];
-    const farmId = this.addDeviceForm.value["farmId"];
+    const farmId = this.currentFarmId;
 
     if (deviceType === "sensor") {
       const sensorType = this.addDeviceForm.value["sensorType"];

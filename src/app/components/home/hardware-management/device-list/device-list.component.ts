@@ -16,6 +16,7 @@ export class DeviceListComponent implements OnInit {
   devices: Device[];
   farmListForm: FormGroup;
   deviceType: string;
+  currentFarmId: number;
 
   constructor(
     private router: Router,
@@ -30,35 +31,28 @@ export class DeviceListComponent implements OnInit {
   // fix - use map in this class
 
   ngOnInit(): void {
-    this.farmService.getAllFarms().subscribe(farms => {
-      this.farms = farms;
-    })
 
     this.farmListForm = new FormGroup({
-      "farm": new FormControl(""),
-      "deviceType": new FormControl("sensors")
+      "deviceType": new FormControl("")
     });
 
+    this.farmService.getCurrentFarm().subscribe(farm => this.currentFarmId = farm.id);
   }
 
   onDetails(deviceId: number) {
     const deviceType = this.farmListForm.value["deviceType"];
-    const farmId = this.farmListForm.value["farm"];
+    const farmId = this.currentFarmId;
 
     this.router.navigate([`../farms/${farmId}/devices/${deviceType}/${deviceId}`], { relativeTo: this.route });
   }
 
-  onChangeFarm() {
-    this.onChangeType();
-  }
-
   onChangeType() {
-    if (!this.farmListForm.value["farm"]) {
+    if (this.currentFarmId == 0) {
       return;
     }
 
     const deviceType = this.farmListForm.value["deviceType"];
-    const farmId = this.farmListForm.value["farm"];
+    const farmId = this.currentFarmId;
 
     this.deviceType = this.currentType(deviceType);
     this.getDeviceListByTypeAndFarm(this.deviceType, farmId);
@@ -78,7 +72,6 @@ export class DeviceListComponent implements OnInit {
   }
 
   currentType(deviceType: string): string {
-
     if (deviceType === "sensors") {
       return "Sensor";
     } else if (deviceType === "pumps") {
@@ -90,7 +83,7 @@ export class DeviceListComponent implements OnInit {
 
   onDeleteDevice(deviceId: number) {
     const deviceType = this.deviceType;
-    const farmId = this.farmListForm.value["farm"];
+    const farmId = this.currentFarmId;
 
     this.deleteDevice(deviceId, farmId, deviceType);
   }
@@ -100,22 +93,23 @@ export class DeviceListComponent implements OnInit {
       this.hardwareManagementService.deleteSensorById(farmId, deviceId).subscribe(data => {
         // fix - receive data
         console.log(data);
-        this.ngOnInit();
+        
       });
 
     } else if (deviceType === "Pump") {
       this.hardwareManagementService.deletePumpById(farmId, deviceId).subscribe(data => {
         // fix - receive data
         console.log(data);
-        this.ngOnInit();
       });
 
     } else {
       this.hardwareManagementService.deleteArduinoBoardById(farmId, deviceId).subscribe(data => {
         // fix - receive data
         console.log(data);
-        this.ngOnInit();
       });
     }
-  }
+
+    this.devices = this.devices.filter(device => device.id !== deviceId);
+    }
+
 }

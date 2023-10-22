@@ -7,8 +7,7 @@
                         <h4 class="text-dark mb-4">Add Device</h4>
                     </div>
                     <form [formGroup]="addDeviceForm" (ngSubmit)="onAddDevice()" class="user">
-                        
-
+                    
                         <div class="mb-3">
                             <input class="form-control form-control-user" type="text"
                                  formControlName="name" placeholder="Device Name"
@@ -33,15 +32,6 @@
                                 <option [ngValue]="sensorType.name" *ngFor="let sensorType of sensorTypes"> {{ sensorType.name }} </option>
                             </select>
                         
-                        </div>
-
-                        <div class="mb-3">
-                      
-                            <select formControlName="farmId" class="form-control form-control-user" name="farm"> 
-                                <option value="" selected disabled> Select Farm </option>
-                                <option [ngValue]="farm.id" *ngFor="let farm of farms"> {{ farm.name }} </option>
-                            </select>
-                       
                         </div>
                         <button class="btn btn-primary d-block btn-user w-100" type="submit">Add</button>
                     </form>
