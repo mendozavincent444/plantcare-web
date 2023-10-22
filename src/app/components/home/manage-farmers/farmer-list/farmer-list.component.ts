@@ -17,7 +17,6 @@ export class FarmerListComponent {
 
   farmerListForm: FormGroup;
   farmers!: User[];
-  farms: Farm[];
 
   constructor(
     private manageFarmersService: ManageFarmersService,
@@ -27,22 +26,23 @@ export class FarmerListComponent {
   }
   ngOnInit(): void {
 
+    this.initializeFarmerListForm();
+
+    this.farmService.getCurrentFarm().subscribe(farm => this.getAllFarmersFromCurrentFarm(farm));
+  }
+
+  private getAllFarmersFromCurrentFarm(farm: Farm) {
+    this.manageFarmersService.getAllFarmersByFarmId(farm.id).subscribe(data => {
+      this.farmers = data;
+    });
+  }
+
+  private initializeFarmerListForm() {
     this.farmerListForm = new FormGroup({
       "farm": new FormControl("")
     });
-
-    this.farmService.getAllFarms().subscribe(data => {
-      this.farms = data;
-    });
   }
 
-  onChangeFarm() {
-    const farmId = this.farmerListForm.value["farm"];
-
-    this.manageFarmersService.getAllFarmersByFarmId(farmId).subscribe(data => {
-      this.farmers = data;
-    })
-  }
 
   onDeleteFarmer(farmerId: number) {
     const farmId = this.farmerListForm.value["farm"];

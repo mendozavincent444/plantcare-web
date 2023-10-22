@@ -17,16 +17,6 @@
                                 <option value="100">100</option>
                             </select>&nbsp;</label></div>
                 </div>
-                <div class="col-md-3 text-nowrap">
-                    <div>
-                        <label class="form-label">Select Farm&nbsp;
-                            <select (change)="onChangeFarm()" formControlName="farm"
-                                class="d-inline-block form-select form-select-sm">
-                                <option value="" selected disabled> Select Farm </option>
-                                <option [ngValue]="farm.id" *ngFor="let farm of farms"> {{ farm.name }}</option>
-                            </select>&nbsp;</label>
-                    </div>
-                </div>
                 <div class="col-md-6">
                     <div class="text-md-end dataTables_filter">
                         <label class="form-label">
