@@ -36,6 +36,9 @@ import { AdminListComponent } from './components/home/manage-admins/admin-list/a
 import { ViewAdminComponent } from './components/home/manage-admins/view-admin/view-admin.component'; 
 import { HttpRequestInterceptor } from './helpers/http-request.interceptor';
 import { AddDeviceComponent } from './components/home/hardware-management/add-device/add-device.component';
+import { SubscriptionComponent } from './components/home/subscription/subscription.component';
+import { ChooseSubscriptionComponent } from './components/home/subscription/choose-subscription/choose-subscription.component';
+import { SubscriptionPaymentComponent } from './components/home/subscription/subscription-payment/subscription-payment.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +72,10 @@ import { AddDeviceComponent } from './components/home/hardware-management/add-de
     ViewTransactionComponent,
     AdminListComponent,
     ViewAdminComponent,
-    AddDeviceComponent
+    AddDeviceComponent,
+    SubscriptionComponent,
+    ChooseSubscriptionComponent,
+    SubscriptionPaymentComponent
   ],
   imports: [
     BrowserModule,

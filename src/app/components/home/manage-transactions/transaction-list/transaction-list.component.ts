@@ -64,7 +64,7 @@ export class TransactionListComponent implements OnInit {
   }
 
   isApproved(transaction: Transaction) {
-    return transaction.status == "Approved" ? true : false; 
+    return transaction.status == "APPROVED" ? true : false; 
   }
 
   isRoleAdmin(): boolean {

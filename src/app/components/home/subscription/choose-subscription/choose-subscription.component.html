@@ -1,0 +1,21 @@
+<div class="container mt-5">
+
+    <div class="row">
+        <div *ngFor="let subscriptionType of subscriptionTypes" class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white text-center">
+                    <h2> {{ subscriptionType.name }} </h2>
+                </div>
+                <div class="card-body">
+                    <p> {{ subscriptionType.subscriptionBenefits }} </p>
+
+
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button class="btn btn-primary btn-block mt-3" (click)="onPurchaseSubscription(subscriptionType)">Subscribe ({{ subscriptionType.price | currency: "USD" }})</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Transaction } from 'src/app/shared/models/transaction';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PurchaseDto } from 'src/app/shared/payload/purchase-dto';
+import { PurchaseSubscriptionDto } from 'src/app/shared/payload/purchase-subscription-dto';
 
 const TRANSACTION_API = "http://localhost:8080/api/v1/transactions";
 
@@ -21,8 +22,12 @@ export class ManageTransactionsService {
     
   }
 
-  public createTransaction(purchaseDto: PurchaseDto): Observable<String> {
+  public createTransactionByProduct(purchaseDto: PurchaseDto): Observable<String> {
     return this.httpClient.post<String>(TRANSACTION_API, purchaseDto, httpOptions);
+  }
+
+  public createTransactionBySubscription(purchaseSubscriptionDto: PurchaseSubscriptionDto): Observable<String> {
+    return this.httpClient.post<String>(TRANSACTION_API + "/subscription", purchaseSubscriptionDto, httpOptions);
   }
 
   public getAllTransactions(): Observable<Transaction[]> {
