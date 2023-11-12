@@ -8,6 +8,34 @@
                 <h6> {{ user.role }}</h6>
             </div>
         </div>
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="text-primary fw-bold m-0">Subscription</h6>
+            </div>
+
+            <div class="card-body text-center">
+                <!-- Free Subscription -->
+                <h4 style="color: #2ecc71;">Free</h4>
+                <i class="fas fa-certificate" style="font-size: 24px; color: #2ecc71;"></i>
+                <!-- Green checkmark icon -->
+                <h6>Basic Features</h6>
+                <button class="btn btn-success">Upgrade to Premium</button>
+            </div>
+
+            <div class="card-body text-center">
+                <h4 style="color: gold;">Premium</h4> <!-- Gold color for premium -->
+                <i class="fas fa-certificate" style="font-size: 24px; color: gold;"></i> <!-- Gold checkmark icon -->
+                <h6> Advanced Features </h6>
+                <h6> Expires 7/14/2023 </h6>
+            </div>
+            
+        </div>
+
+    
+
+
+
     </div>
     <div class="col-lg-8">
         <div class="row">
@@ -111,13 +139,15 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                            <label class="form-label" for="city">
-                                                <strong>Farm</strong>
-                                            </label>
-                                            <select formControlName="farm" class="d-inline-block form-select form-select-sm">
-                                                <option value="" selected disabled> Select Farm </option>
-                                                <option [ngValue]="farm" *ngFor="let farm of farms"> {{ farm.name }} / {{ farm.location }}</option>
-                                            </select>
+                                        <label class="form-label" for="city">
+                                            <strong>Farm</strong>
+                                        </label>
+                                        <select formControlName="farm"
+                                            class="d-inline-block form-select form-select-sm">
+                                            <option value="" selected disabled> Select Farm </option>
+                                            <option [ngValue]="farm" *ngFor="let farm of farms"> {{ farm.name }} / {{
+                                                farm.location }}</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col">

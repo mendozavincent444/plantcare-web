@@ -54,8 +54,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     const zipCodeBillingAddress = this.checkoutForm.value["zipCodeBillingAddress"];
     const paymentMethod = this.checkoutForm.value["paymentMethod"];
 
-
-
     const shippingAddressDto = new AddressDto(
       cityShippingAddress,
       provinceShippingAddress,
@@ -69,7 +67,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       streetBillingAddress,
       zipCodeBillingAddress
     );
-
 
     const products: Product[] = this.productService.getAllCartProducts();
 
@@ -92,7 +89,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       paymentMethod
     );
 
-    this.manageTransactions.createTransaction(purchaseDto).subscribe(data => {
+    this.manageTransactions.createTransactionByProduct(purchaseDto).subscribe(data => {
       // fix - receive data
       console.log(data);
       this.productService.emptyCart();
@@ -105,5 +102,4 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.productService.emptyCart();
   }
-
 }

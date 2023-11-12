@@ -32,6 +32,9 @@ import { AuthGuard } from './shared/services/auth.guard';
 import { AddDeviceComponent } from './components/home/hardware-management/add-device/add-device.component';
 import { AdminGuard } from './shared/services/admin.guard';
 import { SuperadminGuard } from './shared/services/superadmin.guard';
+import { SubscriptionComponent } from './components/home/subscription/subscription.component';
+import { ChooseSubscriptionComponent } from './components/home/subscription/choose-subscription/choose-subscription.component';
+import { SubscriptionPaymentComponent } from './components/home/subscription/subscription-payment/subscription-payment.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -40,6 +43,13 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivateChild: [AuthGuard], 
       children: [
         { path: 'profile', component: ProfileComponent },
+        { path: 'subscription', component: SubscriptionComponent, canActivateChild: [AdminGuard],
+            children: [
+              { path: 'choose-subscription', component: ChooseSubscriptionComponent },
+              { path: 'subscription-payment', component: SubscriptionPaymentComponent },
+              { path: '', redirectTo: 'choose-subscription', pathMatch: 'full' }
+          ]  
+            },
         { path: 'farm-management', component: FarmManagementComponent, canActivateChild: [AdminGuard],
             children: [
               { path: 'farm-list', component: FarmListComponent },
