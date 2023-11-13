@@ -30,8 +30,8 @@ export class AdminListComponent {
     this.router.navigate([`../admin/${adminUsername}`], { relativeTo: this.route });
   }
 
-  onBanAdmin(admin: User) {
-    this.adminService.banAdmin(admin, admin.id).subscribe(data => {
+  onDeactivateAdmin(admin: User) {
+    this.adminService.deactivateAdmin(admin, admin.id).subscribe(data => {
       // fix receive data
       console.log(data);
 

@@ -28,7 +28,7 @@ export class ManageAdminsService {
     return this.httpClient.get(USER_API + `/roles/${ADMIN_ROLE_ID}`, httpOptions);
   }
 
-  public banAdmin(admin: User, adminId: number): Observable<any> {
+  public deactivateAdmin(admin: User, adminId: number): Observable<any> {
     return this.httpClient.put(USER_API + `/admins/${adminId}/ban`, admin, httpOptions);
   }
 
