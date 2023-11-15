@@ -39,6 +39,7 @@ import { AddDeviceComponent } from './components/home/hardware-management/add-de
 import { SubscriptionComponent } from './components/home/subscription/subscription.component';
 import { ChooseSubscriptionComponent } from './components/home/subscription/choose-subscription/choose-subscription.component';
 import { SubscriptionPaymentComponent } from './components/home/subscription/subscription-payment/subscription-payment.component';
+import { ConfirmPasswordResetComponent } from './components/confirm-password-reset/confirm-password-reset.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { SubscriptionPaymentComponent } from './components/home/subscription/sub
     AddDeviceComponent,
     SubscriptionComponent,
     ChooseSubscriptionComponent,
-    SubscriptionPaymentComponent
+    SubscriptionPaymentComponent,
+    ConfirmPasswordResetComponent
   ],
   imports: [
     BrowserModule,

@@ -35,11 +35,13 @@ import { SuperadminGuard } from './shared/services/superadmin.guard';
 import { SubscriptionComponent } from './components/home/subscription/subscription.component';
 import { ChooseSubscriptionComponent } from './components/home/subscription/choose-subscription/choose-subscription.component';
 import { SubscriptionPaymentComponent } from './components/home/subscription/subscription-payment/subscription-payment.component';
+import { ConfirmPasswordResetComponent } from './components/confirm-password-reset/confirm-password-reset.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'confirm-reset', component: ConfirmPasswordResetComponent },
   { path: 'home', component: HomeComponent, canActivateChild: [AuthGuard], 
       children: [
         { path: 'profile', component: ProfileComponent },

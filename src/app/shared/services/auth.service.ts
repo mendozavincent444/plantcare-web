@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { RegisterRequestDto } from '../payload/registerrequestdto';
 import { User } from '../models/user';
 import { EditUserProfileDto } from '../payload/edit-user-profile-dto';
+import { ForgotPasswordRequestDto } from '../payload/forgot-password-request-dto';
 
 const AUTH_API = "http://localhost:8080/api/v1/auth";
 
@@ -30,12 +31,20 @@ export class AuthService {
     return this.httpClient.post(AUTH_API + "/logout", {}, httpOptions);
   }
 
+  public forgotPasswordRequest(forgotPasswordRequestDto: ForgotPasswordRequestDto): Observable<any> {
+    return this.httpClient.post(AUTH_API + "/forgot-password", forgotPasswordRequestDto, httpOptions)
+  }
+
   public register(registerRequest: RegisterRequestDto): Observable<any> {
     return this.httpClient.post(AUTH_API + "/register", registerRequest, httpOptions);
   }
 
   public updatePassword(currentPassword: string, newPassword: string): Observable<any> {
     return this.httpClient.post(AUTH_API + "/update-password", { currentPassword, newPassword });
+  }
+
+  public confirmPasswordRequest(token: string, forgotPasswordRequestDto: ForgotPasswordRequestDto) {
+    return this.httpClient.post(AUTH_API + `/confirm-request?token=${token}`, forgotPasswordRequestDto, httpOptions);
   }
 
   public updateUserProfile(editedUser: EditUserProfileDto): Observable<any> {
@@ -45,6 +54,8 @@ export class AuthService {
   public registerFarmersBulk(farmId: number, file: FormData): Observable<any> {
     return this.httpClient.post(AUTH_API + `/farm/${farmId}/farmers/bulk-register`, file);
   }
+
+
 
 
 }
