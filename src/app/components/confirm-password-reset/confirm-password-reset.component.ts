@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ForgotPasswordRequestDto } from 'src/app/shared/payload/forgot-password-request-dto';
@@ -9,17 +9,22 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   templateUrl: './confirm-password-reset.component.html',
   styleUrls: ['./confirm-password-reset.component.css']
 })
-export class ConfirmPasswordResetComponent implements OnInit {
-
-
+export class ConfirmPasswordResetComponent implements OnInit, OnDestroy {
   token: string;
   confirmPasswordRequestForm: FormGroup;
+  private originalBackgroundColor: string;
+
 
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute
-    ) {
+  ) {
+    this.originalBackgroundColor = document.body.style.background;
     document.body.style.background = 'rgba(23, 122, 23, 0.6)';
+  }
+
+  private resetBackgroundColor(): void {
+    document.body.style.background = this.originalBackgroundColor;
   }
 
   ngOnInit(): void {
@@ -29,6 +34,10 @@ export class ConfirmPasswordResetComponent implements OnInit {
     });
 
     this.token = this.route.snapshot.queryParams["token"];
+  }
+
+  ngOnDestroy(): void {
+    this.resetBackgroundColor();
   }
 
   public get newPassword() {
@@ -44,7 +53,7 @@ export class ConfirmPasswordResetComponent implements OnInit {
   }
 
   onResetPassword() {
-    
+
     const forgotPasswordRequestDto = new ForgotPasswordRequestDto();
     forgotPasswordRequestDto.newPassword = this.newPassword;
 

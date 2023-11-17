@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -11,7 +11,7 @@ import { Farm } from 'src/app/shared/models/farm';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   private originalBackgroundColor: string;
 
@@ -30,8 +30,6 @@ export class LoginComponent implements OnInit {
     document.body.style.background = this.originalBackgroundColor;
   }
 
-
-
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       "username": new FormControl(null, [Validators.required]),
@@ -39,6 +37,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.resetBackgroundColor();
+  }
 
   onSubmit() {
     let username: string, password: string;
@@ -51,7 +52,6 @@ export class LoginComponent implements OnInit {
       next: data => {
         this.userService.saveUser(data);
         this.loginForm.reset();
-        this.resetBackgroundColor();
         this.getDefaultFarm();
       },
       error: err => {

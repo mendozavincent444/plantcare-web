@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegisterRequestDto } from 'src/app/shared/payload/registerrequestdto';
@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   registerForm: FormGroup;
   private originalBackgroundColor: string;
 
@@ -35,6 +35,10 @@ export class RegisterComponent implements OnInit {
       "password": new FormControl(null, Validators.required),
       "repeatPassword": new FormControl(null, Validators.required),
     });
+  }
+
+  ngOnDestroy(): void {
+    this.resetBackgroundColor();
   }
 
 
@@ -64,7 +68,6 @@ export class RegisterComponent implements OnInit {
         console.log(data);
 
         this.registerForm.reset();
-        this.resetBackgroundColor();
         this.router.navigate(["/login"]);
       }});
   }
