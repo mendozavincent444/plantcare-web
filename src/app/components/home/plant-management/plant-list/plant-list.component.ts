@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PlantManagementService } from '../plant-management.service';
 import { Plant } from 'src/app/shared/models/plant';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Farm } from 'src/app/shared/models/farm';
 import { FarmManagementService } from '../../farm-management/farm-management.service';
 
 @Component({

@@ -1,0 +1,97 @@
+<div class="row">
+    <div class="col-md-6 col-xl-3 mb-4">
+        <div class="card shadow border-start-info py-2">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col me-2">
+                        <div class="text-uppercase text-info fw-bold text-xs mb-1"><span>Farm Name</span></div>
+                        <div class="row g-0 align-items-center">
+                            <div *ngIf="farm" class="col-auto">
+                                <div class="text-dark fw-bold h5 mb-0 me-3"><span> {{ farm.name }}</span></div>
+                            </div>
+                            <div *ngIf="!farm" class="col-auto">
+                                <div class="text-dark fw-bold h5 mb-0 me-3"><span> N/A </span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto"><i class="fa fa-leaf fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3 mb-4">
+        <div class="card shadow border-start-warning py-2">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col me-2">
+                        <div class="text-uppercase text-warning fw-bold text-xs mb-1">
+                            <span>Farm Location</span>
+                        </div>
+                        <div *ngIf="farm" class="text-dark fw-bold h5 mb-0">
+                            <span> {{ farm.location }}</span>
+                        </div>
+                        <div *ngIf="!farm" class="text-dark fw-bold h5 mb-0">
+                            <span> N/A </span>
+                        </div>
+                    </div>
+                    <div class="col-auto"><i class="fa fa-location-arrow fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3 mb-4">
+        <div class="card shadow border-start-primary py-2">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col me-2">
+                        <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Room Temperature</span>
+                        </div>
+                        <div class="text-dark fw-bold h5 mb-0"><span>25°C</span></div>
+                    </div>
+                    <div class="col-auto"><i class="fas fa-thermometer-half fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3 mb-4">
+        <div class="card shadow border-start-success py-2">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col me-2">
+                        <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Humidity</span></div>
+                        <div class="text-dark fw-bold h5 mb-0"><span>51%</span></div>
+                    </div>
+                    <div class="col-auto"><i class="fas fa-tint fa-2x text-gray-300"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-lg-7 col-xl-8">
+        <div class="card shadow mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="text-primary fw-bold m-0">Calendar</h6>
+            </div>
+            <div class="card-body">
+
+                <full-calendar [options]="calendarOptions"></full-calendar>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-5 col-xl-4">
+        <div class="card shadow mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="text-primary fw-bold m-0">Harvest Logs</h6>
+            </div>
+            <div class="card-body">
+                <a routerLink="../harvest-logs" class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button">
+                    <i class="fas fa-tree fa-sm text-white-50">
+                    </i>&nbsp;View Harvest Logs
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
