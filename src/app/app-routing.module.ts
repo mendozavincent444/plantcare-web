@@ -36,6 +36,9 @@ import { SubscriptionComponent } from './components/home/subscription/subscripti
 import { ChooseSubscriptionComponent } from './components/home/subscription/choose-subscription/choose-subscription.component';
 import { SubscriptionPaymentComponent } from './components/home/subscription/subscription-payment/subscription-payment.component';
 import { ConfirmPasswordResetComponent } from './components/confirm-password-reset/confirm-password-reset.component';
+import { DashboardComponent } from './components/home/dashboard/dashboard.component';
+import { DashboardWidgetsComponent } from './components/home/dashboard/dashboard-widgets/dashboard-widgets.component';
+import { HarvestLogsComponent } from './components/home/dashboard/harvest-logs/harvest-logs.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -50,8 +53,13 @@ const routes: Routes = [
               { path: 'choose-subscription', component: ChooseSubscriptionComponent },
               { path: 'subscription-payment', component: SubscriptionPaymentComponent },
               { path: '', redirectTo: 'choose-subscription', pathMatch: 'full' }
-          ]  
-            },
+          ]  },
+        { path: 'dashboard', component: DashboardComponent, canActivateChild: [AdminGuard], 
+            children: [
+              { path: 'dashboard-widgets', component: DashboardWidgetsComponent },
+              { path: 'harvest-logs', component: HarvestLogsComponent },
+              { path: '', redirectTo: 'dashboard-widgets', pathMatch: 'full' }
+          ]  },
         { path: 'farm-management', component: FarmManagementComponent, canActivateChild: [AdminGuard],
             children: [
               { path: 'farm-list', component: FarmListComponent },

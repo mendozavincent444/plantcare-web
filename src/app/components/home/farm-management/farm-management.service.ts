@@ -64,6 +64,10 @@ export class FarmManagementService {
     return this.httpClient.get(`${FARM_API}/${farmId}/admins`, httpOptions);
   }
 
+  public getAllTasksFromAllContainers(farmId: number): Observable<any> {
+    return this.httpClient.get(`${FARM_API}/${farmId}/containers/tasks/all`, httpOptions);
+  }
+
   public updateFarm(farm: Farm ,farmId: number, newOwnerId: number): Observable<any> {
     return this.httpClient.put(`${FARM_API}/${farmId}/new-owner/${newOwnerId}`, farm, httpOptions);
   }

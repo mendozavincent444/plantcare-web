@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FullCalendarModule } from '@fullcalendar/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -40,6 +40,9 @@ import { SubscriptionComponent } from './components/home/subscription/subscripti
 import { ChooseSubscriptionComponent } from './components/home/subscription/choose-subscription/choose-subscription.component';
 import { SubscriptionPaymentComponent } from './components/home/subscription/subscription-payment/subscription-payment.component';
 import { ConfirmPasswordResetComponent } from './components/confirm-password-reset/confirm-password-reset.component';
+import { DashboardComponent } from './components/home/dashboard/dashboard.component';
+import { DashboardWidgetsComponent } from './components/home/dashboard/dashboard-widgets/dashboard-widgets.component';
+import { HarvestLogsComponent } from './components/home/dashboard/harvest-logs/harvest-logs.component';
 
 @NgModule({
   declarations: [
@@ -77,13 +80,17 @@ import { ConfirmPasswordResetComponent } from './components/confirm-password-res
     SubscriptionComponent,
     ChooseSubscriptionComponent,
     SubscriptionPaymentComponent,
-    ConfirmPasswordResetComponent
+    ConfirmPasswordResetComponent,
+    DashboardComponent,
+    DashboardWidgetsComponent,
+    HarvestLogsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FullCalendarModule
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true } ],
   bootstrap: [AppComponent]
