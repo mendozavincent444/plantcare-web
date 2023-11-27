@@ -21,14 +21,16 @@
                 <table class="table table-bordered my-0" id="dataTable">
                     <thead>
                         <tr>
-                            <th>Plant Name</th>
-                            <th>Date Harvested</th>
-                            <th>Harvester</th>
+                            <th> Plant Name </th>
+                            <th> Date Harvested </th>
+                            <th> Harvester </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr >
-                            
+                        <tr *ngFor="let harvestLog of harvestLogs">
+                            <th> {{ harvestLog.plantName }} </th>
+                            <th> {{ harvestLog.harvestedDate }} </th>
+                            <th> {{ harvestLog.farmerLastName }}</th>
                         </tr>
                     </tbody>
                     <tfoot>
