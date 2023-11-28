@@ -1,3 +1,5 @@
+import { Subscription } from "src/app/shared/models/subscription";
+
 export class User {
     id: number;
     role: string;
@@ -7,6 +9,8 @@ export class User {
     lastName: string;
     password?: string;
     accountNonLocked?: boolean;
+    allowNotifications?: boolean;
+    subscription?: Subscription;
 
     constructor(
         id: number,
@@ -16,7 +20,9 @@ export class User {
         firstName: string,
         lastName: string,
         password?: string,
-        accountNonLocked?: boolean
+        accountNonLocked?: boolean,
+        allowNotifications?: boolean,
+        subscription?: Subscription
     ) {
         this.id = id;
         this.role = userRole;
@@ -26,5 +32,7 @@ export class User {
         this.lastName = lastName;
         this.password = password;
         this.accountNonLocked = accountNonLocked;
+        this.allowNotifications = allowNotifications;
+        this.subscription = subscription;
     }
 }

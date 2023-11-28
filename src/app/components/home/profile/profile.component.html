@@ -9,12 +9,12 @@
             </div>
         </div>
 
-        <div class="card shadow mb-4">
+        <div *ngIf="isRoleAdmin()" class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="text-primary fw-bold m-0">Subscription</h6>
             </div>
 
-            <div class="card-body text-center">
+            <div *ngIf="!isSubscribed()" class="card-body text-center">
                 <!-- Free Subscription -->
                 <h4 style="color: #2ecc71;">Free</h4>
                 <i class="fas fa-certificate" style="font-size: 24px; color: #2ecc71;"></i>
@@ -23,11 +23,11 @@
                 <button class="btn btn-success">Upgrade to Premium</button>
             </div>
 
-            <div class="card-body text-center">
+            <div *ngIf="isSubscribed()" class="card-body text-center">
                 <h4 style="color: gold;">Premium</h4> <!-- Gold color for premium -->
                 <i class="fas fa-certificate" style="font-size: 24px; color: gold;"></i> <!-- Gold checkmark icon -->
                 <h6> Advanced Features </h6>
-                <h6> Expires 7/14/2023 </h6>
+                <h6> Expires {{ user.subscription.endDate | date: 'short' }} </h6>
             </div>
             
         </div>

@@ -109,6 +109,19 @@ export class ProfileComponent implements OnInit {
 
   }
 
+  isRoleAdmin(): boolean {
+    return this.user.role === "ROLE_ADMIN" ? true : false;
+  }
+
+  isRoleSuperAdmin(): boolean {
+    return this.user.role === "ROLE_SUPERADMIN" ? true : false;
+  }
+
+  isSubscribed(): boolean {
+    return this.user.subscription != null;
+  }
+
+
   toggleEditUserMode(): void {
     this.editUserMode = !this.editUserMode;
   }
