@@ -19,22 +19,20 @@
                 <h4 style="color: #2ecc71;">Free</h4>
                 <i class="fas fa-certificate" style="font-size: 24px; color: #2ecc71;"></i>
                 <!-- Green checkmark icon -->
-                <h6>Basic Features</h6>
-                <button class="btn btn-success">Upgrade to Premium</button>
+                <h6> Basic Features </h6>
+                <button routerLink="../subscription/choose-subscription" class="btn btn-success">Upgrade to Premium</button>
             </div>
 
             <div *ngIf="isSubscribed()" class="card-body text-center">
                 <h4 style="color: gold;">Premium</h4> <!-- Gold color for premium -->
                 <i class="fas fa-certificate" style="font-size: 24px; color: gold;"></i> <!-- Gold checkmark icon -->
                 <h6> Advanced Features </h6>
-                <h6> Expires {{ user.subscription.endDate | date: 'short' }} </h6>
+                <h6> Expires {{ subscription.endDate | date: 'short' }} </h6>
+
+                <button class="btn btn-danger" (click)="cancelSubscription()">Cancel Subscription</button>
             </div>
             
         </div>
-
-    
-
-
 
     </div>
     <div class="col-lg-8">

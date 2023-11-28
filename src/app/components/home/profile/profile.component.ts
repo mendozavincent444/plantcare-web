@@ -7,6 +7,8 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { FarmManagementService } from '../farm-management/farm-management.service';
 import { Farm } from 'src/app/shared/models/farm';
+import { SubscriptionService } from '../subscription/subscription.service';
+import { Subscription } from 'src/app/shared/models/subscription';
 
 @Component({
   selector: 'app-profile',
@@ -14,11 +16,13 @@ import { Farm } from 'src/app/shared/models/farm';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+
   farms: Farm[];
   editUserForm: FormGroup
   changePasswordForm: FormGroup;
   changeFarmForm: FormGroup;
   user!: User;
+  subscription: Subscription;
 
   editUserMode!: boolean;
   changePasswordMode!: boolean;
@@ -26,7 +30,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private farmService: FarmManagementService
+    private farmService: FarmManagementService,
+    private subscriptionService: SubscriptionService
   ) {
 
   }
@@ -36,12 +41,13 @@ export class ProfileComponent implements OnInit {
     this.initializeEditUserForm();
     this.initializeChangePasswordForm();
     this.initializeChangeFarmForm();
+    this.subscriptionService.getSubscription().subscribe(data => this.subscription = data);
 
     this.farmService.getAllFarms().subscribe(farms => {
       this.farms = farms;
     });
 
-  
+
     this.editUserMode = false;
     this.changePasswordMode = false;
   }
@@ -118,7 +124,13 @@ export class ProfileComponent implements OnInit {
   }
 
   isSubscribed(): boolean {
-    return this.user.subscription != null;
+    return this.subscription != null;
+  }
+
+  cancelSubscription() {
+    this.subscriptionService.cancelSubscription().subscribe();
+    this.ngOnInit();
+    window.location.reload();
   }
 
 
