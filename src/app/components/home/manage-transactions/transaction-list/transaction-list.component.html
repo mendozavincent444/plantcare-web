@@ -28,8 +28,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let transaction of transactions">
-                        <td><img class="rounded-circle me-2" width="30" height="30"
-                                src="assets/img/avatars/avatar1.jpg"> {{ transaction.name }}</td>
+                        <td> {{ transaction.name }}</td>
                         <td> {{ transaction.amount }} </td>
                         <td> {{ transaction.orderedBy }}</td>
                         <td>
