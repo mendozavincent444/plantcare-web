@@ -28,7 +28,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let notification of notifications">
-                        <td> {{ notification.date }} </td>
+                        <td> {{ notification.date | date: 'short' }} </td>
                         <td> {{ notification.title }} </td>
                         <td> {{ notification.content }} </td>
                     </tr>
