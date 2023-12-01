@@ -39,6 +39,7 @@ import { ConfirmPasswordResetComponent } from './components/confirm-password-res
 import { DashboardComponent } from './components/home/dashboard/dashboard.component';
 import { DashboardWidgetsComponent } from './components/home/dashboard/dashboard-widgets/dashboard-widgets.component';
 import { HarvestLogsComponent } from './components/home/dashboard/harvest-logs/harvest-logs.component';
+import { NotificationsComponent } from './components/home/notifications/notifications.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'confirm-reset', component: ConfirmPasswordResetComponent },
   { path: 'home', component: HomeComponent, canActivateChild: [AuthGuard], 
       children: [
+        { path: 'notifications', component: NotificationsComponent },
         { path: 'profile', component: ProfileComponent },
         { path: 'subscription', component: SubscriptionComponent, canActivateChild: [AdminGuard],
             children: [
