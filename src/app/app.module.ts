@@ -43,6 +43,7 @@ import { ConfirmPasswordResetComponent } from './components/confirm-password-res
 import { DashboardComponent } from './components/home/dashboard/dashboard.component';
 import { DashboardWidgetsComponent } from './components/home/dashboard/dashboard-widgets/dashboard-widgets.component';
 import { HarvestLogsComponent } from './components/home/dashboard/harvest-logs/harvest-logs.component';
+import { NotificationsComponent } from './components/home/notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { HarvestLogsComponent } from './components/home/dashboard/harvest-logs/h
     ConfirmPasswordResetComponent,
     DashboardComponent,
     DashboardWidgetsComponent,
-    HarvestLogsComponent
+    HarvestLogsComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
