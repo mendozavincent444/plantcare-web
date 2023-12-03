@@ -14,6 +14,7 @@ export class FarmerListComponent {
 
   farmerListForm: FormGroup;
   farmers!: User[];
+  farm: Farm;
 
   constructor(
     private manageFarmersService: ManageFarmersService,
@@ -25,7 +26,10 @@ export class FarmerListComponent {
 
     this.initializeFarmerListForm();
 
-    this.farmService.getCurrentFarm().subscribe(farm => this.getAllFarmersFromCurrentFarm(farm));
+    this.farmService.getCurrentFarm().subscribe(farm => {
+      this.getAllFarmersFromCurrentFarm(farm);
+      this.farm = farm;
+    });
   }
 
   private getAllFarmersFromCurrentFarm(farm: Farm) {
@@ -42,7 +46,7 @@ export class FarmerListComponent {
 
 
   onDeleteFarmer(farmerId: number) {
-    const farmId = this.farmerListForm.value["farm"];
+    const farmId = this.farm.id;
 
 
     this.manageFarmersService.deleteFarmerByFarm(farmId, farmerId).subscribe(data => {
