@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, window } from 'rxjs';
 import { Farm } from 'src/app/shared/models/farm';
+import { ApiService } from 'src/app/shared/services/api.service';
 
-const FARM_API = "http://localhost:8080/api/v1/farms";
 const FARM_KEY = "current-farm";
 
 const httpOptions = {
@@ -17,9 +17,11 @@ export class FarmManagementService {
 
   $farm: BehaviorSubject<Farm> = new BehaviorSubject<Farm>(null);
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private apiService: ApiService) {
     
   }
+
+  FARM_API = this.apiService.getBaseUrl() + "/api/v1/farms";
 
   public saveFarm(currentFarm: Farm) {
     this.$farm.next(currentFarm);
@@ -45,31 +47,31 @@ export class FarmManagementService {
   }
 
   public addFarm(name: string, location: string): Observable<any> {
-    return this.httpClient.post(FARM_API, { name, location }, httpOptions);
+    return this.httpClient.post(this.FARM_API, { name, location }, httpOptions);
   }
 
   public getAllFarms(): Observable<Farm[]> {
-    return this.httpClient.get<Farm[]>(FARM_API, httpOptions);
+    return this.httpClient.get<Farm[]>(this.FARM_API, httpOptions);
   }
 
   public deleteFarmById(farmId: number): Observable<any> {
-    return this.httpClient.delete(`${FARM_API}/${farmId}`, httpOptions);
+    return this.httpClient.delete(`${this.FARM_API}/${farmId}`, httpOptions);
   }
 
   public getFarmById(farmId: number): Observable<any> {
-    return this.httpClient.get(`${FARM_API}/${farmId}`, httpOptions);
+    return this.httpClient.get(`${this.FARM_API}/${farmId}`, httpOptions);
   }
 
   public getAdminsByFarmId(farmId: number): Observable<any> {
-    return this.httpClient.get(`${FARM_API}/${farmId}/admins`, httpOptions);
+    return this.httpClient.get(`${this.FARM_API}/${farmId}/admins`, httpOptions);
   }
 
   public getAllTasksFromAllContainers(farmId: number): Observable<any> {
-    return this.httpClient.get(`${FARM_API}/${farmId}/containers/tasks/all`, httpOptions);
+    return this.httpClient.get(`${this.FARM_API}/${farmId}/containers/tasks/all`, httpOptions);
   }
 
   public updateFarm(farm: Farm ,farmId: number, newOwnerId: number): Observable<any> {
-    return this.httpClient.put(`${FARM_API}/${farmId}/new-owner/${newOwnerId}`, farm, httpOptions);
+    return this.httpClient.put(`${this.FARM_API}/${farmId}/new-owner/${newOwnerId}`, farm, httpOptions);
   }
 
 
