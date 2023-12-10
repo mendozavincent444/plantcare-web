@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class ApiService {
 
-  private baseUrl = "https://ec2-34-239-114-172.compute-1.amazonaws.com";
+  private baseUrl = "http://crandel.online";
 
   constructor() { }
 
