@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from './api.service';
 
-const USER_API = "http://localhost:8080/api/v1/users";
+
 const USER_KEY = "auth-user";
 
 @Injectable({
@@ -13,10 +14,12 @@ export class UserService {
 
   $currentUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
-  constructor(private httpClient: HttpClient) {   }
+  constructor(private httpClient: HttpClient, private apiService: ApiService) {   }
+
+  USER_API = this.apiService.getBaseUrl() + "/api/v1/users";
 
   public fetchUser(): Observable<User> {
-    return this.httpClient.get<User>(USER_API + "/current-user");
+    return this.httpClient.get<User>(this.USER_API + "/current-user");
   }
 
   public clean(): void {
