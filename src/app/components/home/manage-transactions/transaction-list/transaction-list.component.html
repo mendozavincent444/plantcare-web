@@ -29,7 +29,7 @@
                 <tbody>
                     <tr *ngFor="let transaction of transactions">
                         <td> {{ transaction.name }}</td>
-                        <td> {{ transaction.amount }} </td>
+                        <td> {{ transaction.amount | currency: 'PHP' }} </td>
                         <td> {{ transaction.orderedBy }}</td>
                         <td>
                             <button (click)="onDetails(transaction.id)" type="button" class="btn btn-info action-button" title="View details">Details</button>
