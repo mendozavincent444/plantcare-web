@@ -70,7 +70,26 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="mb-3">
+                                    <div class="mb-3" >
+
+                                        <label class="form-label">
+                                            <strong>Main Arduino Board</strong>
+                                        </label>
+
+                                        <div>
+                                            <select *ngIf="editMode" formControlName="arduinoBoard" class="form-select">
+                                                <option value="" selected disabled> Select New Owner </option>
+                                                <option [ngValue]="arduinoBoard.id" *ngFor="let arduinoBoard of filterInactiveArduinoBoards()"> {{ arduinoBoard.name }}</option>
+                                            </select>
+                                        </div>
+
+                                        <div *ngIf="farm.mainArduinoBoardId != 0 && !editMode">
+                                            {{ getArduinoBoardName() }}
+                                        </div>
+
+                                        <div *ngIf="farm.mainArduinoBoardId == 0 && !editMode">
+                                            Farm has no main arduino board
+                                        </div>
                                     </div>
                                 </div>
                             </div>

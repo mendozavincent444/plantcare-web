@@ -8,8 +8,6 @@ import { Sensor } from 'src/app/shared/models/sensor';
 import { SensorType } from 'src/app/shared/models/sensor-type';
 import { ApiService } from 'src/app/shared/services/api.service';
 
-
-
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -38,7 +36,10 @@ export class HardwareManagementService {
     return this.httpClient.get<Device[]>(this.FARM_API + `/${farmId}/pumps`, httpOptions);
   }
 
-  public getAllArduinoBoardsByFarmId(farmId: number): Observable<Device[]> {
+  public getAllArduinoBoardsByFarmId(farmId: number): Observable<ArduinoBoard[]> {
+    return this.httpClient.get<ArduinoBoard[]>(this.FARM_API + `/${farmId}/arduinoboards`, httpOptions);
+  }
+  public getAllArduinoBoardsDevicesByFarmId(farmId: number): Observable<Device[]> {
     return this.httpClient.get<Device[]>(this.FARM_API + `/${farmId}/arduinoboards`, httpOptions);
   }
 
