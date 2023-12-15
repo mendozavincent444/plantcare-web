@@ -14,6 +14,7 @@ import { aR } from '@fullcalendar/core/internal-common';
   styleUrls: ['./view-farm.component.css']
 })
 export class ViewFarmComponent implements OnInit {
+
   admins: User[];
   editFarmForm: FormGroup;
   editMode!: boolean;
@@ -50,8 +51,8 @@ export class ViewFarmComponent implements OnInit {
   }
 
   filterInactiveArduinoBoards() {
-    const arduinoBoards =  this.arduinoBoards.slice();
-    
+    const arduinoBoards = this.arduinoBoards.slice();
+
     const filterInactiveArduinoBoards = arduinoBoards.filter(arduinoBoard => arduinoBoard.status === "INACTIVE");
 
     return filterInactiveArduinoBoards;
@@ -77,8 +78,8 @@ export class ViewFarmComponent implements OnInit {
       this.farmId,
       editFarmFormValues.farmLocation,
       editFarmFormValues.farmName
-      )
-    
+    )
+
 
     this.farmService.updateFarm(updatedFarm, this.farmId, editFarmFormValues.farmOwner).subscribe(data => {
       // fix - receive data
@@ -100,6 +101,15 @@ export class ViewFarmComponent implements OnInit {
 
     let arduinoBoard = this.arduinoBoards.find(arduinoBoard => arduinoBoard.id == arduinoBoardId);
     return arduinoBoard.name;
+  }
+
+  onRemoveMainArduinoBoard() {
+    this.farmService.removeMainArduinoBoard(this.farmId).subscribe(data => {
+      // fix - receive data
+      console.log(data);
+      this.toggleEditMode();
+      this.ngOnInit();
+    })
   }
 
 
