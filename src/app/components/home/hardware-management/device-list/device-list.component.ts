@@ -66,7 +66,7 @@ export class DeviceListComponent implements OnInit {
       this.hardwareManagementService.getAllPumpsByFarmId(farmId).subscribe(data => this.devices = data);
 
     } else {
-      this.hardwareManagementService.getAllArduinoBoardsByFarmId(farmId).subscribe(data => this.devices = data);
+      this.hardwareManagementService.getAllArduinoBoardsDevicesByFarmId(farmId).subscribe(data => this.devices = data);
 
     }
   }

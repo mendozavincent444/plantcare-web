@@ -1,5 +1,5 @@
 export class ArduinoBoard {
-    id: string;
+    id: number;
     name: string;
     status: string;
 }

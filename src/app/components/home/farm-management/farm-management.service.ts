@@ -74,5 +74,13 @@ export class FarmManagementService {
     return this.httpClient.put(`${this.FARM_API}/${farmId}/new-owner/${newOwnerId}`, farm, httpOptions);
   }
 
+  public setMainArduinoBoard(farmId: number, arduinoBoardId: number): Observable<any> {
+    return this.httpClient.patch(`${this.FARM_API}/${farmId}/arduino-board/${arduinoBoardId}`, httpOptions);
+  }
+
+  public removeMainArduinoBoard(farmId: number): Observable<any> {
+    return this.httpClient.patch(`${this.FARM_API}/${farmId}`, httpOptions);
+  }
+
 
 }
