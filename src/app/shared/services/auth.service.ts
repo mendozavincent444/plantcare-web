@@ -23,8 +23,8 @@ export class AuthService {
 
   AUTH_API = this.apiService.getBaseUrl() + "/api/v1/auth";
   
-  public login(username: string, password: string): Observable<any> {
-    return this.httpClient.post(this.AUTH_API + "/login", { username, password }, httpOptions);
+  public login(username: string, password: string, device: string): Observable<any> {
+    return this.httpClient.post(this.AUTH_API + "/login", { username, password, device }, httpOptions);
   }
 
   public logout(): Observable<any> {
@@ -39,8 +39,8 @@ export class AuthService {
     return this.httpClient.post(this.AUTH_API + "/register", registerRequest, httpOptions);
   }
 
-  public updatePassword(currentPassword: string, newPassword: string): Observable<any> {
-    return this.httpClient.post(this.AUTH_API + "/update-password", { currentPassword, newPassword });
+  public updatePassword(currentPassword: string, newPassword: string, device: string): Observable<any> {
+    return this.httpClient.post(this.AUTH_API + "/update-password", { currentPassword, newPassword, device });
   }
 
   public confirmPasswordRequest(token: string, forgotPasswordRequestDto: ForgotPasswordRequestDto) {
