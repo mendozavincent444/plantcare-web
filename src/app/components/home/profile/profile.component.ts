@@ -82,8 +82,9 @@ export class ProfileComponent implements OnInit {
   onChangePassword() {
     const currentPassword = this.changePasswordForm.value["currentPassword"];
     const newPassword = this.changePasswordForm.value["newPassword"];
+    const device = "Web";
 
-    this.authService.updatePassword(currentPassword, newPassword).subscribe(data => {
+    this.authService.updatePassword(currentPassword, newPassword, device).subscribe(data => {
 
       // fix - recieve message
       console.log(data);

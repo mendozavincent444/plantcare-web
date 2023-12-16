@@ -42,13 +42,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    let username: string, password: string;
 
-    username = this.loginForm.value["username"];
-    password = this.loginForm.value["password"];
+    const username = this.loginForm.value["username"];
+    const password = this.loginForm.value["password"];
+    const device = "Web"; 
 
-
-    this.authService.login(username, password).subscribe({
+    this.authService.login(username, password, device).subscribe({
       next: data => {
         this.userService.saveUser(data);
         this.loginForm.reset();
