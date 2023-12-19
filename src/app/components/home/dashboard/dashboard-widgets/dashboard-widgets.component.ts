@@ -5,6 +5,9 @@ import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { TaskDto } from 'src/app/shared/payload/task-dto';
 import { DashboardService } from '../dashboard.service';
+import { HardwareManagementService } from '../../hardware-management/hardware-management.service';
+import { ArduinoBoard } from 'src/app/shared/models/arduino-board';
+import { ArduinoBoardData } from 'src/app/shared/models/arduino-board-data';
 
 @Component({
   selector: 'app-dashboard-widgets',
@@ -13,12 +16,14 @@ import { DashboardService } from '../dashboard.service';
 })
 export class DashboardWidgetsComponent {
 
+  arduinoBoardData: ArduinoBoardData;
   farm: Farm;
   tasks: TaskDto[];
 
   constructor(
     private farmService: FarmManagementService,
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    private hardwareManagementService: HardwareManagementService
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +35,16 @@ export class DashboardWidgetsComponent {
       this.tasks = data;
       this.initializeCalendar(this.tasks);
     });
+
+    this.hardwareManagementService.getMainArduinoBoardByFarmId(this.farm.id).subscribe(data => {
+      
+      this.hardwareManagementService.getMainArduinoBoardData(this.farm.id, data.id).subscribe(data => {
+        this.arduinoBoardData = data;
+      });
+      
+    })
+
+    
   }
 
   calendarOptions: CalendarOptions = {

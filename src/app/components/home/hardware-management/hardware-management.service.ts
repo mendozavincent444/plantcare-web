@@ -83,5 +83,14 @@ export class HardwareManagementService {
     return this.httpClient.post<Pump>(this.FARM_API + `/${farmId}/pumps`, { name }, httpOptions);
   }
 
+  public getMainArduinoBoardByFarmId(farmId: number): Observable<Device> {
+    return this.httpClient.get<Device>(this.FARM_API + `/${farmId}/arduino-board`, httpOptions);
+  }
+
+  public getMainArduinoBoardData(farmId: number, arduinoBoardId: number): Observable<any> {
+    return this.httpClient.get<any>(this.FARM_API + `/${farmId}/arduinoboards/${arduinoBoardId}/data`, httpOptions);
+  }
+
+
 
 }
