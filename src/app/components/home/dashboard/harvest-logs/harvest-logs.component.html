@@ -29,15 +29,15 @@
                     <tbody>
                         <tr *ngFor="let harvestLog of harvestLogs">
                             <td> {{ harvestLog.plantName }} </td>
-                            <td> {{ harvestLog.harvestedDate }} </td>
+                            <td> {{ harvestLog.harvestedDate | date: 'short' }} </td>
                             <td> {{ harvestLog.farmerLastName }}</td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td><strong>Plant Name</strong></td>
-                            <td><strong>Date Harvested</strong></td>
-                            <td><strong>Harvester</strong></td>
+                            <td><strong> Plant Name </strong></td>
+                            <td><strong>Date Harvested </strong></td>
+                            <td><strong> Harvester </strong></td>
                         </tr>
                     </tfoot>
                 </table>
