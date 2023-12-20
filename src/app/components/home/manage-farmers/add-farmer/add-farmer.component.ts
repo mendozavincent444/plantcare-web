@@ -6,6 +6,7 @@ import { RegisterRequestDto } from 'src/app/shared/payload/registerrequestdto';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { from } from 'rxjs';
+import Swal from 'sweetalert2';
 
 const USER_ROLE = "ROLE_FARMER";
 
@@ -61,9 +62,29 @@ export class AddFarmerComponent implements OnInit {
     });
   }
 
+  get firstName() {
+    return this.addFarmerForm.controls["firstName"];
+  }
+
+  get lastName() {
+    return this.addFarmerForm.controls["lastName"];
+  }
+
+  get emailAddress() {
+    return this.addFarmerForm.controls["emailAddress"];
+  }
+
+  get username() {
+    return this.addFarmerForm.controls["username"];
+  }
+
+  get password() {
+    return this.addFarmerForm.controls["password"];
+  }
+
   private initializeAddFarmerBulkForm() {
     this.addFarmerBulkForm = new FormGroup({
-      "farmBulk": new FormControl("")
+      "farmBulk": new FormControl("", Validators.required)
     });
   }
 
@@ -86,27 +107,30 @@ export class AddFarmerComponent implements OnInit {
       farmId
     );
 
-    this.authService.register(registerRequest).subscribe(data => {
-      // fix receive data 
-      console.log(data);
-      this.addFarmerForm.reset();
-      this.router.navigate(["../farmer-list"], { relativeTo: this.route });
-    })
+    this.authService.register(registerRequest).subscribe({
+      next: data => {
+        this.addFarmerForm.reset();
+        this.router.navigate(["../farmer-list"], { relativeTo: this.route });
+        Swal.fire(data.message, "Success", "success");
+      }, error: err => {
+        Swal.fire(err.error.message, "Error", "error");
+      }
+    });
 
   }
 
   onAddFarmersBulk() {
     const farmId = this.addFarmerBulkForm.value["farmBulk"];
 
-    if (this.formData) {
-
-      this.authService.registerFarmersBulk(farmId, this.formData).subscribe(data => {
-
-        // fix - receive response 
-        console.log(data);
+    this.authService.registerFarmersBulk(farmId, this.formData).subscribe({
+      next: data => {
         this.addFarmerForm.reset();
         this.router.navigate(["../farmer-list"], { relativeTo: this.route });
-      });
-    }
+        Swal.fire("Farmers registered successfully.", "Success", "success");
+      }, error: err => {
+        Swal.fire(err.error.message, "Error", "error");
+      }
+    })
+
   }
 }
