@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ForgotPasswordRequestDto } from 'src/app/shared/payload/forgot-password-request-dto';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-confirm-password-reset',
@@ -40,27 +41,42 @@ export class ConfirmPasswordResetComponent implements OnInit, OnDestroy {
     this.resetBackgroundColor();
   }
 
-  public get newPassword() {
+  get newPasswordValue() {
     return this.confirmPasswordRequestForm.controls["newPassword"].value;
   }
 
-  public get confirmNewPassword() {
+  get confirmNewPasswordValue() {
     return this.confirmPasswordRequestForm.controls["confirmNewPassword"].value;
   }
 
-  isEqualPasswords() {
-    return this.newPassword === this.confirmNewPassword;
+  public get newPassword() {
+    return this.confirmPasswordRequestForm.controls["newPassword"];
+  }
+
+  public get confirmNewPassword() {
+    return this.confirmPasswordRequestForm.controls["confirmNewPassword"];
   }
 
   onResetPassword() {
 
     const forgotPasswordRequestDto = new ForgotPasswordRequestDto();
-    forgotPasswordRequestDto.newPassword = this.newPassword;
+    forgotPasswordRequestDto.newPassword = this.newPasswordValue;
 
+    /*
     this.authService.confirmPasswordRequest(this.token, forgotPasswordRequestDto).subscribe(data => {
       // fix - receive data 
       console.log(data);
       this.confirmPasswordRequestForm.reset();
+    });*/
+
+    this.authService.confirmPasswordRequest(this.token, forgotPasswordRequestDto).subscribe({
+      next: data => {
+        this.confirmPasswordRequestForm.reset();
+        Swal.fire(data.message, "Success", "success");
+      },
+      error: err => {
+        Swal.fire(err.error.message, "Error", "error");
+      }
     });
   }
 }
