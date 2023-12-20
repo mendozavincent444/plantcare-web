@@ -21,6 +21,14 @@ export class AddFarmComponent implements OnInit {
     });
   }
 
+  get farmName() {
+    return this.addFarmForm.controls["farmName"];
+  }
+
+  get location() {
+    return this.addFarmForm.controls["location"];
+  }
+
   onAddFarm() {
     const name = this.addFarmForm.value["farmName"];
     const location = this.addFarmForm.value["location"];
