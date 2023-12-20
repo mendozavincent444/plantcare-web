@@ -3,7 +3,8 @@
         <div class="card-body p-0">
             <div class="row">
                 <div class="col-lg-5 d-none d-lg-flex">
-                    <div class="flex-grow-1 bg-register-image" style="background-image: url(&quot;assets/img/register.jpg&quot;);"></div>
+                    <div class="flex-grow-1 bg-register-image"
+                        style="background-image: url(&quot;assets/img/register.jpg&quot;);"></div>
                 </div>
                 <div class="col-lg-7">
                     <div class="p-5">
@@ -15,31 +16,78 @@
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input formControlName="firstName" class="form-control form-control-user"
                                         type="text" placeholder="First Name" name="firstName">
+                                    <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)"
+                                        class="alert alert-danger mt-2 custom-rounded p-2">
+                                        <div *ngIf="firstName.errors?.['required']" class="small text-muted">
+                                            First name is required
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <input formControlName="lastName" class="form-control form-control-user" type="text"
-                                        placeholder="Last Name" name="lastName"></div>
+                                        placeholder="Last Name" name="lastName">
+                                    <div *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)"
+                                        class="alert alert-danger mt-2 custom-rounded p-2">
+                                        <div *ngIf="lastName.errors?.['required']" class="small text-muted">
+                                            Last name is required
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <input formControlName="email" class="form-control form-control-user" type="email"
-                                    placeholder="Email Address" name="email"></div>
+                                    placeholder="Email Address" name="email">
+                                <div *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+                                    class="alert alert-danger mt-2 custom-rounded p-2">
+                                    <div *ngIf="email.errors?.['required']" class="small text-muted">
+                                        Email is required
+                                    </div>
+
+                                    <div *ngIf="email.errors?.['email']" class="small text-muted">
+                                        Input must be in email format
+                                    </div>
+                                </div>
+                            </div>
                             <div class="mb-3">
                                 <input formControlName="username" class="form-control form-control-user" type="text"
-                                    placeholder="Username" name="username"></div>
+                                    placeholder="Username" name="username">
+                                <div *ngIf="username?.invalid && (username?.dirty || username?.touched)"
+                                    class="alert alert-danger mt-2 custom-rounded p-2">
+                                    <div *ngIf="username.errors?.['required']" class="small text-muted">
+                                        Username is required
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row mb-3">
-                                <div class="col-sm-6 mb-3 mb-sm-0"> 
-                                    <input class="form-control form-control-user"
-                                        formControlName="password" type="password" placeholder="Password"
-                                        name="password"></div>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input class="form-control form-control-user" formControlName="password"
+                                        type="password" placeholder="Password" name="password">
+                                    <div *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+                                        class="alert alert-danger mt-2 custom-rounded p-2">
+                                        <div *ngIf="password.errors?.['required']" class="small text-muted">
+                                            Password is required
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-sm-6">
                                     <input class="form-control form-control-user" type="password"
-                                      formControlName="repeatPassword" placeholder="Repeat Password" name="repeatPassword"></div>
-                            </div><button class="btn btn-primary d-block btn-user w-100" type="submit">Register
+                                        formControlName="repeatPassword" placeholder="Repeat Password"
+                                        name="repeatPassword">
+                                    <div *ngIf="repeatPassword?.invalid && (repeatPassword?.dirty || repeatPassword?.touched)"
+                                        class="alert alert-danger mt-2 custom-rounded p-2">
+                                        <div *ngIf="repeatPassword.errors?.['required']" class="small text-muted">
+                                            Repeat password is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><button [disabled]="registerForm.invalid" class="btn btn-primary d-block btn-user w-100" type="submit">Register
                                 Account</button>
                             <hr>
                         </form>
-                        <div class="text-center"><a class="small" routerLink="/forgot-password">Forgot Password?</a></div>
-                        <div class="text-center"><a class="small" routerLink="/login">Already have an account? Login!</a>
+                        <div class="text-center"><a class="small" routerLink="/forgot-password">Forgot Password?</a>
+                        </div>
+                        <div class="text-center"><a class="small" routerLink="/login">Already have an account?
+                                Login!</a>
                         </div>
                     </div>
                 </div>

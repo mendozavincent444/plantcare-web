@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegisterRequestDto } from 'src/app/shared/payload/registerrequestdto';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -30,11 +31,35 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.registerForm = new FormGroup({
       "firstName": new FormControl(null, Validators.required),
       "lastName": new FormControl(null, Validators.required),
-      "email": new FormControl(null, [Validators.required]),
+      "email": new FormControl(null, [Validators.required, Validators.email]),
       "username": new FormControl(null, Validators.required),
       "password": new FormControl(null, Validators.required),
       "repeatPassword": new FormControl(null, Validators.required),
     });
+  }
+
+  get firstName() {
+    return this.registerForm.controls["firstName"];
+  }
+
+  get lastName() {
+    return this.registerForm.controls["lastName"];
+  }
+
+  get email() {
+    return this.registerForm.controls["email"];
+  }
+
+  get username() {
+    return this.registerForm.controls["username"];
+  }
+
+  get password() {
+    return this.registerForm.controls["password"];
+  }
+
+  get repeatPassword() {
+    return this.registerForm.controls["repeatPassword"];
   }
 
   ngOnDestroy(): void {
@@ -62,13 +87,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
       USER_ROLE
     )).subscribe({
       next: data => {
-
-        // fix - receive message
-
-        console.log(data);
-
         this.registerForm.reset();
         this.router.navigate(["/login"]);
+        Swal.fire(data.message, "Success", "success");
+      },
+      error: err => {
+        Swal.fire(err.error.message, "Error", "error");
       }});
   }
 
