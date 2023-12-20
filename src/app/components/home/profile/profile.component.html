@@ -20,7 +20,8 @@
                 <i class="fas fa-certificate" style="font-size: 24px; color: #2ecc71;"></i>
                 <!-- Green checkmark icon -->
                 <h6> Basic Features </h6>
-                <button routerLink="../subscription/choose-subscription" class="btn btn-success">Upgrade to Premium</button>
+                <button routerLink="../subscription/choose-subscription" class="btn btn-success">Upgrade to
+                    Premium</button>
             </div>
 
             <div *ngIf="isSubscribed()" class="card-body text-center">
@@ -31,7 +32,7 @@
 
                 <button class="btn btn-danger" (click)="cancelSubscription()">Cancel Subscription</button>
             </div>
-            
+
         </div>
 
     </div>
@@ -59,6 +60,12 @@
                                         <div *ngIf="editUserMode">
                                             <input class="form-control" type="text" formControlName="firstName"
                                                 name="firstName">
+                                            <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)"
+                                                class="alert alert-danger mt-2 p-2">
+                                                <div *ngIf="firstName.errors?.['required']" class="small text-muted">
+                                                    First name is required
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -76,6 +83,12 @@
                                         <div *ngIf="editUserMode">
                                             <input class="form-control" type="text" formControlName="lastName"
                                                 name="lastName">
+                                            <div *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)"
+                                                class="alert alert-danger mt-2 p-2">
+                                                <div *ngIf="lastName.errors?.['required']" class="small text-muted">
+                                                    Last name is required
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +104,7 @@
 
 
                             <div *ngIf="editUserMode" class="mb-3">
-                                <button class="btn btn-primary btn-sm" type="submit">Save Info</button>
+                                <button [disabled]="editUserForm.invalid" class="btn btn-primary btn-sm" type="submit">Save Info</button>
                                 <button (click)="toggleEditUserMode()" class="btn btn-danger btn-sm action-button"
                                     type="button">Cancel</button>
                             </div>
@@ -105,6 +118,12 @@
                                             <input class="form-control" type="password"
                                                 placeholder="Enter Current Password..."
                                                 formControlName="currentPassword" name="currentPassword">
+                                            <div *ngIf="currentPassword?.invalid && (currentPassword?.dirty || currentPassword?.touched)"
+                                                class="alert alert-danger mt-2 p-2">
+                                                <div *ngIf="currentPassword.errors?.['required']" class="small text-muted">
+                                                    Current password is required
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -115,13 +134,19 @@
                                             <input class="form-control" type="password"
                                                 placeholder="Enter New Password..." formControlName="newPassword"
                                                 name="newPassword">
+                                            <div *ngIf="newPassword?.invalid && (newPassword?.dirty || newPassword?.touched)"
+                                                class="alert alert-danger mt-2 p-2">
+                                                <div *ngIf="newPassword.errors?.['required']" class="small text-muted">
+                                                    New password is required
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div *ngIf="changePasswordMode" class="mb-3">
-                                <button class="btn btn-primary btn-sm" type="submit">Change Password</button>
+                                <button [disabled]="changePasswordForm.invalid" class="btn btn-primary btn-sm" type="submit">Change Password</button>
                                 <button (click)="toggleChangePasswordMode()" class="btn btn-danger btn-sm action-button"
                                     type="button">Cancel</button>
                             </div>
