@@ -9,6 +9,7 @@ import { FarmManagementService } from '../farm-management/farm-management.servic
 import { Farm } from 'src/app/shared/models/farm';
 import { SubscriptionService } from '../subscription/subscription.service';
 import { Subscription } from 'src/app/shared/models/subscription';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -68,9 +69,25 @@ export class ProfileComponent implements OnInit {
 
   private initializeChangePasswordForm(): void {
     this.changePasswordForm = new FormGroup({
-      "currentPassword": new FormControl(null),
-      "newPassword": new FormControl(null)
+      "currentPassword": new FormControl(null, [Validators.required]),
+      "newPassword": new FormControl(null, [Validators.required])
     });
+  }
+
+  get firstName() {
+    return this.editUserForm.controls["firstName"];
+  }
+
+  get lastName() {
+    return this.editUserForm.controls["lastName"];
+  }
+
+  get currentPassword() {
+    return this.changePasswordForm.controls["currentPassword"];
+  }
+
+  get newPassword() {
+    return this.changePasswordForm.controls["newPassword"];
   }
 
   onChangeFarm() {
@@ -84,13 +101,15 @@ export class ProfileComponent implements OnInit {
     const newPassword = this.changePasswordForm.value["newPassword"];
     const device = "Web";
 
-    this.authService.updatePassword(currentPassword, newPassword, device).subscribe(data => {
-
-      // fix - recieve message
-      console.log(data);
-
-      this.changePasswordForm.reset();
-      this.toggleChangePasswordMode();
+    this.authService.updatePassword(currentPassword, newPassword, device).subscribe({
+      next: data => {
+        this.changePasswordForm.reset();
+        this.toggleChangePasswordMode();
+        Swal.fire(data.message, "Success", "success");
+      },
+      error: err => {
+        Swal.fire(err.error.message, "Error", "error");
+      }
     });
   }
 
@@ -105,11 +124,15 @@ export class ProfileComponent implements OnInit {
     );
 
     this.authService.updateUserProfile(editedUserProfile).subscribe({
-      next: (data) => {
+      next: data => {
         this.userService.saveUser(data);
         this.editUserForm.reset();
         this.toggleEditUserMode;
         this.ngOnInit();
+        Swal.fire(data.message, "Success", "success");
+      },
+      error: err => {
+        Swal.fire(err.error.message, "Error", "error");
       }
     });
 
