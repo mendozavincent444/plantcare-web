@@ -54,10 +54,5 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
         Swal.fire(err.error.message, "Error", "error");
       }
     });
-      
-      data => {
-      
-    }
-
   }
 }
