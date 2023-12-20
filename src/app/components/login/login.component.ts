@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { FarmManagementService } from '../home/farm-management/farm-management.service';
 import { Farm } from 'src/app/shared/models/farm';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -37,6 +38,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
+  get username() {
+    return this.loginForm.controls["username"];
+  }
+
+  get password() {
+    return this.loginForm.controls["password"];
+  }
+
+
   ngOnDestroy(): void {
     this.resetBackgroundColor();
   }
@@ -54,7 +64,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.getDefaultFarm();
       },
       error: err => {
-        // fix - error message
+        Swal.fire(err.error.message, "Error", "error");
       }
     });
   }
