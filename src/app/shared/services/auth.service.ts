@@ -43,7 +43,7 @@ export class AuthService {
     return this.httpClient.post(this.AUTH_API + "/update-password", { currentPassword, newPassword, device });
   }
 
-  public confirmPasswordRequest(token: string, forgotPasswordRequestDto: ForgotPasswordRequestDto) {
+  public confirmPasswordRequest(token: string, forgotPasswordRequestDto: ForgotPasswordRequestDto): Observable<any> {
     return this.httpClient.post(this.AUTH_API + `/confirm-request?token=${token}`, forgotPasswordRequestDto, httpOptions);
   }
 
