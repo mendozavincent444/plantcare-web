@@ -30,7 +30,6 @@ export class ViewFarmComponent implements OnInit {
 
   }
 
-
   ngOnInit(): void {
     this.editMode = false;
 
@@ -66,6 +65,15 @@ export class ViewFarmComponent implements OnInit {
       "arduinoBoard": new FormControl(""),
     });
   }
+
+  get farmName() {
+    return this.editFarmForm.controls["farmName"];
+  }
+
+  get farmLocation() {
+    return this.editFarmForm.controls["farmLocation"];
+  }
+
 
   toggleEditMode(): void {
     this.editMode = !this.editMode;

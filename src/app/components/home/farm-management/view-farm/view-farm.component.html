@@ -23,13 +23,20 @@
                                         </label>
 
                                         <div *ngIf="editMode">
-                                            <input formControlName="farmName" class="form-control" type="text" placeholder="Enter new name..." name="Farm Name">
+                                            <input formControlName="farmName" class="form-control" type="text"
+                                                placeholder="Enter new name..." name="Farm Name">
+                                            <div *ngIf="farmName?.invalid && (farmName?.dirty || farmName?.touched)"
+                                                class="alert alert-danger mt-2 custom-rounded p-2">
+                                                <div *ngIf="farmName.errors?.['required']" class="small text-muted">
+                                                    Farm name is required
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div *ngIf="!editMode">
                                             {{ farm.name }}
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                                 <div class="col">
@@ -38,11 +45,18 @@
                                             <strong>Farm Location</strong>
                                         </label>
 
-                                        <div *ngIf="editMode"> 
-                                            <input formControlName="farmLocation" class="form-control" type="text" placeholder="Enter new location..." name="Location">
+                                        <div *ngIf="editMode">
+                                            <input formControlName="farmLocation" class="form-control" type="text"
+                                                placeholder="Enter new location..." name="Location">
+                                            <div *ngIf="farmLocation?.invalid && (farmLocation?.dirty || farmLocation?.touched)"
+                                                class="alert alert-danger mt-2 custom-rounded p-2">
+                                                <div *ngIf="farmLocation.errors?.['required']" class="small text-muted">
+                                                    Farm location is required
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <div *ngIf="!editMode"> 
+                                        <div *ngIf="!editMode">
                                             {{ farm.location }}
                                         </div>
                                     </div>
@@ -59,18 +73,19 @@
                                         <div *ngIf="editMode">
                                             <select formControlName="farmOwner" class="form-select">
                                                 <option value="" selected disabled> Select New Owner </option>
-                                                <option [ngValue]="admin.id" *ngFor="let admin of admins"> {{ admin.email }}</option>
+                                                <option [ngValue]="admin.id" *ngFor="let admin of admins"> {{
+                                                    admin.email }}</option>
                                             </select>
                                         </div>
 
                                         <div *ngIf="!editMode">
                                             {{ farm.owner.email }}
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="mb-3" >
+                                    <div class="mb-3">
 
                                         <label class="form-label">
                                             <strong>Main Arduino Board</strong>
@@ -79,7 +94,9 @@
                                         <div>
                                             <select *ngIf="editMode" formControlName="arduinoBoard" class="form-select">
                                                 <option value="" selected disabled> Select New Owner </option>
-                                                <option [ngValue]="arduinoBoard.id" *ngFor="let arduinoBoard of filterInactiveArduinoBoards()"> {{ arduinoBoard.name }}</option>
+                                                <option [ngValue]="arduinoBoard.id"
+                                                    *ngFor="let arduinoBoard of filterInactiveArduinoBoards()"> {{
+                                                    arduinoBoard.name }}</option>
                                             </select>
                                         </div>
 
@@ -93,15 +110,19 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div *ngIf="!editMode" class="mb-3">
-                                <button (click)="toggleEditMode()" class="btn btn-primary btn-sm" type="button">Edit Farm</button>
+                                <button (click)="toggleEditMode()" class="btn btn-primary btn-sm" type="button">Edit
+                                    Farm</button>
                             </div>
 
                             <div *ngIf="editMode" class="mb-3">
-                                <button class="btn btn-success btn-sm override-button-text-color" type="submit">Save</button>
-                                <button (click)="toggleEditMode()" class="btn btn-primary btn-sm action-button" type="button">Cancel</button>
-                                <button (click)="onRemoveMainArduinoBoard()" class="btn btn-danger btn-sm action-button" type="button">Remove Main Arduino Board</button>
+                                <button [disabled]="editFarmForm.invalid" class="btn btn-success btn-sm override-button-text-color"
+                                    type="submit">Save</button>
+                                <button (click)="toggleEditMode()" class="btn btn-primary btn-sm action-button"
+                                    type="button">Cancel</button>
+                                <button (click)="onRemoveMainArduinoBoard()" class="btn btn-danger btn-sm action-button"
+                                    type="button">Remove Main Arduino Board</button>
 
                             </div>
                         </form>
