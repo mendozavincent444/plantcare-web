@@ -5,6 +5,7 @@ import { Farm } from 'src/app/shared/models/farm';
 import { FarmManagementService } from '../../farm-management/farm-management.service';
 import { Plant } from 'src/app/shared/models/plant';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-plant',
@@ -42,6 +43,31 @@ export class AddPlantComponent implements OnInit {
     this.farmService.getCurrentFarm().subscribe(farm => this.currentFarmId = farm.id);
   }
 
+
+  get plantName() {
+    return this.addPlantForm.controls["plantName"];
+  }
+
+  get maximumEc() {
+    return this.addPlantForm.controls["maximumEc"];
+  }
+
+  get minimumEc() {
+    return this.addPlantForm.controls["minimumEc"];
+  }
+
+  get maximumPh() {
+    return this.addPlantForm.controls["maximumPh"];
+  }
+
+  get minimumPh() {
+    return this.addPlantForm.controls["minimumPh"];
+  }
+
+  get daysToMaturity() {
+    return this.addPlantForm.controls["daysToMaturity"];
+  }
+
   onAddPlant() {
     const plantName = this.addPlantForm.value["plantName"];
     const maximumEc = this.addPlantForm.value["maximumEc"];
@@ -59,14 +85,23 @@ export class AddPlantComponent implements OnInit {
       minimumPh,
       daysToMaturity,
     );
-
+    /*
     this.plantService.addPlant(plant, farmId).subscribe(data => {
       // receive data
       console.log(data);
-      this.addPlantForm.reset();
-      this.router.navigate(["../plant-list"], { relativeTo: this.route });
+      
+    });*/
+   
+    this.plantService.addPlant(plant, farmId).subscribe({
+      next: data => {
+        this.addPlantForm.reset();
+        this.router.navigate(["../plant-list"], { relativeTo: this.route });
+        Swal.fire("Plant added succesfully.", "Success", "success");
+      },
+      error: err => {
+        Swal.fire(err.error.message, "Error", "error");
+      }
     });
-    
   }
 
 

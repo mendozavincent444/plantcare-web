@@ -7,39 +7,69 @@
                         <h4 class="text-dark mb-4">Add Plant</h4>
                     </div>
                     <form class="user" [formGroup]="addPlantForm" (ngSubmit)="onAddPlant()">
-                        
+
                         <div class="mb-3">
-                            <input class="form-control form-control-user" type="text"
-                                formControlName="plantName" placeholder="Plant Name"
-                                name="Plant Name">
+                            <input class="form-control form-control-user" type="text" formControlName="plantName"
+                                placeholder="Plant Name" name="Plant Name">
+                            <div *ngIf="plantName?.invalid && (plantName?.dirty || plantName?.touched)"
+                                class="alert alert-danger mt-2 custom-rounded p-2">
+                                <div *ngIf="plantName.errors?.['required']" class="small text-muted">
+                                    Plant name is required
+                                </div>
+                            </div>
                         </div>
 
                         <div class="mb-3">
-                            <input class="form-control form-control-user" type="number"
-                                formControlName="maximumEc" placeholder="Maximum EC"
-                                name="Maximum EC">
+                            <input class="form-control form-control-user" type="number" formControlName="maximumEc"
+                                placeholder="Maximum EC" name="Maximum EC">
+                            <div *ngIf="maximumEc?.invalid && (maximumEc?.dirty || maximumEc?.touched)"
+                                class="alert alert-danger mt-2 custom-rounded p-2">
+                                <div *ngIf="maximumEc.errors?.['required']" class="small text-muted">
+                                    Maximum EC is required
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3">
-                            <input class="form-control form-control-user" type="number"
-                                formControlName="minimumEc" step="any"placeholder="Minimum EC"
-                                name="Minimum EC">
+                            <input class="form-control form-control-user" type="number" formControlName="minimumEc"
+                                step="any" placeholder="Minimum EC" name="Minimum EC">
+                            <div *ngIf="minimumEc?.invalid && (minimumEc?.dirty || minimumEc?.touched)"
+                                class="alert alert-danger mt-2 custom-rounded p-2">
+                                <div *ngIf="minimumEc.errors?.['required']" class="small text-muted">
+                                    Minimum EC is required
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3">
-                            <input class="form-control form-control-user" type="number"
-                                formControlName="maximumPh" step="any"placeholder="Maximum pH"
-                                name="Maximum pH">
+                            <input class="form-control form-control-user" type="number" formControlName="maximumPh"
+                                step="any" placeholder="Maximum pH" name="Maximum pH">
+                            <div *ngIf="maximumPh?.invalid && (maximumPh?.dirty || maximumPh?.touched)"
+                                class="alert alert-danger mt-2 custom-rounded p-2">
+                                <div *ngIf="maximumPh.errors?.['required']" class="small text-muted">
+                                    Maximum pH is required
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3">
-                            <input class="form-control form-control-user" type="number"
-                                formControlName="minimumPh" step="any"placeholder="Minimum pH"
-                                name="Minimum pH">
+                            <input class="form-control form-control-user" type="number" formControlName="minimumPh"
+                                step="any" placeholder="Minimum pH" name="Minimum pH">
+                            <div *ngIf="minimumPh?.invalid && (minimumPh?.dirty || minimumPh?.touched)"
+                                class="alert alert-danger mt-2 custom-rounded p-2">
+                                <div *ngIf="minimumPh.errors?.['required']" class="small text-muted">
+                                    Minimum pH is required
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3">
-                            <input class="form-control form-control-user" type="text"
-                                formControlName="daysToMaturity" placeholder="Days to Maturity"
-                                name="Days to Maturity">
+                            <input class="form-control form-control-user" type="text" formControlName="daysToMaturity"
+                                placeholder="Days to Maturity" name="Days to Maturity">
+                            <div *ngIf="daysToMaturity?.invalid && (daysToMaturity?.dirty || daysToMaturity?.touched)"
+                                class="alert alert-danger mt-2 custom-rounded p-2">
+                                <div *ngIf="daysToMaturity.errors?.['required']" class="small text-muted">
+                                    Days to Maturity is required
+                                </div>
+                            </div>
                         </div>
-                        <button class="btn btn-primary d-block btn-user w-100" type="submit">Add</button>
+                        <button [disabled]="addPlantForm.invalid" class="btn btn-primary d-block btn-user w-100" type="submit">Add</button>
                     </form>
                 </div>
             </div>
