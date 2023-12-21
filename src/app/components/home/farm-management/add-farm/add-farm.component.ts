@@ -33,9 +33,15 @@ export class AddFarmComponent implements OnInit {
     const name = this.addFarmForm.value["farmName"];
     const location = this.addFarmForm.value["location"];
 
-    this.farmService.addFarm(name, location).subscribe();
+    this.farmService.addFarm(name, location).subscribe({
+      next: data => {
+        Swal.fire("Farm Added Successfully.", "Done", "success");
+      },
+      error: err => {
+        Swal.fire(err.error.message, "Error", "error");
+      }
+    });
 
-    Swal.fire("Farm Added Successfully.", "Done", "success");
 
     this.addFarmForm.reset();
   }
