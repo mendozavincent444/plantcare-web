@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HardwareManagementService } from '../hardware-management.service';
 import { SensorType } from 'src/app/shared/models/sensor-type';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-device',
@@ -53,6 +54,10 @@ export class AddDeviceComponent implements OnInit {
     });
   }
 
+  get name() {
+    return this.addDeviceForm.controls["name"];
+  }
+
   public isSensorType() {
     const deviceType = this.addDeviceForm.value["deviceType"];
 
@@ -77,6 +82,7 @@ export class AddDeviceComponent implements OnInit {
     }
 
     this.router.navigate(["../device-list"], { relativeTo: this.route });
+    Swal.fire("Device added successfully.", "Success", "success");
   }
 
 }
