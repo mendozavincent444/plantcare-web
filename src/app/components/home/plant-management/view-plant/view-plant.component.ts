@@ -3,6 +3,7 @@ import { Plant } from 'src/app/shared/models/plant';
 import { PlantManagementService } from '../plant-management.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-view-plant',
@@ -49,6 +50,30 @@ export class ViewPlantComponent {
     });
   }
 
+  get plantName() {
+    return this.editPlantForm.controls["plantName"];
+  }
+
+  get daysToMaturity() {
+    return this.editPlantForm.controls["daysToMaturity"];
+  }
+
+  get maximumEc() {
+    return this.editPlantForm.controls["maximumEc"];
+  }
+
+  get minimumEc() {
+    return this.editPlantForm.controls["minimumEc"];
+  }
+
+  get maximumPh() {
+    return this.editPlantForm.controls["maximumPh"];
+  }
+
+  get minimumPh() {
+    return this.editPlantForm.controls["minimumPh"];
+  }
+
   toggleEditMode(): void {
     this.editMode = !this.editMode;
   }
@@ -64,15 +89,26 @@ export class ViewPlantComponent {
       editPlantForm.minimumPh,
       editPlantForm.daysToMaturity
     );
-    
-    
+
+    /*
     this.plantService.editPlant(plant, this.plantId, this.farmId).subscribe(data => {
       // fix - response
       console.log(data);
       this.toggleEditMode();
       this.ngOnInit();
-    });
+    });*/
 
+
+    this.plantService.editPlant(plant, this.plantId, this.farmId).subscribe({
+      next: data => {
+        this.toggleEditMode();
+        this.ngOnInit();
+        Swal.fire("Plant edited successfully.", "Success", "success");
+      },
+      error: err => {
+        Swal.fire(err.error.message, "Error", "error");
+      }
+    });
   }
 
 }
