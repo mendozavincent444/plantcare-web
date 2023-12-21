@@ -49,7 +49,7 @@ export class AddDeviceComponent implements OnInit {
   private initializeAddDeviceForm() {
     this.addDeviceForm = new FormGroup({
       "name": new FormControl("", Validators.required),
-      "sensorType": new FormControl("", Validators.required),
+      "sensorType": new FormControl(""),
       "deviceType": new FormControl("", Validators.required)
     });
   }
@@ -72,17 +72,39 @@ export class AddDeviceComponent implements OnInit {
     if (deviceType === "sensor") {
       const sensorType = this.addDeviceForm.value["sensorType"];
 
-      this.hardwareManagementService.addSensor(name, sensorType, farmId).subscribe();
+      this.hardwareManagementService.addSensor(name, sensorType, farmId).subscribe({
+        next: data => {
+          Swal.fire("Device added successfully.", "Success", "success");
+        },
+        error: err => {
+          Swal.fire(err.error.message, "Error", "error");
+        }
+      });
     } else if (deviceType === "pump") {
 
-      this.hardwareManagementService.addPump(name, farmId).subscribe();
+      this.hardwareManagementService.addPump(name, farmId).subscribe({
+        next: data => {
+          Swal.fire("Device added successfully.", "Success", "success");
+        },
+        error: err => {
+          Swal.fire(err.error.message, "Error", "error");
+        }
+      });
+
     } else if (deviceType === "arduinoBoard") {
 
-      this.hardwareManagementService.addArduinoBoard(name, farmId).subscribe();
+      this.hardwareManagementService.addArduinoBoard(name, farmId).subscribe({
+        next: data => {
+          Swal.fire("Device added successfully.", "Success", "success");
+        },
+        error: err => {
+          Swal.fire(err.error.message, "Error", "error");
+        }
+      });
     }
 
     this.router.navigate(["../device-list"], { relativeTo: this.route });
-    Swal.fire("Device added successfully.", "Success", "success");
+
   }
 
 }
