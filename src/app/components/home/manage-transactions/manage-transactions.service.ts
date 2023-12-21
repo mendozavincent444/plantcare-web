@@ -25,12 +25,12 @@ export class ManageTransactionsService {
 
   TRANSACTION_API = this.apiService.getBaseUrl() + "/api/v1/transactions";
 
-  public createTransactionByProduct(purchaseDto: PurchaseDto): Observable<String> {
-    return this.httpClient.post<String>(this.TRANSACTION_API, purchaseDto, httpOptions);
+  public createTransactionByProduct(purchaseDto: PurchaseDto): Observable<any> {
+    return this.httpClient.post<any>(this.TRANSACTION_API, purchaseDto, httpOptions);
   }
 
-  public createTransactionBySubscription(purchaseSubscriptionDto: PurchaseSubscriptionDto): Observable<String> {
-    return this.httpClient.post<String>(this.TRANSACTION_API + "/subscription", purchaseSubscriptionDto, httpOptions);
+  public createTransactionBySubscription(purchaseSubscriptionDto: PurchaseSubscriptionDto): Observable<any> {
+    return this.httpClient.post<any>(this.TRANSACTION_API + "/subscription", purchaseSubscriptionDto, httpOptions);
   }
 
   public getAllTransactions(): Observable<Transaction[]> {

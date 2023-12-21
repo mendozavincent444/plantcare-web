@@ -7,6 +7,7 @@ import { BuyProductsService } from '../buy-products.service';
 import { Product } from 'src/app/shared/models/product';
 import { ManageTransactionsService } from '../../manage-transactions/manage-transactions.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-checkout',
@@ -39,8 +40,44 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       "cityBillingAddress": new FormControl(null, Validators.required),
       "provinceBillingAddress": new FormControl(null, Validators.required),
       "zipCodeBillingAddress": new FormControl(null, Validators.required),
-      "paymentMethod": new FormControl("")
+      "paymentMethod": new FormControl("", Validators.required)
     });
+  }
+
+  get streetShippingAddress() {
+    return this.checkoutForm.controls["streetShippingAddress"];
+  }
+
+  get cityShippingAddress() {
+    return this.checkoutForm.controls["cityShippingAddress"];
+  }
+
+  get provinceShippingAddress() {
+    return this.checkoutForm.controls["provinceShippingAddress"];
+  }
+
+  get zipCodeShippingAddress() {
+    return this.checkoutForm.controls["zipCodeShippingAddress"];
+  }
+
+  get streetBillingAddress() {
+    return this.checkoutForm.controls["streetBillingAddress"];
+  }
+
+  get cityBillingAddress() {
+    return this.checkoutForm.controls["cityBillingAddress"];
+  }
+
+  get provinceBillingAddress() {
+    return this.checkoutForm.controls["provinceBillingAddress"];
+  }
+
+  get zipCodeBillingAddress() {
+    return this.checkoutForm.controls["zipCodeBillingAddress"];
+  }
+
+  get paymentMethod() {
+    return this.checkoutForm.controls["paymentMethod"];
   }
 
   onPurchase() {
@@ -89,14 +126,27 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       paymentMethod
     );
 
+    /*
     this.manageTransactions.createTransactionByProduct(purchaseDto).subscribe(data => {
       // fix - receive data
       console.log(data);
       this.productService.emptyCart();
       this.checkoutForm.reset();
       this.router.navigate(["../product-list"], { relativeTo: this.route });
-    })
+    });*/
 
+
+    this.manageTransactions.createTransactionByProduct(purchaseDto).subscribe({
+      next: data => {
+        this.productService.emptyCart();
+        this.checkoutForm.reset();
+        this.router.navigate(["../product-list"], { relativeTo: this.route });
+        Swal.fire(data.message, "Success", "success");
+      },
+      error: err => {
+        Swal.fire(err.error.message, "Error", "error");
+      }
+    });
   }
 
   ngOnDestroy(): void {

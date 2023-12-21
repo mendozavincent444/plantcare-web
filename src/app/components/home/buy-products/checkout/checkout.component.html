@@ -10,38 +10,86 @@
 
                         <h5>Shipping Address</h5>
                         <div class="mb-3">
-                            <input formControlName="streetShippingAddress" class="form-control form-control-user" type="text" placeholder="Street"
-                                name="Street">
+                            <input formControlName="streetShippingAddress" class="form-control form-control-user"
+                                type="text" placeholder="Street" name="Street">
+                            <div *ngIf="streetShippingAddress?.invalid && (streetShippingAddress?.dirty || streetShippingAddress?.touched)"
+                                class="alert alert-danger mt-2 custom-rounded p-2">
+                                <div *ngIf="streetShippingAddress.errors?.['required']" class="small text-muted">
+                                    Street address is required
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3">
-                            <input formControlName="cityShippingAddress" class="form-control form-control-user" type="text" placeholder="City"
-                                name="City">
+                            <input formControlName="cityShippingAddress" class="form-control form-control-user"
+                                type="text" placeholder="City" name="City">
+                            <div *ngIf="cityShippingAddress?.invalid && (cityShippingAddress?.dirty || cityShippingAddress?.touched)"
+                                class="alert alert-danger mt-2 custom-rounded p-2">
+                                <div *ngIf="cityShippingAddress.errors?.['required']" class="small text-muted">
+                                    City address is required
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3">
-                            <input formControlName="provinceShippingAddress" class="form-control form-control-user" type="text" placeholder="Province"
-                                name="Province">
+                            <input formControlName="provinceShippingAddress" class="form-control form-control-user"
+                                type="text" placeholder="Province" name="Province">
+                            <div *ngIf="provinceShippingAddress?.invalid && (provinceShippingAddress?.dirty || provinceShippingAddress?.touched)"
+                                class="alert alert-danger mt-2 custom-rounded p-2">
+                                <div *ngIf="provinceShippingAddress.errors?.['required']" class="small text-muted">
+                                    Province address is required
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3">
-                            <input formControlName="zipCodeShippingAddress" class="form-control form-control-user" type="text" placeholder="Zip Code"
-                                name="Zip Code">
+                            <input formControlName="zipCodeShippingAddress" class="form-control form-control-user"
+                                type="text" placeholder="Zip Code" name="Zip Code">
+                            <div *ngIf="zipCodeShippingAddress?.invalid && (zipCodeShippingAddress?.dirty || zipCodeShippingAddress?.touched)"
+                                class="alert alert-danger mt-2 custom-rounded p-2">
+                                <div *ngIf="zipCodeShippingAddress.errors?.['required']" class="small text-muted">
+                                    Zip code is required
+                                </div>
+                            </div>
                         </div>
 
                         <h5>Billing Address</h5>
                         <div class="mb-3">
-                            <input formControlName="streetBillingAddress" class="form-control form-control-user" type="text" placeholder="Street"
-                                name="Street">
+                            <input formControlName="streetBillingAddress" class="form-control form-control-user"
+                                type="text" placeholder="Street" name="Street">
+                            <div *ngIf="streetBillingAddress?.invalid && (streetBillingAddress?.dirty || streetBillingAddress?.touched)"
+                                class="alert alert-danger mt-2 custom-rounded p-2">
+                                <div *ngIf="streetBillingAddress.errors?.['required']" class="small text-muted">
+                                    Street address is required
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3">
-                            <input formControlName="cityBillingAddress" class="form-control form-control-user" type="text" placeholder="City"
-                                name="City">
+                            <input formControlName="cityBillingAddress" class="form-control form-control-user"
+                                type="text" placeholder="City" name="City">
+                            <div *ngIf="cityBillingAddress?.invalid && (cityBillingAddress?.dirty || cityBillingAddress?.touched)"
+                                class="alert alert-danger mt-2 custom-rounded p-2">
+                                <div *ngIf="cityBillingAddress.errors?.['required']" class="small text-muted">
+                                    City address is required
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3">
-                            <input formControlName="provinceBillingAddress" class="form-control form-control-user" type="text" placeholder="Province"
-                                name="Province">
+                            <input formControlName="provinceBillingAddress" class="form-control form-control-user"
+                                type="text" placeholder="Province" name="Province">
+                            <div *ngIf="provinceBillingAddress?.invalid && (provinceBillingAddress?.dirty || provinceBillingAddress?.touched)"
+                                class="alert alert-danger mt-2 custom-rounded p-2">
+                                <div *ngIf="provinceBillingAddress.errors?.['required']" class="small text-muted">
+                                    Province address is required
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3">
-                            <input formControlName="zipCodeBillingAddress" class="form-control form-control-user" type="text" placeholder="Zip Code"
-                                name="Zip Code">
+                            <input formControlName="zipCodeBillingAddress" class="form-control form-control-user"
+                                type="text" placeholder="Zip Code" name="Zip Code">
+                            <div *ngIf="zipCodeBillingAddress?.invalid && (zipCodeBillingAddress?.dirty || zipCodeBillingAddress?.touched)"
+                                class="alert alert-danger mt-2 custom-rounded p-2">
+                                <div *ngIf="zipCodeBillingAddress.errors?.['required']" class="small text-muted">
+                                    Zip code address is required
+                                </div>
+                            </div>
                         </div>
 
                         <div class="mb-3">
@@ -51,8 +99,8 @@
                                 <option value="Bank"> Bank </option>
                             </select>
                         </div>
-                        
-                        <button class="btn btn-primary d-block btn-user w-100" type="submit">Purchase</button>
+
+                        <button [disabled]="checkoutForm.invalid" class="btn btn-primary d-block btn-user w-100" type="submit">Purchase</button>
                     </form>
                 </div>
             </div>
