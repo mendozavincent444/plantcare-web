@@ -84,11 +84,22 @@
                                         </div>
                                     </div>
                                 </div>
-
-                               
-
                             </div>
 
+                            <div class="row">
+
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label class="form-label">
+                                            <strong> Order Items </strong>
+                                        </label>
+
+                                        <p *ngFor="let items of transaction.orderItems"> 
+                                            {{ items.product.name }} QTY {{ items.quantity }}, PRICE {{ items.unitPrice | currency: 'PHP' }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                             
                         </form>
                     </div>

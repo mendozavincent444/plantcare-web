@@ -25,6 +25,8 @@ export class ViewTransactionComponent implements OnInit {
 
     this.manageTransactionsService.getTransactionById(transactionId).subscribe(data => {
       this.transaction = data;
+
+      this.transaction.orderItems.forEach((item) => console.log(item));
     })
   }
 }
