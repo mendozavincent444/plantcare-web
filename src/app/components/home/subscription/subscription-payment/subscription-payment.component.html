@@ -12,18 +12,42 @@
                         <div class="mb-3">
                             <input formControlName="streetBillingAddress" class="form-control form-control-user" type="text" placeholder="Street"
                                 name="Street">
+                                <div *ngIf="streetBillingAddress?.invalid && (streetBillingAddress?.dirty || streetBillingAddress?.touched)"
+                                        class="alert alert-danger mt-2 custom-rounded p-2">
+                                        <div *ngIf="streetBillingAddress.errors?.['required']" class="small text-muted">
+                                            Street address is required
+                                        </div>
+                                    </div>
                         </div>
                         <div class="mb-3">
                             <input formControlName="cityBillingAddress" class="form-control form-control-user" type="text" placeholder="City"
                                 name="City">
+                                <div *ngIf="cityBillingAddress?.invalid && (cityBillingAddress?.dirty || cityBillingAddress?.touched)"
+                                        class="alert alert-danger mt-2 custom-rounded p-2">
+                                        <div *ngIf="cityBillingAddress.errors?.['required']" class="small text-muted">
+                                            City address is required
+                                        </div>
+                                    </div>
                         </div>
                         <div class="mb-3">
                             <input formControlName="provinceBillingAddress" class="form-control form-control-user" type="text" placeholder="Province"
                                 name="Province">
+                                <div *ngIf="provinceBillingAddress?.invalid && (provinceBillingAddress?.dirty || provinceBillingAddress?.touched)"
+                                        class="alert alert-danger mt-2 custom-rounded p-2">
+                                        <div *ngIf="provinceBillingAddress.errors?.['required']" class="small text-muted">
+                                            Province address is required
+                                        </div>
+                                    </div>
                         </div>
                         <div class="mb-3">
                             <input formControlName="zipCodeBillingAddress" class="form-control form-control-user" type="text" placeholder="Zip Code"
                                 name="Zip Code">
+                                <div *ngIf="zipCodeBillingAddress?.invalid && (zipCodeBillingAddress?.dirty || zipCodeBillingAddress?.touched)"
+                                        class="alert alert-danger mt-2 custom-rounded p-2">
+                                        <div *ngIf="zipCodeBillingAddress.errors?.['required']" class="small text-muted">
+                                            Zip code is required
+                                        </div>
+                                    </div>
                         </div>
 
                         <div class="mb-3">
@@ -34,7 +58,7 @@
                             </select>
                         </div>
                         
-                        <button class="btn btn-primary d-block btn-user w-100" type="submit">Purchase</button>
+                        <button [disabled]="subscriptionPaymentForm.invalid" class="btn btn-primary d-block btn-user w-100" type="submit">Purchase</button>
                     </form>
                 </div>
             </div>
