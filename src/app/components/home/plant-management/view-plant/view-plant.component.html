@@ -1,7 +1,7 @@
 <div class="row mb-3">
     <div class="col-lg-4">
         <div class="card mb-3">
-            <div class="card-body text-center shadow"> 
+            <div class="card-body text-center shadow">
                 <h4> {{ plant.name }}</h4>
             </div>
         </div>
@@ -26,10 +26,17 @@
                                             {{ plant.name }}
                                         </div>
 
-                                        <div *ngIf="editMode"> 
-                                            <input formControlName="plantName" class="form-control" type="text" placeholder="Enter Plant Name..." name="plantName">
+                                        <div *ngIf="editMode">
+                                            <input formControlName="plantName" class="form-control" type="text"
+                                                placeholder="Enter Plant Name..." name="plantName">
+                                            <div *ngIf="plantName?.invalid && (plantName?.dirty || plantName?.touched)"
+                                                class="alert alert-danger mt-2 p-2">
+                                                <div *ngIf="plantName.errors?.['required']" class="small text-muted">
+                                                    Plant name is required
+                                                </div>
+                                            </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                                 <div class="col">
@@ -38,12 +45,19 @@
                                             <strong>Days to Maturity</strong>
                                         </label>
 
-                                        <div *ngIf="!editMode"> 
+                                        <div *ngIf="!editMode">
                                             {{ plant.daysToMaturity }}
                                         </div>
 
-                                        <div *ngIf="editMode"> 
-                                            <input formControlName="daysToMaturity" class="form-control" type="text" name="daysToMaturity">
+                                        <div *ngIf="editMode">
+                                            <input formControlName="daysToMaturity" class="form-control" type="text"
+                                                name="daysToMaturity">
+                                            <div *ngIf="daysToMaturity?.invalid && (daysToMaturity?.dirty || daysToMaturity?.touched)"
+                                                class="alert alert-danger mt-2 p-2">
+                                                <div *ngIf="daysToMaturity.errors?.['required']" class="small text-muted">
+                                                    Days to maturity is required
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -57,12 +71,19 @@
                                             <strong>Maximum EC</strong>
                                         </label>
 
-                                        <div *ngIf="!editMode"> 
+                                        <div *ngIf="!editMode">
                                             {{ plant.maximumEc }}
                                         </div>
 
-                                        <div *ngIf="editMode"> 
-                                            <input formControlName="maximumEc" class="form-control" type="text" name="maximumEC">
+                                        <div *ngIf="editMode">
+                                            <input formControlName="maximumEc" class="form-control" type="text"
+                                                name="maximumEC">
+                                            <div *ngIf="maximumEc?.invalid && (maximumEc?.dirty || maximumEc?.touched)"
+                                                class="alert alert-danger mt-2 p-2">
+                                                <div *ngIf="maximumEc.errors?.['required']" class="small text-muted">
+                                                    Maximum EC is required
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -73,12 +94,19 @@
                                             <strong>Minimum EC</strong>
                                         </label>
 
-                                        <div *ngIf="!editMode"> 
+                                        <div *ngIf="!editMode">
                                             {{ plant.minimumEc }}
                                         </div>
 
-                                        <div *ngIf="editMode"> 
-                                            <input formControlName="minimumEc" class="form-control" type="text" name="minimumEC">
+                                        <div *ngIf="editMode">
+                                            <input formControlName="minimumEc" class="form-control" type="text"
+                                                name="minimumEC">
+                                            <div *ngIf="minimumEc?.invalid && (minimumEc?.dirty || minimumEc?.touched)"
+                                                class="alert alert-danger mt-2 p-2">
+                                                <div *ngIf="minimumEc.errors?.['required']" class="small text-muted">
+                                                    Minimum EC is required
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -93,12 +121,19 @@
                                             <strong>Maximum pH</strong>
                                         </label>
 
-                                        <div *ngIf="!editMode"> 
+                                        <div *ngIf="!editMode">
                                             {{ plant.maximumPh }}
                                         </div>
 
-                                        <div *ngIf="editMode"> 
-                                            <input formControlName="maximumPh" class="form-control" type="text" name="maximumPH">
+                                        <div *ngIf="editMode">
+                                            <input formControlName="maximumPh" class="form-control" type="text"
+                                                name="maximumPH">
+                                            <div *ngIf="maximumPh?.invalid && (maximumPh?.dirty || maximumPh?.touched)"
+                                                class="alert alert-danger mt-2 p-2">
+                                                <div *ngIf="maximumPh.errors?.['required']" class="small text-muted">
+                                                    Maximum pH is required
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -109,12 +144,19 @@
                                             <strong>Minimum pH</strong>
                                         </label>
 
-                                        <div *ngIf="!editMode"> 
+                                        <div *ngIf="!editMode">
                                             {{ plant.minimumPh }}
                                         </div>
 
-                                        <div *ngIf="editMode"> 
-                                            <input formControlName="minimumPh" class="form-control" type="text" name="minimumPH">
+                                        <div *ngIf="editMode">
+                                            <input formControlName="minimumPh" class="form-control" type="text"
+                                                name="minimumPH">
+                                            <div *ngIf="minimumPh?.invalid && (minimumPh?.dirty || minimumPh?.touched)"
+                                                class="alert alert-danger mt-2 p-2">
+                                                <div *ngIf="minimumPh.errors?.['required']" class="small text-muted">
+                                                    Minimum pH is required
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -122,16 +164,19 @@
                             </div>
 
                             <div *ngIf="!editMode" class="mb-3">
-                                <button (click)="toggleEditMode()" class="btn btn-primary btn-sm" type="button">Edit Plant</button>
+                                <button (click)="toggleEditMode()" class="btn btn-primary btn-sm" type="button">Edit
+                                    Plant</button>
                             </div>
 
                             <div *ngIf="editMode" class="mb-3">
-                                <button class="btn btn-success btn-sm override-button-text-color" type="submit">Save</button>
-                                <button (click)="toggleEditMode()" class="btn btn-primary btn-sm action-button" type="button">Cancel</button>
+                                <button [disabled]="editPlantForm.invalid" class="btn btn-success btn-sm override-button-text-color"
+                                    type="submit">Save</button>
+                                <button (click)="toggleEditMode()" class="btn btn-primary btn-sm action-button"
+                                    type="button">Cancel</button>
 
                             </div>
 
-                            
+
                         </form>
                     </div>
                 </div>
